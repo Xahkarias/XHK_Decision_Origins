@@ -1,0 +1,4 @@
+xhk_tree_life_modifier = {
+	ship_colonizer_food_cost_add = 500
+	ship_colonizer_alloys_cost_mult = -0.50
+}

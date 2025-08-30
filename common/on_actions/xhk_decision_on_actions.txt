@@ -1,0 +1,24 @@
+on_colony_destroyed = {
+	events = {
+		xhk_decision_origin_triggered.2 #ToL Tree death
+	}
+}
+
+on_colonized = {
+	events = {
+		xhk_decision_origin_triggered.1 #add_the_tree
+	}
+}
+
+on_planet_transfer = {
+	events = {
+		xhk_decision_origin_triggered.2 #ToL Tree death
+		xhk_decision_origin_triggered.4	# "Tree of Life": update modifier
+	}
+}
+
+on_planet_bombarded = {
+	events = {
+		xhk_decision_origin_triggered.3 # Tree of Life: Tree death
+	}
+}

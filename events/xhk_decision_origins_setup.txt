@@ -37,3 +37,20 @@ country_event = {
 		}
 	}
 }
+
+## TREE OF LIFE
+country_event = {
+	id = xhk_decision_origins.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = decision_origins_tree_of_life
+		## add deposit and pops
+		capital_scope = {
+			hidden_effect = {
+				add_deposit = d_tree_of_life_home
+			}
+		}
+	}
+}

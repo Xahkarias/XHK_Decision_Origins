@@ -24,3 +24,29 @@ decision_origins_prosperous_unification = {
 		add_research_option = tech_planetary_unification
 	}
 }
+
+decision_origins_tree_of_life = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		AND = {
+			is_ai = no
+			days_passed < 1
+			NOR = {
+				has_country_flag = decision_origins_tree_of_life
+				has_origin = origin_tree_of_life
+			}
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.2
+		}
+	}
+}

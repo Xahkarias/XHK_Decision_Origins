@@ -1,0 +1,68 @@
+xhk_origin_holding_tree_of_life_sapling = {
+	base_buildtime = @b1_time
+	owner_type = subject_holding
+	icon = holding_tree_of_life_sapling
+	planet_limit = 1
+
+	category = resource
+
+	resources = {
+		category = planet_holdings
+		cost = {
+			food = 1000
+		}
+	}
+
+	potential = {
+		owner.overlord = { has_country_flag = decision_origins_tree_of_life }
+		NOR = {
+			owner = {
+				has_origin = origin_tree_of_life
+				has_country_flag = decision_origins_tree_of_life
+				country_uses_food = no
+			}
+		}
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+		}
+		is_artificial = no
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = no_tree_of_life_sapling_wilderness
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+		}
+	}
+
+	planet_modifier = {
+		monthly_loyalty = 1
+		pop_environment_tolerance = 0.1
+		planet_farmers_food_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet.owner
+			planet.owner = { is_gestalt = no }
+		}
+		job_overlord_arborist_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet.owner
+			planet.owner = { is_gestalt = yes }
+		}
+		job_overlord_arborist_drone_add = 100
+	}
+}
