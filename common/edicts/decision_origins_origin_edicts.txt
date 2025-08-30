@@ -1,0 +1,26 @@
+decision_origins_prosperous_unification = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		AND = {
+			is_ai = no
+			days_passed < 1
+			NOR = {
+				has_country_flag = decision_origins_prosperous_unification
+				has_origin = origin_default
+			}
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.1
+		}
+		add_research_option = tech_planetary_unification
+	}
+}
