@@ -1,0 +1,13 @@
+xhk_d_prosp_unif = {
+	is_for_colonizable = yes
+	icon = d_strategic_resources
+	category = deposit_cat_rare
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = 2
+	}
+}
