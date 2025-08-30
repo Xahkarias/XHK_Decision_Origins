@@ -5,12 +5,9 @@ country_event = {
 	id = xhk_decision_origins.1
 	hide_window = yes
 	is_triggered_only = yes
-
-	trigger = {
-		has_country_flag = decision_origins_prosperous_unification
-	}
-
+	
 	immediate = {
+		set_country_flag = decision_origins_prosperous_unification
 		## add deposit and pops
 		capital_scope = {
 			hidden_effect = {
