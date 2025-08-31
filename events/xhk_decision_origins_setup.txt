@@ -100,6 +100,12 @@ country_event = {
 					owner = { has_valid_civic = civic_machine_assimilator }
 				}
 				add_deposit = d_organic_slurry
+				every_owned_species = {
+					limit = {
+						is_robotic = no
+					}
+					set_habitability_trait = { trait = trait_pc_machine_preference }
+				}
 			}
 			
 			add_zone = {

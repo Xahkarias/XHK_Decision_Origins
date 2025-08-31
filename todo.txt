@@ -8,6 +8,7 @@ DONE:
 	resource consolidation
 		change homeworld stuff
 		change home system
+		changes cyborgs to machine pref
 	post apoc
 		forces trait
 		change homeworld stuff
