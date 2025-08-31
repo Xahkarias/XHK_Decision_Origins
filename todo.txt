@@ -3,23 +3,28 @@ DONE:
 	life seeded
 	resource consolidation
 	post apoc
-
+	ocean paradise
+		forces waterproof / aquatic
+		change homeworld stuff
+	subterranean
+		forces molebots / cave dweller
+		modifies is_subterranean_empire
+		-- the mining districts should convert properly
+		add modifier
 
 looks ok, need to boot to check
 	tree of life
 	
+		
 
 next in line:
 	
-	ocean paradise
-	subterranean
 	
-
+	
 
 
 from galaxis:
 	syncretic evolution
-	post apoc
 	remnants
 	shattered ring
 	necrophage

@@ -7,13 +7,11 @@ decision_origins_prosperous_unification = {
 	}
 
 	potential = {
-		AND = {
-			is_ai = no
-			days_passed < 1
-			NOR = {
-				has_country_flag = decision_origins_prosperous_unification
-				has_origin = origin_default
-			}
+		is_ai = no
+		days_passed < 1
+		NOR = {
+			has_country_flag = decision_origins_prosperous_unification
+			has_origin = origin_default
 		}
 	}
 
@@ -34,13 +32,12 @@ decision_origins_tree_of_life = {
 	}
 
 	potential = {
-		AND = {
-			is_ai = no
-			days_passed < 1
-			NOR = {
-				has_country_flag = decision_origins_tree_of_life
-				has_origin = origin_tree_of_life
-			}
+		host_has_dlc = "Utopia"
+		is_ai = no
+		days_passed < 1
+		NOR = {
+			has_country_flag = decision_origins_tree_of_life
+			has_origin = origin_tree_of_life
 		}
 	}
 
@@ -60,14 +57,13 @@ decision_origins_life_seeded = {
 	}
 
 	potential = {
-		AND = {
-			is_ai = no
-			days_passed < 3
-			days_passed > 0
-			NOR = {
-				has_country_flag = decision_origins_life_seeded
-				has_origin = origin_life_seeded
-			}
+		host_has_dlc = "Apocalypse"
+		is_ai = no
+		days_passed < 3
+		days_passed > 0
+		NOR = {
+			has_country_flag = decision_origins_life_seeded
+			has_origin = origin_life_seeded
 		}
 	}
 
@@ -87,13 +83,12 @@ decision_origins_resource_consolidation = {
 	}
 
 	potential = {
-		AND = {
-			is_ai = no
-			days_passed < 1
-			NOR = {
-				has_country_flag = decision_origins_resource_consolidation
-				has_origin = origin_machine
-			}
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		is_ai = no
+		days_passed < 1
+		NOR = {
+			has_country_flag = decision_origins_resource_consolidation
+			has_origin = origin_machine
 		}
 	}
 
@@ -113,19 +108,68 @@ decision_origins_post_apocalyptic = {
 	}
 
 	potential = {
-		AND = {
-			is_ai = no
-			days_passed < 3
-			days_passed > 0
-			NOT = {
-				has_country_flag = decision_origins_post_apocalyptic
-			}
+		host_has_dlc = "Apocalypse"
+		is_ai = no
+		days_passed < 3
+		days_passed > 0
+		NOT = {
+			has_country_flag = decision_origins_post_apocalyptic
 		}
 	}
 
 	effect = {
 		country_event = {
 			id = xhk_decision_origins.5
+		}
+	}
+}
+
+decision_origins_ocean_paradise = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Aquatics Species Pack"
+		is_ai = no
+		days_passed < 3
+		days_passed > 0
+		NOT = {
+			has_country_flag = decision_origins_ocean_paradise
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.6
+		}
+	}
+}
+
+decision_origins_subterranean = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Overlord"
+		is_ai = no
+		days_passed < 3
+		days_passed > 0
+		NOT = {
+			has_country_flag = decision_origins_subterranean
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.7
 		}
 	}
 }
