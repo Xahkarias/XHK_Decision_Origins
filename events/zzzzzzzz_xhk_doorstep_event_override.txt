@@ -1,0 +1,103 @@
+# Galactic Doorstep - Pest Control
+country_event = {
+	id = origin.1030
+	title = "origin.1030.name"
+	desc = {
+		text = "origin.1030.desc"
+		trigger = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+		}
+	}
+	desc = {
+		text = "origin.1030.desc.gestalt"
+		trigger = {
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	picture = GFX_evt_atmospheric_entry
+	show_sound = event_energy_field
+	location = owner
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_galactic_doorstep
+			has_country_flag = decision_origins_galactic_doorstep
+		}
+		fromfromfrom = {
+			has_fleet_flag = gateway_vermin
+		}
+	}
+
+	option = {
+		name = origin.1030.a
+		hidden_effect = {
+			remove_country_flag = gateway_swarm
+		}
+	}
+}
+
+country_event = {
+	id = origin.1050
+	title = origin.1050.name
+	desc = origin.1050.desc
+	picture = GFX_evt_drifting_gateway
+	show_sound = event_default
+	location = from
+
+	is_triggered_only = yes
+	specimen = secrets_black_crown
+
+	trigger = {
+		OR = {
+			has_origin = origin_galactic_doorstep
+			has_country_flag = decision_origins_galactic_doorstep
+		}
+		fromfromfrom = { has_megastructure_flag = doorstep_gateway@root }
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_country_flag = gateway_reactivated } }
+			set_country_flag = gateway_reactivated
+		}
+	}
+
+	option = {
+		name = origin.1050.A
+
+		if = {
+			limit = {
+				NOR = {
+					has_tech_option = tech_gateway_construction
+					has_technology = tech_gateway_construction
+				}
+			}
+			add_research_option = tech_gateway_construction
+			add_tech_progress = {
+				tech = tech_gateway_construction
+				progress = 0.95
+			}
+		}
+		else_if = {
+			limit = { has_tech_option = tech_gateway_construction }
+			add_tech_progress = {
+				tech = tech_gateway_construction
+				progress = 0.95
+			}
+		}
+	}
+	after = {
+		save_event_target_as = this_country
+		add_timeline_event = {
+			type = timeline_origin_specific
+			override_id = timeline_galactic_doorstep_restored_gateway
+			override_tooltip = "TIMELINE_EVENT_GALACTIC_DOORSTEP_TOOLTIP"
+			override_types = { }
+			override_text = { "text:TIMELINE_EVENT_GALACTIC_DOORSTEP" }
+			override_texture = { "background:GFX_origin_galactic_doorstep" }
+			targets = {}
+		}
+	}
+}

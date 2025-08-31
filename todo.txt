@@ -4,6 +4,7 @@ DONE:
 		add pops / district slot
 	life seeded
 		forces trait
+			ON ALL POPS ON PLANET
 		change homeworld stuff
 	resource consolidation
 		change homeworld stuff
@@ -11,12 +12,15 @@ DONE:
 		changes cyborgs to machine pref
 	post apoc
 		forces trait
+			ON ALL POPS ON PLANET
 		change homeworld stuff
 	ocean paradise
 		forces trait
+			ON ALL POPS ON PLANET
 		change homeworld stuff
 	subterranean
 		forces trait
+			ON ALL POPS ON PLANET
 		overwrites is_subterranean_empire
 		add empire modifier
 	overtuned
@@ -54,7 +58,10 @@ DONE:
 		adds modifier
 		gives tech
 		DOES NOT GIVE POPS
-
+	galactic doorstep
+		adds modifier
+		starts the quest chain
+		DOES NOT GIVE PARAGON DROP CHANCE INCREASE
 
 
 looks ok, need to boot to check
@@ -62,10 +69,9 @@ looks ok, need to boot to check
 	
 
 
-
 from galaxis:
-	syncretic evolution
 	remnants
+	syncretic evolution
 	shattered ring
 	necrophage
 	teachers of the shroud
@@ -74,6 +80,6 @@ from galaxis:
 
 
 partially done:
-	galactic doorstep
+	
 	on the shoulders of giants
 	void dwellers
