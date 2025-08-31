@@ -90,3 +90,87 @@ country_event = {
 		}
 	}
 }
+
+## RESOURCE CONSOLIDATION
+country_event = {
+	id = xhk_decision_origins.4
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = decision_origins_resource_consolidation
+		## add deposit
+		capital_scope = {
+			hidden_effect = {
+				change_pc = pc_machine
+				add_deposit = d_machine_minerals
+
+				if = {
+					limit = {
+						owner = { has_valid_civic = civic_machine_assimilator }
+					}
+					add_deposit = d_organic_slurry
+				}
+				
+				add_zone = {
+					district = district_nexus_1
+					zone = zone_energy_nexus
+					replace = yes
+				}
+		
+				add_zone = {
+					district = district_nexus_2
+					zone = zone_minerals_nexus
+					replace = yes
+				}
+				
+				solar_system = {
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+						}
+						clear_deposits = yes
+					}
+					every_system_planet = {
+						limit = {
+							is_asteroid = yes
+						}
+						remove_planet = yes
+					}
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+							is_asteroid = no
+							NOT = { is_planet_class = pc_gas_giant }
+						}
+						change_pc = pc_broken
+					}
+					every_system_planet = {
+						limit = {
+							colonizable_planet = no
+							is_star = no
+							is_planet_class = pc_gas_giant
+						}
+						change_pc = pc_molten
+						add_modifier = { modifier = chthonian_planet }
+						every_moon = {
+							limit = {
+								colonizable_planet = no
+							}
+							remove_planet = yes
+						}
+						while = {
+							limit = {
+								planet_size >= 20
+							}
+							change_planet_size = -6
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}

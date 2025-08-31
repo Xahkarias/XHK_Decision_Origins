@@ -1,7 +1,7 @@
 DONE:
 	prosperous unification
 	life seeded
-
+	resource consolidation
 
 
 
@@ -13,9 +13,9 @@ looks ok, need to boot to check
 
 
 next in line:
-	mechanist
-	resource consolidation
-
+	ocean paradise
+	
+	
 
 
 
@@ -25,7 +25,7 @@ from galaxis:
 	remnants
 	shattered ring
 	necrophage
-	ocean paradise
+	mechanist
 	teachers of the shroud
 	
 
