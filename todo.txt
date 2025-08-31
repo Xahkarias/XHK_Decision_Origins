@@ -62,7 +62,10 @@ DONE:
 		adds modifier
 		starts the quest chain
 		DOES NOT GIVE PARAGON DROP CHANCE INCREASE
+	syncretic evolution
+		DOES NOT DELETE POPS, ONLY ADDS THEM
 
+		
 
 looks ok, need to boot to check
 	
@@ -71,7 +74,7 @@ looks ok, need to boot to check
 
 from galaxis:
 	remnants
-	syncretic evolution
+	
 	shattered ring
 	necrophage
 	teachers of the shroud

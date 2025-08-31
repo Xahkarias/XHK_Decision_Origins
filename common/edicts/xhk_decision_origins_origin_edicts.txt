@@ -278,3 +278,26 @@ decision_origins_galactic_doorstep = {
 		}
 	}
 }
+
+decision_origins_syncretic_evolution = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		is_ai = no
+		days_passed < 1
+		NOT = {
+			has_country_flag = decision_origins_syncretic_evolution
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.12
+		}
+	}
+}
