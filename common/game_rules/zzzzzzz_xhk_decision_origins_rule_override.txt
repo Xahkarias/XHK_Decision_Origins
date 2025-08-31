@@ -20,6 +20,7 @@ can_remove_positive_traits_organic = {
 			has_toxoids = yes
 			OR = {
 				has_origin = origin_overtuned
+				## ADDED THIS LINE
 				has_country_flag = decision_origins_overtuned
 			}
 		}

@@ -24,6 +24,7 @@ damn_the_consequences = {
 
 	potential = {
 		OR = {
+			## ADDED THIS LINE
 			has_country_flag = decision_origins_overtuned
 			has_origin = origin_overtuned
 		}
