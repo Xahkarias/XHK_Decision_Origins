@@ -10,15 +10,13 @@ country_event = {
 		set_country_flag = decision_origins_prosperous_unification
 		## add deposit and pops
 		capital_scope = {
-			hidden_effect = {
-				# this is for compatibility with any form of district set, simply gives 2 extra district slots
-				add_deposit = xhk_d_prosp_unif
+			# this is for compatibility with any form of district set, simply gives 2 extra district slots
+			add_deposit = xhk_d_prosp_unif
 
-				create_pop_group = {
-					size = 400
-					species = owner_main_species
-				}
-			}
+			create_pop_group = {
+				size = 400
+				species = owner_main_species
+			}		
 		}
 		
 		## add buff
@@ -48,9 +46,7 @@ country_event = {
 		set_country_flag = decision_origins_tree_of_life
 		## add deposit and pops
 		capital_scope = {
-			hidden_effect = {
-				add_deposit = d_tree_of_life_home
-			}
+			add_deposit = d_tree_of_life_home
 		}
 	}
 }
@@ -65,28 +61,21 @@ country_event = {
 		set_country_flag = decision_origins_life_seeded
 		## add deposit
 		capital_scope = {
-			hidden_effect = {
-				change_pc = pc_gaia
-				set_planet_size = 30
-				add_deposit = d_tempestous_mountain
-				add_deposit = d_submerged_ore_veins
-				add_deposit = d_teeming_reef
-				add_deposit = d_dust_caverns
-				add_deposit = d_bubbling_swamp
-				add_deposit = d_crystalline_caverns
-			}
+			change_pc = pc_gaia
+			set_planet_size = 30
+			add_deposit = d_tempestous_mountain
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_teeming_reef
+			add_deposit = d_dust_caverns
+			add_deposit = d_bubbling_swamp
+			add_deposit = d_crystalline_caverns
 		}
 		## modify if not mechanical
-		hidden_effect = {
-			if = {
-				limit = {
-					is_robot_empire = no
-				}
-				modify_species = {
-					species = owner_main_species
-					ideal_planet_class = pc_gaia
-				}
+		every_owned_species = {
+			limit = {
+				is_robotic = no
 			}
+			set_habitability_trait = { trait = trait_pc_gaia_preference }
 		}
 	}
 }
@@ -101,76 +90,110 @@ country_event = {
 		set_country_flag = decision_origins_resource_consolidation
 		## add deposit
 		capital_scope = {
-			hidden_effect = {
-				change_pc = pc_machine
-				add_deposit = d_machine_minerals
+			
+			change_pc = pc_machine
+			add_deposit = d_machine_minerals
 
-				if = {
+			if = {
+				limit = {
+					owner = { has_valid_civic = civic_machine_assimilator }
+				}
+				add_deposit = d_organic_slurry
+			}
+			
+			add_zone = {
+				district = district_nexus_1
+				zone = zone_energy_nexus
+				replace = yes
+			}
+	
+			add_zone = {
+				district = district_nexus_2
+				zone = zone_minerals_nexus
+				replace = yes
+			}
+
+			solar_system = {
+				every_system_planet = {
 					limit = {
-						owner = { has_valid_civic = civic_machine_assimilator }
+						colonizable_planet = no
+						is_star = no
 					}
-					add_deposit = d_organic_slurry
+					clear_deposits = yes
 				}
-				
-				add_zone = {
-					district = district_nexus_1
-					zone = zone_energy_nexus
-					replace = yes
+				every_system_planet = {
+					limit = {
+						is_asteroid = yes
+					}
+					remove_planet = yes
 				}
-		
-				add_zone = {
-					district = district_nexus_2
-					zone = zone_minerals_nexus
-					replace = yes
+				every_system_planet = {
+					limit = {
+						colonizable_planet = no
+						is_star = no
+						is_asteroid = no
+						NOT = { is_planet_class = pc_gas_giant }
+					}
+					change_pc = pc_broken
 				}
-				
-				solar_system = {
-					every_system_planet = {
+				every_system_planet = {
+					limit = {
+						colonizable_planet = no
+						is_star = no
+						is_planet_class = pc_gas_giant
+					}
+					change_pc = pc_molten
+					add_modifier = { modifier = chthonian_planet }
+					every_moon = {
 						limit = {
 							colonizable_planet = no
-							is_star = no
-						}
-						clear_deposits = yes
-					}
-					every_system_planet = {
-						limit = {
-							is_asteroid = yes
 						}
 						remove_planet = yes
 					}
-					every_system_planet = {
+					while = {
 						limit = {
-							colonizable_planet = no
-							is_star = no
-							is_asteroid = no
-							NOT = { is_planet_class = pc_gas_giant }
+							planet_size >= 20
 						}
-						change_pc = pc_broken
-					}
-					every_system_planet = {
-						limit = {
-							colonizable_planet = no
-							is_star = no
-							is_planet_class = pc_gas_giant
-						}
-						change_pc = pc_molten
-						add_modifier = { modifier = chthonian_planet }
-						every_moon = {
-							limit = {
-								colonizable_planet = no
-							}
-							remove_planet = yes
-						}
-						while = {
-							limit = {
-								planet_size >= 20
-							}
-							change_planet_size = -6
-						}
+						change_planet_size = -6
 					}
 				}
 			}
+			
 		}
 		
+	}
+}
+
+## POST APOCALYPTIC
+country_event = {
+	id = xhk_decision_origins.5
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		set_country_flag = decision_origins_post_apocalyptic
+
+		capital_scope = {
+			change_pc = pc_nuked
+		}
+		
+		every_owned_species = {
+			limit = {
+				is_robotic = no
+			}
+			change_species_characteristics = {
+				add_trait = trait_survivor
+			}
+		}
+
+		every_owned_species = {
+			limit = {
+				is_robotic = yes
+			}
+			change_species_characteristics = {
+				add_trait = trait_robot_survivor
+			}
+		}
 	}
 }

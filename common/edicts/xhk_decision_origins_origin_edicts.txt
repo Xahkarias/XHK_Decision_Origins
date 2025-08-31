@@ -102,3 +102,28 @@ decision_origins_resource_consolidation = {
 		}
 	}
 }
+
+decision_origins_post_apocalyptic = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		AND = {
+			is_ai = no
+			days_passed < 1
+			NOT = {
+				has_country_flag = decision_origins_post_apocalyptic
+			}
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.5
+		}
+	}
+}
