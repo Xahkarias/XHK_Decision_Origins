@@ -199,7 +199,7 @@ decision_origins_overtuned = {
 	}
 }
 
-decision_toxic_knights = {
+decision_origins_toxic_knights = {
 	length = 1
 	icon = "GFX_edict_type_policy"
 	
@@ -223,6 +223,31 @@ decision_toxic_knights = {
 	effect = {
 		country_event = {
 			id = xhk_decision_origins.9
+		}
+	}
+}
+
+decision_origins_mechanist = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		is_ai = no
+		is_machine_empire = no
+		days_passed < 1
+		NOT = {
+			has_country_flag = decision_origins_mechanist
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.10
 		}
 	}
 }

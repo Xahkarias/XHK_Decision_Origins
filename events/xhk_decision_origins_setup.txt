@@ -346,3 +346,36 @@ country_event = {
 
 	}
 }
+
+## MECHANIST
+country_event = {
+	id = xhk_decision_origins.10
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		set_country_flag = decision_origins_mechanist
+
+		capital_scope = {
+			add_building = {
+				zone = slot_city_government
+				building = building_robot_assembly_plant
+			}
+		}
+
+		give_technology = {
+			tech = tech_powered_exoskeletons
+		}
+		give_technology = {
+			tech = tech_robotic_workers
+		}
+		add_tech_progress = {
+			tech = tech_robomodding
+			progress = 0
+		}
+		add_modifier = {
+			modifier = xhk_decori_mechanists_modifier
+		}
+	}
+}

@@ -16,3 +16,9 @@ xhk_decori_overtuned_modifier = {
 	BIOLOGICAL_species_trait_points_add = 2
 	BIOLOGICAL_species_trait_picks_add = 1
 }
+
+xhk_decori_mechanists_modifier = {
+	planet_pop_assembly_mult = 0.15
+	ROBOT_species_trait_picks_add = 1
+	ROBOT_species_trait_points_add = 2
+}

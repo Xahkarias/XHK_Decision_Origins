@@ -49,18 +49,17 @@ DONE:
 			building_amusement_megaplex, it is normally disabled with knights but who cares
 			COSMOGENESIS RELATED STUFF TO KNIGHTS
 			curator events since that would fuck with the rest of the curator dialog
-
+	mechanist
+		adds building
+		adds modifier
+		gives tech
+		DOES NOT GIVE POPS
 
 
 
 looks ok, need to boot to check
 	
 	
-		
-
-next in line:
-	
-
 
 
 
@@ -69,7 +68,6 @@ from galaxis:
 	remnants
 	shattered ring
 	necrophage
-	mechanist
 	teachers of the shroud
 	
 
