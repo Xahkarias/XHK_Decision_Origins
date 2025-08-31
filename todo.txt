@@ -2,13 +2,12 @@ DONE:
 	prosperous unification
 	life seeded
 	resource consolidation
-
+	post apoc
 
 
 looks ok, need to boot to check
 	tree of life
-	post apoc
-		not working for mechanist robot, everything else works
+	
 
 next in line:
 	

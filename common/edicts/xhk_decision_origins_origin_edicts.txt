@@ -62,7 +62,8 @@ decision_origins_life_seeded = {
 	potential = {
 		AND = {
 			is_ai = no
-			days_passed < 1
+			days_passed < 3
+			days_passed > 0
 			NOR = {
 				has_country_flag = decision_origins_life_seeded
 				has_origin = origin_life_seeded
@@ -114,7 +115,8 @@ decision_origins_post_apocalyptic = {
 	potential = {
 		AND = {
 			is_ai = no
-			days_passed < 1
+			days_passed < 3
+			days_passed > 0
 			NOT = {
 				has_country_flag = decision_origins_post_apocalyptic
 			}
