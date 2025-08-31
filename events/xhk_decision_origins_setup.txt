@@ -287,3 +287,62 @@ country_event = {
 
 	}
 }
+
+## TOXIC KNIGHTS
+country_event = {
+	id = xhk_decision_origins.9
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		# flag is different to match existing stuff
+		set_country_flag = decision_toxic_knights
+
+		# capital stuff
+		capital_scope = {
+			
+			add_deposit = d_toxic_god_blight_upon_the_land
+			add_deposit = d_toxic_god_deitys_swarms
+			add_deposit = d_toxic_god_pools_most_venemous
+			add_deposit = d_toxic_god_pestilential_wasteland
+			add_deposit = d_toxic_god_envenomed_seas
+			add_deposit = d_knights_calibrator
+			set_planet_flag = toxic_knights_habitat
+			
+			if = {
+				## change the first zone, should be archives to the special zone
+				limit = {
+					NOT = { is_planet_class = pc_ring_world }
+				}
+				change_planet_size = 5
+				add_zone = {
+					district = district_city
+					zone = xhk_zone_capital_knights
+					zone_slot = 1
+					replace = yes
+				} 
+			} 
+			else = {
+				add_zone = {
+					district = district_rw_city
+					zone = xhk_zone_capital_knights
+					zone_slot = 1
+					replace = yes
+				} 
+			}
+			
+			add_building = {
+				zone = xhk_zone_capital_knights
+				building = building_order_keep
+			}
+			
+		}
+
+		# mimics toxoids.7000
+		start_situation = {
+			type = situation_toxic_knights
+		}
+
+	}
+}

@@ -1,0 +1,73 @@
+xhk_zone_capital_knights = {
+	icon = GFX_job_knight_commander
+	base_buildtime = @zone_buildtime
+
+	swap_type = district_orders_demesne
+	swap_type_weight = 5
+
+	## THIS ZONE IS SPECIFICALLY ONLY FOR A CAPITAL WHICH IS USING THE DECISION
+	potential = { # planet scope
+		exists = owner
+		owner = {
+			has_country_flag = decision_toxic_knights 
+			NOT = {
+				has_country_flag = quest_abandoned
+			}
+		}
+		has_planet_flag = toxic_knights_habitat
+	}
+
+	## THIS ZONE IS SPECIFICALLY ONLY FOR A CAPITAL WHICH IS USING THE DECISION
+	unlock = { # planet scope
+		exists = owner
+		owner = {
+			has_country_flag = decision_toxic_knights 
+			NOT = {
+				has_country_flag = quest_abandoned
+			}
+		}
+		has_planet_flag = toxic_knights_habitat
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	convert_to = {
+		zone_fortress
+	}
+
+	max_buildings = 3
+
+	zone_sets = {
+		urban
+		habitat_urban
+	}
+
+	included_building_sets = {
+		knights
+		fortress
+		origin
+		research
+		unity
+	}
+
+    triggered_district_planet_modifier = {
+		potential = {
+			always = yes
+		}
+        job_knight_add = @scaling_district_2_jobs
+		mult = owner.value:hab_void_dweller_jobs
+    }
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	inline_script = {
+		script = zones/shared_city_non_urban_zone_modifiers
+	}
+}

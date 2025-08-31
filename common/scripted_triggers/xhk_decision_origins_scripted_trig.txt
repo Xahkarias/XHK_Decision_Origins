@@ -1,0 +1,7 @@
+# copied from daemonic incursion, also matches Ancient Cache of Knights
+has_toxic_knights_origin = {
+	OR = { 
+		has_origin = origin_toxic_knights 
+		has_country_flag = decision_toxic_knights 
+	}
+}

@@ -1,0 +1,350 @@
+
+building_order_keep = {
+	base_buildtime = 180
+
+	can_demolish = no
+	can_be_disabled = no
+
+	empire_limit = {
+		base = 1
+	}
+
+	category = government
+
+	building_sets = {
+		knights
+	}
+
+	potential = {
+		## CHANGED THIS
+		owner = { has_toxic_knights_origin = yes }
+		has_planet_flag = toxic_knights_habitat
+		owner = { NOT = { has_country_flag = quest_abandoned } }
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			## CHANGED THIS
+			NOT = { owner = { has_toxic_knights_origin = yes } }
+		}
+	}
+
+	planet_modifier = {
+		job_knight_add = @building_static_jobs
+		planet_resettlement_unemployed_destination_mult = 1
+	}
+
+	## SPECIFICALLY ADDS THE COMMANDER JOB THAT IS USUALLY ON THE CAPITAL
+	## ONLY TRIGGERS ON DECISION ORIGIN, NOT REAL ORIGIN
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = decision_toxic_knights  }
+		}
+		job_knight_commander_add = 1
+		job_knight_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7060_A }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_country_flag = quest_over } }
+		}
+		modifier = {
+			job_knight_add = @building_static_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7090_a }
+		}
+		planet_stability_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7130_a }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7060_B }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7040_c }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7095_a }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7160_a }
+		}
+		job_knight_add = @building_static_jobs
+	}
+
+	resources = {
+		cost = {
+			minerals = 1000
+		}
+		category = planet_buildings
+	}
+
+	triggered_desc = {
+		text = building_order_keep_effect
+	}
+}
+
+
+building_order_castle = {
+	icon = building_order_holding
+	base_buildtime = 180
+	can_demolish = no
+	can_be_disabled = no
+	can_build = no
+
+	category = government
+
+	building_sets = {
+		knights
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			## CHANGED THIS
+			NOT = { owner = { has_toxic_knights_origin = yes } }
+		}
+	}
+
+	planet_modifier = {
+		job_knight_add = @building_static_jobs
+		planet_resettlement_unemployed_destination_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_country_flag = quest_over } }
+		}
+		modifier = {
+			job_knight_add = @building_static_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+	}
+
+	triggered_desc = {
+		text = building_order_keep_effect
+	}
+}
+
+
+holding_knight_commandery = {
+	base_buildtime = @b1_time
+	owner_type = subject_holding
+	icon = building_order_holding
+	planet_limit = 1
+
+	category = government
+
+	resources = {
+		category = planet_holdings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = @b1_upkeep
+		}
+	}
+
+	potential = {
+		owner = {
+			is_wilderness_empire = no # implied by lack of Pops, but neater if made explicit
+			overlord = {
+				## CHANGED THIS
+				has_toxic_knights_origin = yes
+				NOT = { has_country_flag = quest_abandoned }
+			}
+		}
+	}
+
+	allow = {
+		exists = planet
+		planet = {
+			is_capital = yes
+			pop_amount >= 5000
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner.overlord }
+			## CHANGED THIS
+			owner.overlord = { NOT = { has_toxic_knights_origin = yes } }
+		}
+	}
+
+	planet_modifier = {
+		monthly_loyalty = -0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet.owner
+			planet.owner = { is_gestalt = no }
+		}
+		job_overlord_knight_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet.owner
+			planet.owner = { is_gestalt = yes }
+		}
+		job_overlord_knight_drone_add = 100
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 4
+		knight_quest_progress_add = 0.05
+	}
+}
+
+building_knightly_theme_park = {
+	base_buildtime = @b2_time
+	icon = building_order_holding
+	planet_limit = 1
+
+	owner_type = corporate
+
+	category = amenity
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			## CHANGED THIS
+				has_toxic_knights_origin = yes
+			NOT = { has_country_flag = quest_abandoned }
+		}
+	}
+
+	allow = {
+		pop_amount >= 5000
+	}
+
+	inline_script = {
+		script = jobs/entertainers_add
+		AMOUNT = @building_static_jobs
+	}
+
+	custom_tooltip = branch_office_building_trade_bonus
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_entertainers_trade_produces_add = @med_trade_from_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_civic = civic_corporate_hedonism
+			}
+		}
+		planet_entertainers_trade_produces_add = @med_trade_from_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_civic = civic_corporate_hyperspace_specialty
+			}
+		}
+		planet_entertainers_trade_produces_add = @med_trade_from_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				is_criminal_syndicate = yes
+				is_legit_or_legal_criminal = yes
+			}
+		}
+		planet_crime_floor_add = @crime_floor_from_legal_crime
+	}
+
+	#Trader Jobs from civics
+	triggered_country_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_valid_civic = civic_corporate_hedonism
+			}
+		}
+		job_capital_trader_add = @traders_from_civic
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_valid_civic = civic_corporate_hyperspace_specialty
+			}
+		}
+		job_capital_trader_add = @traders_from_civic
+	}
+
+	custom_tooltip = trade_value_from_workers
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			influence = 25
+			minerals = @b3_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			influence = 25
+		}
+		produces = {
+			energy = 10
+			mult = value:branch_office_value_for_buildings
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = planet.owner
+		}
+		text = knightly_theme_park_quest_effect_desc
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}

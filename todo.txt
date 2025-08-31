@@ -26,25 +26,42 @@ DONE:
 		gives gene tailoring
 		overwrites can_add_overtuned_traits
 		overwrites can_remove_overtuned_traits
-
-
+	tree of life
+		add duplicate events
+		add modifier
+		add deposit	
+	toxic knights
+		CANT BE DONE WITH HABITAT CAPITAL
+		overwrite consecration decision
+		override castle
+		override keep
+			adds urban building ability
+			adds commander job
+		override overlord / corporate knight holding
+		override policy
+		add new knight zone
+			specifically for adding the castle to the capital
+		overwrite relic
+		SPECIFICALLY DID NOT OVERRIDE:
+			some portal anomaly, i cant be assed to do so
+			random colony events
+			changing habitat tech requirements
+			building_amusement_megaplex, it is normally disabled with knights but who cares
+			COSMOGENESIS RELATED STUFF TO KNIGHTS
+			curator events since that would fuck with the rest of the curator dialog
 
 
 
 
 looks ok, need to boot to check
-	tree of life
-		add duplicate events
-		add modifier
-		add deposit
-		
+	
 	
 		
 
 next in line:
 	
-	
-	
+
+
 
 
 from galaxis:
@@ -56,10 +73,9 @@ from galaxis:
 	teachers of the shroud
 	
 
+
+
 partially done:
 	galactic doorstep
 	on the shoulders of giants
 	void dwellers
-
-looks good to do:
-	knights

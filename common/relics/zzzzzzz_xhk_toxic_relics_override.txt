@@ -1,0 +1,67 @@
+r_toxic_god = {
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_toxic_god"
+	sound = "relic_activation_prethoryn_blood_queen"
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = @activation_cost
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 1000
+			has_origin = origin_toxic_knights
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		weapon_type_strike_craft_weapon_damage_mult = 0.15
+	}
+
+	score = 3000
+
+	active_effect = {
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_toxic_knights_origin = yes }
+			}
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = 60
+				min = 1000
+			}
+		}
+		else = {
+			custom_tooltip = r_toxic_god_knights_effect
+			hidden_effect = {
+				change_variable = {
+					which = toxic_castles_available
+					value = 1
+				}
+			}
+		}
+		custom_tooltip = relic_triumph_cooldown
+	}
+
+	# Possible check for activation
+	possible = {
+		inline_script = {
+			script = relics/activation_checks
+			RELIC = r_toxic_god
+		}
+	}
+}
