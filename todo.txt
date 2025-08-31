@@ -65,7 +65,13 @@ DONE:
 	syncretic evolution
 		DOES NOT DELETE POPS, ONLY ADDS THEM
 
-		
+
+DONE CHEATS
+	2 syncretic evolution style, but have rapid breeders
+
+
+
+
 
 looks ok, need to boot to check
 	
@@ -74,7 +80,6 @@ looks ok, need to boot to check
 
 from galaxis:
 	remnants
-	
 	shattered ring
 	necrophage
 	teachers of the shroud
