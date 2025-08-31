@@ -1,0 +1,29 @@
+can_remove_positive_traits_organic = {
+	OR = {
+		AND = {
+			OR = {
+				has_utopia = yes
+				has_biogenesis_dlc = yes
+			}
+			OR = {
+				has_tradition = tr_genetics_resequencing
+				has_active_tradition = tr_cybernetics_integrated_anatomy
+				has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				has_active_tradition = tr_purity_genotype_regeneration
+				has_active_tradition = tr_purity_genotype_regeneration_wilderness
+				has_active_tradition = tr_cloning_somatic_synthesization
+				has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+				has_active_tradition = tr_mutation_unnatural_selection
+			}
+		}
+		AND = {
+			has_toxoids = yes
+			OR = {
+				has_origin = origin_overtuned
+				has_country_flag = decision_origins_overtuned
+			}
+		}
+		has_technology = tech_gene_expressions
+		has_technology = tech_epigenetic_triggers
+	}
+}

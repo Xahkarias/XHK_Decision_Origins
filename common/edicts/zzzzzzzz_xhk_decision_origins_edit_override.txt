@@ -1,0 +1,37 @@
+damn_the_consequences = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	edict_lock_in_months = 60
+
+	resources = {
+		category = edicts_unscaled
+		cost = {
+			unity = @EdictSpecialCost
+			multiplier = value:consequences_cost
+		}
+		upkeep = {
+			unity = @EdictSpecialCost
+			multiplier = value:consequences_cost
+		}
+	}
+
+	modifier = {
+		custom_tooltip = "edict_damn_the_consequences_effects"
+		show_only_custom_tooltip = no
+		planet_pops_organics_upkeep_mult = 1
+	}
+
+	potential = {
+		OR = {
+			has_country_flag = decision_origins_overtuned
+			has_origin = origin_overtuned
+		}
+	}
+
+	allow = { }
+
+	ai_weight = {
+		weight = 0
+	}
+}

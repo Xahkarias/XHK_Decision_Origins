@@ -44,6 +44,7 @@ country_event = {
 	
 	immediate = {
 		set_country_flag = decision_origins_tree_of_life
+		add_modifier = { modifier = xhk_decori_tree_life_modifier }
 		## add deposit and pops
 		capital_scope = {
 			add_deposit = d_tree_of_life_home
@@ -246,7 +247,7 @@ country_event = {
 
 	immediate = {
 		set_country_flag = decision_origins_subterranean
-		add_modifier = { modifier = xhk_subterranean_modifier }
+		add_modifier = { modifier = xhk_decori_subterranean_modifier }
 		every_owned_species = {
 			limit = {
 				is_robotic = no
@@ -264,5 +265,19 @@ country_event = {
 				add_trait = trait_robot_cave_dweller
 			}
 		}
+	}
+}
+
+## OVERTUNED
+country_event = {
+	id = xhk_decision_origins.8
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		set_country_flag = decision_origins_overtuned
+		give_technology = { message = no tech = tech_gene_tailoring }
+
 	}
 }

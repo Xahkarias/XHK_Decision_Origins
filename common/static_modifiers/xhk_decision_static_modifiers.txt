@@ -1,13 +1,18 @@
-xhk_tree_life_modifier = {
+xhk_decori_tree_life_modifier = {
 	ship_colonizer_food_cost_add = 500
 	ship_colonizer_alloys_cost_mult = -0.50
 }
 
-xhk_subterranean_modifier = {
+xhk_decori_subterranean_modifier = {
 	mining_district_housing_add = 200
 	planet_orbital_bombardment_damage = -0.75
 	planet_structures_cost_mult = 0.10
 	planet_structures_upkeep_mult = 0.10
 	planet_building_build_speed_mult = -0.10
 	planet_storm_devastation_mult = -0.25
+}
+
+xhk_decori_overtuned_modifier = {
+	BIOLOGICAL_species_trait_points_add = 2
+	BIOLOGICAL_species_trait_picks_add = 1
 }

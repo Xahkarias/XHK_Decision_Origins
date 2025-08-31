@@ -1,19 +1,42 @@
 DONE:
 	prosperous unification
+		add empire modifier
+		add pops / district slot
 	life seeded
+		forces trait
+		change homeworld stuff
 	resource consolidation
+		change homeworld stuff
+		change home system
 	post apoc
+		forces trait
+		change homeworld stuff
 	ocean paradise
-		forces waterproof / aquatic
+		forces trait
 		change homeworld stuff
 	subterranean
-		forces molebots / cave dweller
-		modifies is_subterranean_empire
-		-- the mining districts should convert properly
-		add modifier
+		forces trait
+		overwrites is_subterranean_empire
+		add empire modifier
+	overtuned
+		overwrites can_remove_positive_traits_organic
+		overwrites damn_the_consequences
+		add empire modifier
+		gives gene tailoring
+		overwrites can_add_overtuned_traits
+		overwrites can_remove_overtuned_traits
+
+
+
+
+
 
 looks ok, need to boot to check
 	tree of life
+		add duplicate events
+		add modifier
+		add deposit
+		
 	
 		
 
@@ -36,3 +59,6 @@ partially done:
 	galactic doorstep
 	on the shoulders of giants
 	void dwellers
+
+looks good to do:
+	knights

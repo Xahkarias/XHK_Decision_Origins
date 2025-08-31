@@ -173,3 +173,27 @@ decision_origins_subterranean = {
 		}
 	}
 }
+
+decision_origins_overtuned = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Toxoids Species Pack"
+		is_ai = no
+		days_passed < 1
+		NOT = {
+			has_country_flag = decision_origins_overtuned
+		}
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_origins.8
+		}
+	}
+}
