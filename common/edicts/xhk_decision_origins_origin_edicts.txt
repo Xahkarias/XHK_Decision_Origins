@@ -61,6 +61,7 @@ decision_origins_life_seeded = {
 		is_ai = no
 		days_passed < 3
 		days_passed > 0
+		capital_scope = { is_artificial = no }
 		NOR = {
 			has_country_flag = decision_origins_life_seeded
 			has_origin = origin_life_seeded
@@ -87,6 +88,7 @@ decision_origins_resource_consolidation = {
 		is_ai = no
 		days_passed < 1
 		is_machine_empire = yes
+		capital_scope = { is_artificial = no }
 		NOR = {
 			has_country_flag = decision_origins_resource_consolidation
 			has_origin = origin_machine
@@ -111,6 +113,7 @@ decision_origins_post_apocalyptic = {
 	potential = {
 		host_has_dlc = "Apocalypse"
 		is_ai = no
+		capital_scope = { is_artificial = no }
 		days_passed < 3
 		days_passed > 0
 		NOT = {
@@ -136,6 +139,7 @@ decision_origins_ocean_paradise = {
 	potential = {
 		host_has_dlc = "Aquatics Species Pack"
 		is_ai = no
+		capital_scope = { is_artificial = no }
 		days_passed < 3
 		days_passed > 0
 		NOT = {
