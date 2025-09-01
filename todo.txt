@@ -21,31 +21,18 @@ DONE:
 	subterranean
 		forces trait
 			ON ALL POPS ON PLANET
-		overwrites is_subterranean_empire
 		add empire modifier
 	overtuned
-		overwrites can_remove_positive_traits_organic
-		overwrites damn_the_consequences
 		add empire modifier
 		gives gene tailoring
-		overwrites can_add_overtuned_traits
-		overwrites can_remove_overtuned_traits
 	tree of life
 		add duplicate events
 		add modifier
 		add deposit	
 	toxic knights
 		CANT BE DONE WITH HABITAT CAPITAL
-		overwrite consecration decision
-		override castle
-		override keep
-			adds urban building ability
-			adds commander job
-		override overlord / corporate knight holding
-		override policy
 		add new knight zone
 			specifically for adding the castle to the capital
-		overwrite relic
 		SPECIFICALLY DID NOT OVERRIDE:
 			some portal anomaly, i cant be assed to do so
 			random colony events

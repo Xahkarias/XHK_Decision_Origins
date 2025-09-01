@@ -1,0 +1,51 @@
+# OVERRIDES LIST:
+
+### Buildings:
+building_order_keep
+building_order_castle
+holding_knight_commandery
+building_knightly_theme_park
+	all of these are editied with the knights decision flag
+	can be safely overriden by Ancient Cache of Knights
+
+### Decisions:
+decision_consecrate_habitat_knights
+	knights decision flag
+
+### Edicts:
+damn_the_consequences
+	overtuned decision flag
+
+### Game Rules:
+can_remove_positive_traits_organic
+	overtuned decision flag
+
+### Policies:
+knightly_duties
+	knights decision flag
+
+### Relics:
+r_toxic_god 
+	knights decision flag
+
+### Scripted Triggers:
+is_subterranean_empire
+	subterranean decision flag 
+can_add_overtuned_traits
+	overtuned decision flag
+can_remove_overtuned_traits
+	overtuned decision flag
+
+### Events:
+origin.1030
+origin.1050
+	galactic doorstep decision flag
+toxoids.7310
+toxoids.7311
+toxoids.7312
+toxoids.7315
+toxoids.7515
+toxoids.8014
+toxoids.8016
+toxoids.8025
+	toxic god events
