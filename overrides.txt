@@ -12,6 +12,10 @@ building_knightly_theme_park
 decision_consecrate_habitat_knights
 	knights decision flag
 
+### Deposits:
+d_dimensional_manipulation_device
+	nerf to 10% districts when not a habitat
+
 ### Edicts:
 damn_the_consequences
 	overtuned decision flag
