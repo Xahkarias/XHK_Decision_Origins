@@ -266,6 +266,7 @@ decision_origins_galactic_doorstep = {
 
 	potential = {
 		is_ai = no
+		# no dlc needed for this one
 		days_passed < 1
 		NOT = {
 			has_country_flag = decision_origins_galactic_doorstep
@@ -288,6 +289,7 @@ decision_origins_syncretic_evolution = {
 	}
 
 	potential = {
+		host_has_dlc = "Utopia"
 		is_ai = no
 		days_passed < 1
 		NOT = {

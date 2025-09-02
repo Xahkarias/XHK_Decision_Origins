@@ -34,6 +34,7 @@ decision_origins_galaxis_spawn_species_1 = {
 
 	potential = {
 		is_ai = no
+		host_has_dlc = "Utopia"
 		days_passed < 1
 		has_country_flag = xhk_decori_galaxis_mode
 	}
@@ -56,6 +57,7 @@ decision_origins_galaxis_spawn_species_2 = {
 
 	potential = {
 		is_ai = no
+		host_has_dlc = "Utopia"
 		days_passed < 1
 		has_country_flag = xhk_decori_galaxis_mode
 	}
@@ -63,6 +65,29 @@ decision_origins_galaxis_spawn_species_2 = {
 	effect = {
 		country_event = {
 			id = xhk_decision_galaxis.1
+		}
+	}
+}
+
+# spawns a shattered ring system next to capital
+decision_origins_galaxis_spawn_shattered_ring = {
+	length = 2
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		is_ai = no
+		host_has_dlc = "Federations"
+		days_passed < 1
+		has_country_flag = xhk_decori_galaxis_mode
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_galaxis.2
 		}
 	}
 }
