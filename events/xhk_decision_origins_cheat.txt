@@ -139,3 +139,21 @@ country_event = {
 		}
 	}
 }
+
+## MECHANIST BUT MACHINE POINTS
+country_event = {
+	id = xhk_decision_galaxis.3
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		add_tech_progress = {
+			tech = tech_robomodding
+			progress = 0
+		}
+		add_modifier = {
+			modifier = xhk_decori_mechanists_cheat_modifier
+		}
+	}
+}

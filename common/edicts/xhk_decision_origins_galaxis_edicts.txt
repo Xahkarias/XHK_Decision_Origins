@@ -91,3 +91,26 @@ decision_origins_galaxis_spawn_shattered_ring = {
 		}
 	}
 }
+
+# gives the mechanist modifier, but with machine trait points / picks
+decision_origins_galaxis_mechanist_machine = {
+	length = 2
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "The Machine Age"
+		is_ai = no
+		is_machine_empire = no
+		days_passed < 1
+	}
+
+	effect = {
+		country_event = {
+			id = xhk_decision_galaxis.3
+		}
+	}
+}

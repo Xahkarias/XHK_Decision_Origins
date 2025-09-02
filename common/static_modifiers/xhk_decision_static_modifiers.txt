@@ -27,3 +27,9 @@ xhk_decori_doorstep_modifier = {
 	megastructures_gateways_cost_mult = -0.25
 	megastructure_build_speed_mult = 0.05
 }
+
+xhk_decori_mechanists_cheat_modifier = {
+	planet_pop_assembly_mult = 0.15
+	MACHINE_species_trait_picks_add = 1
+	MACHINE_species_trait_points_add = 2
+}
