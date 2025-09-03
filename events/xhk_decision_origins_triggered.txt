@@ -81,7 +81,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { days_passed < 1 }
+		NOT = { days_passed < 30 }
 		OR = {
 			AND = {
 				owner = { has_country_flag = decision_origins_tree_of_life }

@@ -1,7 +1,5 @@
 DONE:
 	prosperous unification
-		add empire modifier
-		add pops / district slot
 	life seeded
 		forces trait
 			ON ALL POPS ON PLANET

@@ -1,0 +1,24 @@
+﻿l_english:
+
+### Buildings
+#-------------------------------------------------------------------------------------------------------
+  xhk_origin_holding_tree_of_life_sapling: "$holding_tree_of_life_sapling$"
+
+### Decisions
+#-------------------------------------------------------------------------------------------------------
+  xhk_decision_consecrate_habitat_knights: "$decision_consecrate_habitat_knights$"
+  xhk_decision_consecrate_habitat_knights_desc: "$decision_consecrate_habitat_knights_desc$"
+  xhk_decision_consecrate_habitat_knights_effect: "$decision_consecrate_habitat_knights_effect$"
+
+### Deposits
+#-------------------------------------------------------------------------------------------------------
+  xhk_d_prosp_unif: "Monument to Unification"
+  xhk_d_prosp_unif_desc: "This monument chronicles our §HProsperous Unification§!!"
+
+
+### Edicts
+#-------------------------------------------------------------------------------------------------------
+  edict_decision_origins_prosperous_unification: "Decision Origins: Prosperous Unification"
+  edict_decision_origins_prosperous_unification_desc: "Applies some of the effects of the Prosperous Unification origin."
+  edict_decision_origins_prosperous_unification_effect: "\nCreates §G400 Pops§! of the primary species.\nGrants §G+2 Maximum Districts§! to the Capital.\nAdds the $prosp_uni_mod$ modifier for 20 years.\n"
+

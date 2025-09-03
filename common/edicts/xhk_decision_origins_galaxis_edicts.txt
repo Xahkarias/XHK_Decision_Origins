@@ -12,7 +12,7 @@ decision_origins_enable_galaxis = {
 
 	potential = {
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = xhk_decori_galaxis_mode
 		}
@@ -35,7 +35,7 @@ decision_origins_galaxis_spawn_species_1 = {
 	potential = {
 		is_ai = no
 		host_has_dlc = "Utopia"
-		days_passed < 1
+		days_passed < 30
 		has_country_flag = xhk_decori_galaxis_mode
 	}
 
@@ -58,7 +58,7 @@ decision_origins_galaxis_spawn_species_2 = {
 	potential = {
 		is_ai = no
 		host_has_dlc = "Utopia"
-		days_passed < 1
+		days_passed < 30
 		has_country_flag = xhk_decori_galaxis_mode
 	}
 
@@ -81,7 +81,7 @@ decision_origins_galaxis_spawn_shattered_ring = {
 	potential = {
 		is_ai = no
 		host_has_dlc = "Federations"
-		days_passed < 1
+		days_passed < 30
 		has_country_flag = xhk_decori_galaxis_mode
 	}
 
@@ -105,7 +105,7 @@ decision_origins_galaxis_mechanist_machine = {
 		host_has_dlc = "The Machine Age"
 		is_ai = no
 		is_machine_empire = no
-		days_passed < 1
+		days_passed < 30
 	}
 
 	effect = {

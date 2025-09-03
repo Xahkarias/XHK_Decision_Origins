@@ -8,7 +8,7 @@ decision_origins_prosperous_unification = {
 
 	potential = {
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		NOR = {
 			has_country_flag = decision_origins_prosperous_unification
 			has_origin = origin_default
@@ -16,8 +16,11 @@ decision_origins_prosperous_unification = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.1
+		custom_tooltip = edict_decision_origins_prosperous_unification_effect
+		hidden_effect = {
+			country_event = {
+				id = xhk_decision_origins.1
+			}
 		}
 		add_research_option = tech_planetary_unification
 	}
@@ -34,7 +37,7 @@ decision_origins_tree_of_life = {
 	potential = {
 		host_has_dlc = "Utopia"
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		NOR = {
 			has_country_flag = decision_origins_tree_of_life
 			has_origin = origin_tree_of_life
@@ -59,7 +62,7 @@ decision_origins_life_seeded = {
 	potential = {
 		host_has_dlc = "Apocalypse"
 		is_ai = no
-		days_passed < 3
+		days_passed < 30
 		days_passed > 0
 		capital_scope = { is_artificial = no }
 		NOR = {
@@ -86,7 +89,7 @@ decision_origins_resource_consolidation = {
 	potential = {
 		host_has_dlc = "Synthetic Dawn Story Pack"
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		is_machine_empire = yes
 		capital_scope = { is_artificial = no }
 		NOR = {
@@ -114,7 +117,7 @@ decision_origins_post_apocalyptic = {
 		host_has_dlc = "Apocalypse"
 		is_ai = no
 		capital_scope = { is_artificial = no }
-		days_passed < 3
+		days_passed < 30
 		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_post_apocalyptic
@@ -140,7 +143,7 @@ decision_origins_ocean_paradise = {
 		host_has_dlc = "Aquatics Species Pack"
 		is_ai = no
 		capital_scope = { is_artificial = no }
-		days_passed < 3
+		days_passed < 30
 		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_ocean_paradise
@@ -165,7 +168,7 @@ decision_origins_subterranean = {
 	potential = {
 		host_has_dlc = "Overlord"
 		is_ai = no
-		days_passed < 3
+		days_passed < 30
 		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_subterranean
@@ -190,7 +193,7 @@ decision_origins_overtuned = {
 	potential = {
 		host_has_dlc = "Toxoids Species Pack"
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = decision_origins_overtuned
 		}
@@ -218,7 +221,7 @@ decision_origins_toxic_knights = {
 		capital_scope = {
 			NOT = { is_planet_class = pc_habitat }
 		}
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = decision_toxic_knights
 		}
@@ -243,7 +246,7 @@ decision_origins_mechanist = {
 		host_has_dlc = "Utopia"
 		is_ai = no
 		is_machine_empire = no
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = decision_origins_mechanist
 		}
@@ -267,7 +270,7 @@ decision_origins_galactic_doorstep = {
 	potential = {
 		is_ai = no
 		# no dlc needed for this one
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = decision_origins_galactic_doorstep
 		}
@@ -291,7 +294,7 @@ decision_origins_syncretic_evolution = {
 	potential = {
 		host_has_dlc = "Utopia"
 		is_ai = no
-		days_passed < 1
+		days_passed < 30
 		NOT = {
 			has_country_flag = decision_origins_syncretic_evolution
 		}
