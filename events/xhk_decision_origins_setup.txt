@@ -52,34 +52,6 @@ country_event = {
 	}
 }
 
-## LIFE SEEDED
-country_event = {
-	id = xhk_decision_origins.3
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		set_country_flag = decision_origins_life_seeded
-		## add deposit
-		capital_scope = {
-			change_pc = pc_gaia
-			set_planet_size = 30
-			add_deposit = d_tempestous_mountain
-			add_deposit = d_submerged_ore_veins
-			add_deposit = d_teeming_reef
-			add_deposit = d_dust_caverns
-			add_deposit = d_bubbling_swamp
-			add_deposit = d_crystalline_caverns
-		}
-		## modify if not mechanical
-		every_owned_species = {
-			limit = {
-				is_robotic = no
-			}
-			set_habitability_trait = { trait = trait_pc_gaia_preference }
-		}
-	}
-}
 
 ## RESOURCE CONSOLIDATION
 country_event = {
