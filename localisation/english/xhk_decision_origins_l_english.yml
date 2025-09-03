@@ -80,3 +80,6 @@
 
   edict_decision_origins_tree_of_life: "Decision Origins: Tree of Life"
   edict_decision_origins_tree_of_life_desc: "Applies some of the effect of the Tree of Life origin."
+
+  edict_decision_origins_spawn_shattered_ring: "Decision Origins: Shattered Ring"
+  edict_decision_origins_spawn_shattered_ring_desc: "Spawns a Shattered Ring system next to the capital."

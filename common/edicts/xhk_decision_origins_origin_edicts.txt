@@ -687,3 +687,46 @@ decision_origins_syncretic_evolution = {
 		show_only_custom_tooltip = no
 	}
 }
+
+# spawns a shattered ring system next to capital
+decision_origins_spawn_shattered_ring = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		is_ai = no
+		host_has_dlc = "Federations"
+		days_passed < 30
+		NOT = {
+			has_country_flag = decision_origins_shattered_ring
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_shattered_ring
+			capital_scope = {
+				spawn_system = {
+					min_distance = 10
+					max_distance = 30
+					max_jumps = 0
+					initializer = shattered_ring_start
+				}
+				if = {
+					limit = { last_created_system = { NOT = { has_hyperlane_to = prev } } }
+					add_hyperlane = {
+						from = this
+						to = last_created_system
+					}
+				}
+				else = {
+					add_extra_hyperlane_to_spawned_system_effect = yes
+				}
+			}
+		}
+	}
+}
