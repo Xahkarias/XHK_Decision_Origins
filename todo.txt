@@ -16,15 +16,9 @@ FULLY DONE
 	Galactic doorstep
 	mechanist
 	prosperous unification
-
-
-NEED LOC:
 	tree of life
-		add duplicate events
-		add modifier
-		add deposit	
 	syncretic evolution
-		DOES NOT DELETE POPS, ONLY ADDS THEM
+
 
 DONE CHEATS
 	2 syncretic evolution style, but have rapid breeders
