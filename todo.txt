@@ -2,7 +2,8 @@ FULLY DONE
 	life seeded
 	post apoc
 	ocean paradise
-
+	overtuned
+	subterranean
 
 NEED LOC:
 	prosperous unification
@@ -10,13 +11,6 @@ NEED LOC:
 		change homeworld stuff
 		change home system
 		changes cyborgs to machine pref
-	subterranean
-		forces trait
-			ON ALL POPS ON PLANET
-		add empire modifier
-	overtuned
-		add empire modifier
-		gives gene tailoring
 	tree of life
 		add duplicate events
 		add modifier

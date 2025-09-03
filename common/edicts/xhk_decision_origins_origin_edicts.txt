@@ -254,16 +254,38 @@ decision_origins_subterranean = {
 		host_has_dlc = "Overlord"
 		is_ai = no
 		days_passed < 30
-		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_subterranean
 		}
 	}
 
+	allow = {
+		days_passed > 0
+	}
+
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.7
+		hidden_effect = {
+			set_country_flag = decision_origins_subterranean
+			every_owned_species = {
+				limit = {
+					is_robotic = yes
+				}
+				change_species_characteristics = {
+					add_trait = trait_robot_cave_dweller
+				}
+			}
+			every_owned_species = {
+				limit = {
+					is_robotic = no
+				}
+				change_species_characteristics = {
+					add_trait = trait_cave_dweller
+				}
+			}
 		}
+		add_modifier = { modifier = xhk_decori_subterranean_modifier }
+		custom_tooltip = "edict_decision_origins_subterranean_tt"
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -285,9 +307,12 @@ decision_origins_overtuned = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.8
+		give_technology = { message = no tech = tech_gene_tailoring }
+		hidden_effect = {
+			set_country_flag = decision_origins_overtuned
 		}
+		custom_tooltip = "edict_decision_origins_overtuned_tt"
+		show_only_custom_tooltip = no
 	}
 }
 

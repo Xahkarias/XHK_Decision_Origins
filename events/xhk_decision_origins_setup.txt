@@ -144,50 +144,6 @@ country_event = {
 }
 
 
-## SUBTERREANEAN
-country_event = {
-	id = xhk_decision_origins.7
-	hide_window = yes
-	is_triggered_only = yes
-
-
-	immediate = {
-		set_country_flag = decision_origins_subterranean
-		add_modifier = { modifier = xhk_decori_subterranean_modifier }
-		every_owned_species = {
-			limit = {
-				is_robotic = no
-			}
-			change_species_characteristics = {
-				add_trait = trait_cave_dweller
-			}
-		}
-
-		every_owned_species = {
-			limit = {
-				is_robotic = yes
-			}
-			change_species_characteristics = {
-				add_trait = trait_robot_cave_dweller
-			}
-		}
-	}
-}
-
-## OVERTUNED
-country_event = {
-	id = xhk_decision_origins.8
-	hide_window = yes
-	is_triggered_only = yes
-
-
-	immediate = {
-		set_country_flag = decision_origins_overtuned
-		give_technology = { message = no tech = tech_gene_tailoring }
-
-	}
-}
-
 ## TOXIC KNIGHTS
 country_event = {
 	id = xhk_decision_origins.9

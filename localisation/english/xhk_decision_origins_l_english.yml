@@ -16,6 +16,15 @@
   xhk_d_prosp_unif_desc: "This monument chronicles our §HProsperous Unification§!!"
 
 
+### Modifiers
+#-------------------------------------------------------------------------------------------------------
+  xhk_decori_tree_life_modifier: "Decision Origins: Tree of Life"
+  xhk_decori_subterranean_modifier: "Decision Origins: Subterranean"
+  xhk_decori_overtuned_modifier: "Decision Origins: Overtuned"
+  xhk_decori_mechanists_modifier: "Decision Origins: Mechanists"
+  xhk_decori_doorstep_modifier: "Decision Origins: Galactic Doorstep"
+  xhk_decori_mechanists_cheat_modifier: "Decision Origins: Mechanists but for Machines"
+
 ### Edicts
 #-------------------------------------------------------------------------------------------------------
   edict_decision_origins_prosperous_unification: "Decision Origins: Prosperous Unification"
@@ -36,3 +45,11 @@
   edict_decision_origins_ocean_paradise: "Decision Origins: Ocean Paradise"
   edict_decision_origins_ocean_paradise_desc: "Applies some of the effects of the Ocean Paradise origin.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
   edict_decision_origins_ocean_paradise_tt: "Modifies all pops to have §GAquatic§! or §GWaterproof§!."
+
+  edict_decision_origins_subterranean: "Decision Origins: Subterranean"
+  edict_decision_origins_subterranean_desc: "Applies some of the effects of the Subterranean origin.\nThe mining districts will convert after the first monthly tick.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
+  edict_decision_origins_subterranean_tt: "Modifies all pops to have §GCave Dweller§! or §GMolebots§!.\nAllows for §Gunrestricted Mining District capacity§!."
+
+  edict_decision_origins_overtuned: "Decision Origins: Overtuned"
+  edict_decision_origins_overtuned_desc: "Applies some of the effects of the Overtuned origin."
+  edict_decision_origins_overtuned_tt: "Allows for §Gaddition of Overtuned§! traits"
