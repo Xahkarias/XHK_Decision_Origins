@@ -730,3 +730,51 @@ decision_origins_spawn_shattered_ring = {
 		}
 	}
 }
+
+decision_origins_remnants= {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Ancient Relics Story Pack"
+		is_ai = no
+		days_passed < 30
+		NOT = {
+			has_country_flag = decision_origins_remnants
+		}
+	}
+	
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_remnants
+		}
+		
+		give_technology = {
+            tech = tech_archaeostudies
+            message = no
+        }
+
+		capital_scope = {
+			change_pc = pc_relic
+			set_planet_size = 24
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_building = {
+				zone = zone_research_unity
+				building = building_archaeostudies_faculty
+			}
+
+		}
+
+		# custom_tooltip = "edict_decision_origins_remnants_tt"
+		# show_only_custom_tooltip = no
+	}
+}

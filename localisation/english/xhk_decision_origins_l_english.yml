@@ -83,3 +83,6 @@
 
   edict_decision_origins_spawn_shattered_ring: "Decision Origins: Shattered Ring"
   edict_decision_origins_spawn_shattered_ring_desc: "Spawns a Shattered Ring system next to the capital."
+
+  edict_decision_origins_remnants: "Decision Origins: Remnants"
+  edict_decision_origins_remnants_desc: "Applies some of the effect of the Remnants origin."
