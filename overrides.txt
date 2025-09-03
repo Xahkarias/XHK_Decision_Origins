@@ -8,10 +8,6 @@ building_knightly_theme_park
 	all of these are editied with the knights decision flag
 	can be safely overriden by Ancient Cache of Knights
 
-### Decisions:
-decision_consecrate_habitat_knights
-	knights decision flag
-
 ### Deposits:
 d_dimensional_manipulation_device
 	nerf to 10% districts when not a habitat

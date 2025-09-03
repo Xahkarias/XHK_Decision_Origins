@@ -1,4 +1,4 @@
-decision_consecrate_habitat_knights = {
+xhk_decision_consecrate_habitat_knights = {
 	owned_planets_only = yes
 
 	enactment_time = 360
@@ -6,7 +6,7 @@ decision_consecrate_habitat_knights = {
 	potential = {
 		owner = {
 			## SWAPPED THIS LINE
-			has_toxic_knights_origin = yes
+			has_country_flag = decision_toxic_knights 
 			has_relic = r_toxic_god
 		}
 		uses_district_set = habitat
