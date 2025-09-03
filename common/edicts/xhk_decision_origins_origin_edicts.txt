@@ -77,6 +77,13 @@ decision_origins_life_seeded = {
 	effect = {
 		hidden_effect = {
 			set_country_flag = decision_origins_life_seeded
+			## modify if not mechanical
+			every_owned_species = {
+				limit = {
+					is_robotic = no
+				}
+				set_habitability_trait = { trait = trait_pc_gaia_preference }
+			}
 		}
 		## add deposit
 		capital_scope = {
@@ -89,13 +96,8 @@ decision_origins_life_seeded = {
 			add_deposit = d_bubbling_swamp
 			add_deposit = d_crystalline_caverns
 		}
-		## modify if not mechanical
-		every_owned_species = {
-			limit = {
-				is_robotic = no
-			}
-			set_habitability_trait = { trait = trait_pc_gaia_preference }
-		}
+		custom_tooltip = "edict_decision_origins_life_seeded_tt"
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -139,16 +141,45 @@ decision_origins_post_apocalyptic = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_post_apocalyptic
 		}
 	}
 
+	allow = {
+		days_passed > 0
+	}
+
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.5
+		hidden_effect = {
+			set_country_flag = decision_origins_post_apocalyptic
+
+			every_owned_species = {
+				limit = {
+					is_robotic = no
+				}
+				change_species_characteristics = {
+					add_trait = trait_survivor
+				}
+			}
+
+			every_owned_species = {
+				limit = {
+					is_robotic = yes
+				}
+				change_species_characteristics = {
+					add_trait = trait_robot_survivor
+				}
+			}
 		}
+
+		capital_scope = {
+			change_pc = pc_nuked
+		}
+		
+		
+		custom_tooltip = "edict_decision_origins_post_apocalyptic_tt"
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -165,16 +196,49 @@ decision_origins_ocean_paradise = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		days_passed > 0
 		NOT = {
 			has_country_flag = decision_origins_ocean_paradise
 		}
 	}
 
+	allow = {
+		days_passed > 0
+	}
+
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.6
+		hidden_effect = {
+			set_country_flag = decision_origins_ocean_paradise
+
+			every_owned_species = {
+				limit = {
+					is_robotic = no
+				}
+				change_species_characteristics = {
+					add_trait = trait_aquatic
+				}
+			}
+
+			every_owned_species = {
+				limit = {
+					is_robotic = yes
+				}
+				change_species_characteristics = {
+					add_trait = trait_robot_aquatic
+				}
+			}
 		}
+		
+		capital_scope = {
+			set_planet_size = 30
+			change_pc = pc_ocean
+			add_deposit = d_teeming_reef
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_underwater_vent
+			add_deposit = d_crystal_reef
+		}
+
+		custom_tooltip = "edict_decision_origins_ocean_paradise_tt"
+		show_only_custom_tooltip = no
 	}
 }
 

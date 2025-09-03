@@ -1,21 +1,15 @@
-DONE:
-	prosperous unification
+FULLY DONE
 	life seeded
-		forces trait
-			ON ALL POPS ON PLANET
-		change homeworld stuff
+	post apoc
+	ocean paradise
+
+
+NEED LOC:
+	prosperous unification
 	resource consolidation
 		change homeworld stuff
 		change home system
 		changes cyborgs to machine pref
-	post apoc
-		forces trait
-			ON ALL POPS ON PLANET
-		change homeworld stuff
-	ocean paradise
-		forces trait
-			ON ALL POPS ON PLANET
-		change homeworld stuff
 	subterranean
 		forces trait
 			ON ALL POPS ON PLANET
