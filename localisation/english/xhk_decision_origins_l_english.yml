@@ -22,7 +22,7 @@
   xhk_decori_overtuned_modifier: "Decision Origins: Overtuned"
   xhk_decori_mechanists_modifier: "Decision Origins: Mechanists"
   xhk_decori_doorstep_modifier: "Decision Origins: Galactic Doorstep"
-  xhk_decori_mechanists_cheat_modifier: "Decision Origins: Mechanists but for Machines"
+  xhk_decori_mechanists_machine_modifier: "Decision Origins: Mechanists but for Machines"
 
 ### Zones
 #-------------------------------------------------------------------------------------------------------
@@ -72,10 +72,11 @@
 
   edict_decision_origins_mechanist: "Decision Origins: Mechanist"
   edict_decision_origins_mechanist_desc: "Applies some of the effect of the Mechanist origin.\n§RDOES NOT CREATE POPS§!."
+  edict_decision_origins_mechanist_tt: "Spawns a Robot Assembly Plant if not Machine.\nGives §G+2 trait points / +1 trait pick§! for robots/machines."
 
   edict_decision_origins_syncretic_evolution: "Decision Origins: Syncretic Evolution"
-  edict_decision_origins_syncretic_evolution_desc: "Applies some of the effect of the Syncretic Evolution.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
+  edict_decision_origins_syncretic_evolution_desc: "Applies some of the effect of the Syncretic Evolution origin.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
   edict_decision_origins_syncretic_evolution_tt: "Spawns 1200 pops of a random portrait with the Proles trait."
 
   edict_decision_origins_tree_of_life: "Decision Origins: Tree of Life"
-  edict_decision_origins_tree_of_life_desc: "Applies some of the effect of the Syncretic Evolution."
+  edict_decision_origins_tree_of_life_desc: "Applies some of the effect of the Tree of Life origin."
