@@ -16,13 +16,36 @@ decision_origins_prosperous_unification = {
 	}
 
 	effect = {
-		custom_tooltip = edict_decision_origins_prosperous_unification_effect
 		hidden_effect = {
-			country_event = {
-				id = xhk_decision_origins.1
+			set_country_flag = decision_origins_prosperous_unification
+			if = {
+				limit = {
+					is_gestalt = no
+				}
+				capital_scope = {
+					add_modifier = { modifier = prosp_uni_mod days = 7200 }
+				}
+			}
+			else = {
+				capital_scope = {
+					add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
+				}
+			}
+			# this is for compatibility with any form of district set, simply gives 2 extra district slots
+			capital_scope = {
+				add_deposit = xhk_d_prosp_unif
 			}
 		}
+		capital_scope = {
+			
+			create_pop_group = {
+				size = 400
+				species = owner_main_species
+			}		
+		}
 		add_research_option = tech_planetary_unification
+		custom_tooltip = edict_decision_origins_prosperous_unification_tt
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -442,8 +465,27 @@ decision_origins_mechanist = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.10
+		hidden_effect = {
+			set_country_flag = decision_origins_mechanist
+		}
+		capital_scope = {
+			add_building = {
+				zone = slot_city_government
+				building = building_robot_assembly_plant
+			}
+		}
+		give_technology = {
+			tech = tech_powered_exoskeletons
+		}
+		give_technology = {
+			tech = tech_robotic_workers
+		}
+		add_tech_progress = {
+			tech = tech_robomodding
+			progress = 0
+		}
+		add_modifier = {
+			modifier = xhk_decori_mechanists_modifier
 		}
 	}
 }

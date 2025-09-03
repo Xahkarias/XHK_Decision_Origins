@@ -14,20 +14,15 @@ FULLY DONE
 			COSMOGENESIS RELATED STUFF TO KNIGHTS
 			curator events since that would fuck with the rest of the curator dialog
 	Galactic doorstep
-		DOES NOT GIVE PARAGON DROP CHANCE INCREASE
+	mechanist
+	prosperous unification
+
 
 NEED LOC:
-	prosperous unification
 	tree of life
 		add duplicate events
 		add modifier
 		add deposit	
-	mechanist
-		adds building
-		adds modifier
-		gives tech
-		DOES NOT GIVE POPS
-
 	syncretic evolution
 		DOES NOT DELETE POPS, ONLY ADDS THEM
 

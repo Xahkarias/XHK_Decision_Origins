@@ -33,7 +33,7 @@
 #-------------------------------------------------------------------------------------------------------
   edict_decision_origins_prosperous_unification: "Decision Origins: Prosperous Unification"
   edict_decision_origins_prosperous_unification_desc: "Applies some of the effects of the Prosperous Unification origin."
-  edict_decision_origins_prosperous_unification_effect: "\nCreates §G400 Pops§! of the primary species.\nGrants §G+2 Maximum Districts§! to the Capital.\nAdds the $prosp_uni_mod$ modifier for 20 years.\n"
+  edict_decision_origins_prosperous_unification_tt: "Adds the $prosp_uni_mod$ modifier for 20 years.\nIncreases maximum number of districts on the capital by 2."
 
   decision_origins_cache_warning: "§RNOTE: WHEN TAKING A DECISION ORIGIN THAT MODIFIES YOUR POPS, WAIT 1 DAY BEFORE TAKING ANOTHER ONE!\nTHIS ORIGIN IS LOCKED UNTIL 1 DAY HAS PASSED, TO ALLOW FOR GAMESETUP TO COMPLETE§!\n\n" 
   decision_origins_modify_warning: "§HNOTE: WHEN TAKING A DECISION ORIGIN THAT MODIFIES YOUR POPS, OTHER POPS OF THE SAME SPECIES IN OTHER EMPIRES WILL ALSO BE MODIFIED (NOT DEFAULT ROBOTS). FOR EXAMPLE, PRE-FTLS WITH THE BROKEN SHACKLES ORIGIN§!\n\n"
@@ -69,3 +69,6 @@
   edict_decision_origins_galactic_doorstep: "Decision Origins: Galactic Doorstep"
   edict_decision_origins_galactic_doorstep_desc: "Applies some of the effects of the Galactic Doorstep origin."
   edict_decision_origins_galactic_doorstep_tt: "Spawns the §HBlack Crown gateway§! in the capital system.\nStarts the Galactic Doorstep chain.\n\n§RDOES NOT GIVE EXTRA CHANCE TO GET SHARPBEAK PARAGON.§!"
+
+  edict_decision_origins_mechanist: "Decision Origins: Mechanist"
+  edict_decision_origins_mechanist_desc: "Applies some of the effect of the Mechanist origin.\n§RDOES NOT CREATE POPS§!."
