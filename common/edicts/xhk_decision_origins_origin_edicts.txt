@@ -122,9 +122,43 @@ decision_origins_resource_consolidation = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.4
+		hidden_effect = {
+			set_country_flag = decision_origins_resource_consolidation
 		}
+		capital_scope = {
+			change_pc = pc_machine
+			add_deposit = d_machine_minerals
+
+			hidden_effect = {
+				if = {
+					limit = {
+						owner = { has_valid_civic = civic_machine_assimilator }
+					}
+					add_deposit = d_organic_slurry
+					every_owned_species = {
+						limit = {
+							is_robotic = no
+						}
+						set_habitability_trait = { trait = trait_pc_machine_preference }
+					}
+				}
+				
+				add_zone = {
+					district = district_nexus_1
+					zone = zone_energy_nexus
+					replace = yes
+				}
+
+				add_zone = {
+					district = district_nexus_2
+					zone = zone_minerals_nexus
+					replace = yes
+				}
+			}
+			
+		}
+		custom_tooltip = "edict_decision_origins_resource_consolidation_tt"
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -338,9 +372,54 @@ decision_origins_toxic_knights = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.9
+		# capital stuff
+		hidden_effect = {
+			set_country_flag = decision_toxic_knights
+			capital_scope = {			
+				set_planet_flag = toxic_knights_habitat
+
+				if = {
+					## change the first zone, should be archives to the special zone
+					limit = {
+						NOT = { is_planet_class = pc_ring_world }
+					}
+					change_planet_size = 5
+					add_zone = {
+						district = district_city
+						zone = xhk_zone_capital_knights
+						zone_slot = 1
+						replace = yes
+					} 
+				} 
+				else = {
+					add_zone = {
+						district = district_rw_city
+						zone = xhk_zone_capital_knights
+						zone_slot = 1
+						replace = yes
+					} 
+				}
+				
+				add_deposit = d_toxic_god_blight_upon_the_land
+				add_deposit = d_toxic_god_deitys_swarms
+				add_deposit = d_toxic_god_pools_most_venemous
+				add_deposit = d_toxic_god_pestilential_wasteland
+				add_deposit = d_toxic_god_envenomed_seas
+				add_deposit = d_knights_calibrator
+				
+				add_building = {
+					zone = xhk_zone_capital_knights
+					building = building_order_keep
+				}
+				
+			}
 		}
+		# mimics toxoids.7000
+		start_situation = {
+			type = situation_toxic_knights
+		}
+		custom_tooltip = "edict_decision_origins_toxic_knights_tt"
+		show_only_custom_tooltip = no
 	}
 }
 
@@ -387,9 +466,32 @@ decision_origins_galactic_doorstep = {
 	}
 
 	effect = {
-		country_event = {
-			id = xhk_decision_origins.11
+		hidden_effect = {
+			set_country_flag = decision_origins_galactic_doorstep
+			set_country_flag = encountered_first_gateway
+			country_event = { id = origin.1000 days = 300 random = 30 }
+			add_modifier = {
+				modifier = xhk_decori_doorstep_modifier
+			}
+			# this mimics origin.1001
+			capital_scope = {
+				solar_system = {
+					spawn_megastructure = {
+						name = "NAME_Galactic_Doorstep"
+						type = "gateway_ruined"
+						random_pos = yes
+						orbit_angle = 360
+						init_effect = {
+							set_megastructure_flag = doorstep_gateway@root
+							save_event_target_as = doorstep_gateway
+						}
+					}
+					set_star_flag = abandoned_gateway
+				}
+			}
 		}
+		custom_tooltip = "edict_decision_origins_galactic_doorstep_tt"
+		show_only_custom_tooltip = no
 	}
 }
 

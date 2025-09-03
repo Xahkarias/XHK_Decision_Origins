@@ -4,21 +4,8 @@ FULLY DONE
 	ocean paradise
 	overtuned
 	subterranean
-
-NEED LOC:
-	prosperous unification
 	resource consolidation
-		change homeworld stuff
-		change home system
-		changes cyborgs to machine pref
-	tree of life
-		add duplicate events
-		add modifier
-		add deposit	
-	toxic knights
-		CANT BE DONE WITH HABITAT CAPITAL
-		add new knight zone
-			specifically for adding the castle to the capital
+	knights of the toxic god
 		SPECIFICALLY DID NOT OVERRIDE:
 			some portal anomaly, i cant be assed to do so
 			random colony events
@@ -26,15 +13,21 @@ NEED LOC:
 			building_amusement_megaplex, it is normally disabled with knights but who cares
 			COSMOGENESIS RELATED STUFF TO KNIGHTS
 			curator events since that would fuck with the rest of the curator dialog
+	Galactic doorstep
+		DOES NOT GIVE PARAGON DROP CHANCE INCREASE
+
+NEED LOC:
+	prosperous unification
+	tree of life
+		add duplicate events
+		add modifier
+		add deposit	
 	mechanist
 		adds building
 		adds modifier
 		gives tech
 		DOES NOT GIVE POPS
-	galactic doorstep
-		adds modifier
-		starts the quest chain
-		DOES NOT GIVE PARAGON DROP CHANCE INCREASE
+
 	syncretic evolution
 		DOES NOT DELETE POPS, ONLY ADDS THEM
 

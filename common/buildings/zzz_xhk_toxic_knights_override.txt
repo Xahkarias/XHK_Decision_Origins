@@ -115,7 +115,6 @@ building_order_keep = {
 	}
 }
 
-
 building_order_castle = {
 	icon = building_order_holding
 	base_buildtime = 180
@@ -159,7 +158,6 @@ building_order_castle = {
 		text = building_order_keep_effect
 	}
 }
-
 
 holding_knight_commandery = {
 	base_buildtime = @b1_time
