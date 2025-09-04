@@ -5,5 +5,7 @@ tags={
 	"Balance"
 	"Gameplay"
 }
+thumbnail="thumbnail.png"
 name="Decision Origins: Electric Boogaloo"
 supported_version="v4.0.*"
+remote_file_id="3561670409"
