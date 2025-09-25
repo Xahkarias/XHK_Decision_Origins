@@ -203,8 +203,10 @@ decision_origins_post_apocalyptic = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_post_apocalyptic
+			has_origin = origin_post_apocalyptic
+			has_origin = origin_post_apocalyptic_machines
 		}
 	}
 
@@ -258,8 +260,10 @@ decision_origins_ocean_paradise = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_ocean_paradise
+			has_origin = origin_ocean_paradise
+			has_origin = origin_ocean_machines
 		}
 	}
 
@@ -316,8 +320,10 @@ decision_origins_subterranean = {
 		host_has_dlc = "Overlord"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_subterranean
+			has_origin = origin_subterranean
+			has_origin = origin_subterranean_machines
 		}
 	}
 
@@ -363,8 +369,9 @@ decision_origins_overtuned = {
 		host_has_dlc = "Toxoids Species Pack"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_overtuned
+			has_origin = origin_overtuned
 		}
 	}
 
@@ -394,8 +401,9 @@ decision_origins_toxic_knights = {
 			NOT = { is_planet_class = pc_habitat }
 		}
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_toxic_knights
+			has_origin = origin_toxic_knights
 		}
 	}
 
@@ -463,8 +471,9 @@ decision_origins_mechanist = {
 		host_has_dlc = "Utopia"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_mechanist
+			has_origin = origin_mechanists
 		}
 	}
 
@@ -524,8 +533,9 @@ decision_origins_galactic_doorstep = {
 		is_ai = no
 		# no dlc needed for this one
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_galactic_doorstep
+			has_origin = origin_galactic_doorstep
 		}
 	}
 
@@ -571,8 +581,9 @@ decision_origins_syncretic_evolution = {
 		host_has_dlc = "Utopia"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_syncretic_evolution
+			has_origin = origin_syncretic_evolution
 		}
 	}
 
@@ -743,8 +754,9 @@ decision_origins_remnants= {
 		host_has_dlc = "Ancient Relics Story Pack"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_remnants
+			has_origin = origin_remnants
 		}
 	}
 	
