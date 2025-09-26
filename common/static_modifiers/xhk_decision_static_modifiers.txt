@@ -33,3 +33,8 @@ xhk_decori_mechanists_machine_modifier = {
 	MACHINE_species_trait_picks_add = 1
 	MACHINE_species_trait_points_add = 2
 }
+
+xhk_decori_riftworld_modifier = {
+	country_astral_rift_speed_mult = 0.25
+	country_astral_rift_fail_mult = -0.5
+}

@@ -23,6 +23,7 @@
   xhk_decori_mechanists_modifier: "Decision Origins: Mechanists"
   xhk_decori_doorstep_modifier: "Decision Origins: Galactic Doorstep"
   xhk_decori_mechanists_machine_modifier: "Decision Origins: Mechanists but for Machines"
+  xhk_decori_riftworld_modifier: "Decision Origins: Riftworld"
 
 ### Zones
 #-------------------------------------------------------------------------------------------------------
@@ -86,3 +87,6 @@
 
   edict_decision_origins_remnants: "Decision Origins: Remnants"
   edict_decision_origins_remnants_desc: "Applies some of the effect of the Remnants origin."
+
+  edict_decision_origins_riftworld: "Decision Origins: Riftworld"
+  edict_decision_origins_riftworld_desc: "Applies some of the effect of the Riftworld origin."

@@ -26,10 +26,11 @@ TODO:
 	evo pred
 	necrophage
 	shroud forged
-	mind wardens
 	under one rule
 	shoulders of giants
 	here be dragons
-	riftworld
 	treasure hunters
 	teachers of shroud
+
+CANT CAUSE OF OVERRIDES
+	mind wardens
