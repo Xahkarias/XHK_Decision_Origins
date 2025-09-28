@@ -1,0 +1,185 @@
+namespace = synth
+
+situation_event = { # Event to digitize pops
+	id = synth.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_situation_flag = digitization_ongoing
+		if = {
+			limit = {
+				owner = { # CHJANGED
+					NOR = { 
+						has_origin = origin_synthetic_fertility
+						has_country_flag = decision_origins_synthetic_fertility
+					}
+				}
+			}
+			owner = {
+				check_variable_arithmetic = { which = value:num_active_buildings|BUILDING|building_identity_complex| value > 0 }
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			create_synth_species_effect = yes
+
+			if = { # Final event
+				limit = {
+					prev = {
+						has_situation_flag = digitization_final
+					}
+				}
+				every_owned_pop_group = {
+					limit = {
+						is_same_species = owner.species
+						NOT = {
+							has_trait = trait_mechanical
+						}
+					}
+					change_species = event_target:synthspecies@root.owner
+				}
+			}
+			else = { # Digitization ongoing
+				if = {
+					limit = {
+						owner = {
+							OR = { 
+								has_origin = origin_synthetic_fertility 
+								has_country_flag = decision_origins_synthetic_fertility
+							}
+						}
+					}
+					synthesize_pops_effect = {
+						COUNT = value:pop_to_digitize_per_month_synthetic_fertility
+					}
+				}
+				else = {
+					synthesize_pops_effect = {
+						COUNT = value:pop_to_digitize_per_month
+					}
+				}
+			}
+			if = {
+				limit = {
+					prev = {
+						OR = {
+							has_situation_flag = digitization_final
+							NOT = { has_situation_flag = synth_leaders_digitized }
+						}
+					}
+				}
+				every_owned_leader = {
+					limit = {
+						is_same_species = owner.species
+						NOT = {
+							has_trait = leader_trait_synthetic
+						}
+					}
+					change_species = event_target:synthspecies@root.owner
+					add_trait = {
+						trait = leader_trait_synthetic
+						show_message = no
+					}
+					remove_trait = leader_trait_brainslug
+					set_age = 1
+				}
+				every_pool_leader = {
+					limit = {
+						is_same_species = owner.species
+						NOT = {
+							has_trait = leader_trait_synthetic
+						}
+					}
+					change_species = event_target:synthspecies@root.owner
+					add_trait = {
+						trait = leader_trait_synthetic
+						show_message = no
+					}
+					remove_trait = leader_trait_brainslug
+					set_age = 1
+				}
+				every_envoy = {
+					limit = {
+						exists = species
+						species = {
+							is_robotic = no
+							is_livestock = no
+						}
+					}
+					change_species = event_target:synthspecies@root.owner
+					change_leader_portrait = species
+				}
+				every_controlled_ship = {
+					limit = {
+						is_ship_class = shipclass_colonizer
+						species = {
+							is_robotic = no
+							is_livestock = no
+						}
+					}
+					change_species = event_target:synthspecies@root.owner
+				}
+				every_owned_army = {
+					limit = {
+						exists = species
+						species = {
+							is_robotic = no
+							is_livestock = no
+						}
+						army_type = assault_army
+					}
+					modify_army = {
+						name = random
+						type = "robotic_army"
+						species = event_target:synthspecies@root.owner
+					}
+				}
+				every_owned_army = {
+					limit = {
+						exists = species
+						exists = planet
+						species = {
+							is_robotic = no
+							is_livestock = no
+						}
+						OR = {
+							army_type = defense_army
+							army_type = fanatic_guardian
+						}
+					}
+					modify_army = {
+						name = random
+						type = "robotic_defense_army"
+						species = event_target:synthspecies@root.owner
+					}
+				}
+				prev = {
+					set_situation_flag = synth_leaders_digitized
+				}
+			}
+		}
+		# Check if there are any pops left to digitize, otherwise remove the digitization flag to unpause the situation.
+		if = {
+			limit = {
+				NOT = {
+					owner = {
+						any_owned_pop_group = {
+							exists = event_target:synthspecies@root.owner
+							is_same_species = owner.species
+							NOT = {
+								has_trait = trait_mechanical
+							}
+						}
+					}
+				}
+			}
+			remove_situation_flag = digitization_ongoing
+			owner = {
+				change_dominant_species = { species = event_target:synthspecies@root.owner change_all = yes }
+			}
+		}
+	}
+}

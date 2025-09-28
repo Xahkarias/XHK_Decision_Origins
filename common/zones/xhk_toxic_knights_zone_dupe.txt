@@ -1,5 +1,5 @@
 xhk_zone_capital_knights = {
-	icon = GFX_job_knight_commander
+	icon = GFX_district_specialization_knight_commander
 	base_buildtime = @zone_buildtime
 
 	swap_type = district_orders_demesne

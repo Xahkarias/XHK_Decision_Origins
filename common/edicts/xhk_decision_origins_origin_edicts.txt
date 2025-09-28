@@ -203,8 +203,10 @@ decision_origins_post_apocalyptic = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_post_apocalyptic
+			has_origin = origin_post_apocalyptic
+			has_origin = origin_post_apocalyptic_machines
 		}
 	}
 
@@ -258,8 +260,10 @@ decision_origins_ocean_paradise = {
 		is_ai = no
 		capital_scope = { is_artificial = no }
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_ocean_paradise
+			has_origin = origin_ocean_paradise
+			has_origin = origin_ocean_machines
 		}
 	}
 
@@ -316,8 +320,10 @@ decision_origins_subterranean = {
 		host_has_dlc = "Overlord"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_subterranean
+			has_origin = origin_subterranean
+			has_origin = origin_subterranean_machines
 		}
 	}
 
@@ -363,8 +369,9 @@ decision_origins_overtuned = {
 		host_has_dlc = "Toxoids Species Pack"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_overtuned
+			has_origin = origin_overtuned
 		}
 	}
 
@@ -394,8 +401,9 @@ decision_origins_toxic_knights = {
 			NOT = { is_planet_class = pc_habitat }
 		}
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_toxic_knights
+			has_origin = origin_toxic_knights
 		}
 	}
 
@@ -463,8 +471,9 @@ decision_origins_mechanist = {
 		host_has_dlc = "Utopia"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_mechanist
+			has_origin = origin_mechanists
 		}
 	}
 
@@ -524,8 +533,9 @@ decision_origins_galactic_doorstep = {
 		is_ai = no
 		# no dlc needed for this one
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_galactic_doorstep
+			has_origin = origin_galactic_doorstep
 		}
 	}
 
@@ -571,8 +581,9 @@ decision_origins_syncretic_evolution = {
 		host_has_dlc = "Utopia"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_syncretic_evolution
+			has_origin = origin_syncretic_evolution
 		}
 	}
 
@@ -743,8 +754,9 @@ decision_origins_remnants= {
 		host_has_dlc = "Ancient Relics Story Pack"
 		is_ai = no
 		days_passed < 30
-		NOT = {
+		NOR = {
 			has_country_flag = decision_origins_remnants
+			has_origin = origin_remnants
 		}
 	}
 	
@@ -776,5 +788,185 @@ decision_origins_remnants= {
 
 		# custom_tooltip = "edict_decision_origins_remnants_tt"
 		# show_only_custom_tooltip = no
+	}
+}
+
+decision_origins_riftworld= {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Astral Planes"
+		is_ai = no
+		days_passed < 30
+		NOR = {
+			has_country_flag = decision_origins_riftworld
+			has_origin = origin_riftworld
+		}
+	}
+	
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_riftworld
+
+			set_country_flag = astral_threads_found
+			give_technology = {
+				tech = tech_astral_harvesting
+				message = no
+			}
+			add_modifier = {
+				modifier = xhk_decori_riftworld_modifier
+			}
+		}
+
+		
+
+		capital_scope = {
+			solar_system = {
+				spawn_astral_rift = {
+					relative_to = prev
+					orbit_distance = 200
+					orbit_angle = 340
+					tolerance = 360
+					id = riftworld
+					spawn_sound = no
+				}
+				astral_rift = {
+					create_research_station = { owner = root }
+				}
+				prevprev = {
+					country_event = {
+						id = astral_planes.101
+						days = 10080
+						random = 1440
+						scopes = { from = prev.astral_rift }
+					}
+				}
+			}
+			planet_event = { id = astral_planes.2120 }
+		}
+
+		if = {
+			limit = {
+				is_dimensional_worship_empire = yes
+			}
+			random_owned_starbase = {
+				set_starbase_building = {
+					slot = 1
+					building = dimensional_shrine
+				}
+			}
+		}
+	}
+}
+
+# not touching the species rights part
+# events:
+# 3100 is the start 
+
+decision_origins_synthetic_fertility= {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "The Machine Age"
+		is_ai = no
+		## TODO: check if organic
+		days_passed < 30
+		NOR = {
+			has_country_flag = decision_origins_synthetic_fertility
+			has_origin = origin_synthetic_fertility
+		}
+	}
+	
+	allow = {
+		days_passed > 0
+	}
+
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_synthetic_fertility
+			
+			capital_scope = {
+				## add the genes
+				every_owned_species = {
+					limit = {
+						is_robotic = no
+					}
+					change_species_characteristics = {
+						add_trait = trait_pathogenic_genes
+					}
+				}
+				
+				# remove lithoids
+				while = {
+					limit = {
+						has_deposit = d_hibernating_lithoids
+					}
+					remove_deposit = d_hibernating_lithoids
+				}
+				while = {
+					limit = {
+						has_deposit = d_decrepit_dwellings
+					}
+					remove_deposit = d_decrepit_dwellings
+				}
+				while = {
+					limit = {
+						has_deposit = d_failing_infrastructure
+					}
+					remove_deposit = d_failing_infrastructure
+				}
+				# add abandoned cities
+				while = {
+					count = 2
+					add_deposit = d_abandoned_cities
+				}
+			}
+			
+
+			# starting event
+			country_event = { id = machine_age.3100 }
+		}
+
+		
+		capital_scope = {
+			# spawn pops
+			create_pop_group = {
+				size = 900
+				species = owner_main_species
+			}		
+			
+			# make buildings
+			add_building = {
+				zone = zone_default
+				building = building_identity_repository
+			}
+			add_building = {
+				zone = zone_default
+				building = building_abandoned_gene_clinic
+			}
+
+			set_variable = {
+				which = num_dead_identities
+				value = 300
+			}
+		}
+
+		# give techs
+		give_technology = {	tech = tech_administrative_ai message = no }
+		give_technology = {	tech = tech_self_aware_logic message = no }
+		give_technology = {	tech = tech_sapient_ai message = no }
+
+		custom_tooltip = "edict_decision_origins_synthetic_fertility_tt"
+		show_only_custom_tooltip = no
 	}
 }
