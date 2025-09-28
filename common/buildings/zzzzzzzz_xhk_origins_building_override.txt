@@ -1,0 +1,134 @@
+building_identity_repository = {
+	base_buildtime = @b2_time
+	planet_limit = 1
+	position_priority = 100
+	can_demolish = no
+	can_be_disabled = no
+
+	category = research
+
+	building_sets = {
+		government
+		research
+		physics
+		society
+		engineering
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}	
+			NOT = { has_country_flag = synthetic_fertility_no_identity_left_behind }
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			NOR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}
+		}
+	}
+
+	convert_to = {
+		building_research_lab_1
+	}
+
+	allow = {
+		owner = { 
+			OR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = 0.02
+			mult = owner.value:identity_repository_scaling_mult
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { 
+					OR = {
+						has_origin = origin_synthetic_fertility
+						has_country_flag = decision_origins_synthetic_fertility
+					}
+				}
+			}
+			physics_research = 0.02
+			society_research = 0.02
+			engineering_research = 0.02
+			unity = 0.02
+			trade = 0.02
+			mult = owner.value:identity_repository_scaling_mult
+		}
+	}
+
+	triggered_planet_modifier = {
+		robotic_pop_bonus_workforce_mult = 0.0001
+		mult = owner.value:identity_repository_scaling_mult
+	}
+
+	triggered_desc = {
+		text = building_identity_repository_tt
+	}
+}
+
+building_abandoned_gene_clinic = {
+	icon = building_ancient_cryo_chamber
+	position_priority = 100
+	can_demolish = no
+	can_build = no
+
+	category = amenity
+
+	building_sets = {
+		government
+	}
+
+	potential = {
+		exists = owner
+		owner = { 
+			OR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			NOR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}
+		}
+	}
+
+	allow = {
+		owner = { 
+			OR = {
+				has_origin = origin_synthetic_fertility
+				has_country_flag = decision_origins_synthetic_fertility
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = building_abandoned_gene_clinic_tt
+	}
+}

@@ -20,8 +20,12 @@ FULLY DONE
 	syncretic evolution
 	shattered ring
 	remnants
+	riftworld
+	synthetic ferility
 
 TODO:
+	
+
 	SQUIRE THING
 	evo pred
 	necrophage
@@ -34,3 +38,5 @@ TODO:
 
 CANT CAUSE OF OVERRIDES
 	mind wardens
+
+

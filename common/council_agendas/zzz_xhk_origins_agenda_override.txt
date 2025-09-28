@@ -1,0 +1,74 @@
+agenda_synthetic_evolution = {
+	agenda_cost = @ascension_agenda_cost
+	agenda_cooldown = @ascension_agenda_cooldown
+	allow = {
+		OR = {
+			has_ascension_perk = ap_synthetic_evolution
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+	}
+	potential = {
+		is_regular_empire = yes
+		is_individual_machine = no
+		OR = {
+			has_utopia = yes
+			has_machine_age_dlc = yes
+		}
+		NOR = {
+			has_cybernetic_ascension = yes
+			has_genetic_ascension = yes
+			has_psionic_ascension = yes
+			is_natural_design_empire = yes
+			has_purity_ascension = yes
+			has_cloning_ascension = yes
+			has_mutation_ascension = yes
+		}
+		NAND = {
+			has_technology = tech_powered_exoskeletons
+			has_technology = tech_robotic_workers
+			has_technology = tech_droid_workers
+			has_technology = tech_synthetic_workers
+		}
+	}
+	effect = {
+		inverted_switch = {
+			trigger = has_technology
+			tech_powered_exoskeletons = {
+				add_tech_progress = {
+					tech = tech_powered_exoskeletons
+					progress = @agenda_award_tech_progress
+				}
+			}
+			tech_robotic_workers = {
+				add_tech_progress = {
+					tech = tech_robotic_workers
+					progress = @agenda_award_tech_progress
+				}
+			}
+			tech_droid_workers = {
+				add_tech_progress = {
+					tech = tech_droid_workers
+					progress = @agenda_award_tech_progress
+				}
+			}
+			tech_synthetic_workers = {
+				add_tech_progress = {
+					tech = tech_synthetic_workers
+					progress = @agenda_award_tech_progress
+				}
+			}
+			default = {
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+			}
+		}
+	}
+	ai_weight = {
+		base = @ascension_tech_agenda_weight
+	}
+}

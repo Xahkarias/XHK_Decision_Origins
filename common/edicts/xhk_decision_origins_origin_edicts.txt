@@ -863,3 +863,110 @@ decision_origins_riftworld= {
 		}
 	}
 }
+
+# not touching the species rights part
+# events:
+# 3100 is the start 
+
+decision_origins_synthetic_fertility= {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "The Machine Age"
+		is_ai = no
+		## TODO: check if organic
+		days_passed < 30
+		NOR = {
+			has_country_flag = decision_origins_synthetic_fertility
+			has_origin = origin_synthetic_fertility
+		}
+	}
+	
+	allow = {
+		days_passed > 0
+	}
+
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_synthetic_fertility
+			
+			capital_scope = {
+				## add the genes
+				every_owned_species = {
+					limit = {
+						is_robotic = no
+					}
+					change_species_characteristics = {
+						add_trait = trait_pathogenic_genes
+					}
+				}
+				
+				# remove lithoids
+				while = {
+					limit = {
+						has_deposit = d_hibernating_lithoids
+					}
+					remove_deposit = d_hibernating_lithoids
+				}
+				while = {
+					limit = {
+						has_deposit = d_decrepit_dwellings
+					}
+					remove_deposit = d_decrepit_dwellings
+				}
+				while = {
+					limit = {
+						has_deposit = d_failing_infrastructure
+					}
+					remove_deposit = d_failing_infrastructure
+				}
+				# add abandoned cities
+				while = {
+					count = 2
+					add_deposit = d_abandoned_cities
+				}
+			}
+			
+
+			# starting event
+			country_event = { id = machine_age.3100 }
+		}
+
+		
+		capital_scope = {
+			# spawn pops
+			create_pop_group = {
+				size = 900
+				species = owner_main_species
+			}		
+			
+			# make buildings
+			add_building = {
+				zone = zone_default
+				building = building_identity_repository
+			}
+			add_building = {
+				zone = zone_default
+				building = building_abandoned_gene_clinic
+			}
+
+			set_variable = {
+				which = num_dead_identities
+				value = 300
+			}
+		}
+
+		# give techs
+		give_technology = {	tech = tech_administrative_ai message = no }
+		give_technology = {	tech = tech_self_aware_logic message = no }
+		give_technology = {	tech = tech_sapient_ai message = no }
+
+		custom_tooltip = "edict_decision_origins_synthetic_fertility_tt"
+		show_only_custom_tooltip = no
+	}
+}

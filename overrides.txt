@@ -1,5 +1,9 @@
 # OVERRIDES LIST:
 
+### Agendas:
+agenda_synthetic_evolution
+	synthetic fertility, low priority override so that ascension mods can take over
+
 ### Buildings:
 building_order_keep
 building_order_castle
@@ -7,6 +11,9 @@ holding_knight_commandery
 building_knightly_theme_park
 	all of these are editied with the knights decision flag
 	can be safely overriden by Ancient Cache of Knights
+building_identity_repository
+building_abandoned_gene_clinic
+	synthetic fertility
 
 ### Deposits:
 d_dimensional_manipulation_device
@@ -38,6 +45,10 @@ can_add_overtuned_traits
 can_remove_overtuned_traits
 	overtuned decision flag
 
+### Traditions:
+tr_synthetics_adopt
+	this one is the big iffy one
+
 ### Events:
 origin.1030
 origin.1050
@@ -51,3 +62,10 @@ toxoids.8014
 toxoids.8016
 toxoids.8025
 	toxic god events
+synth.3
+machine_age.3100
+machine_age.3110
+machine_age.3115
+machine_age.3120
+machine_age.3125
+	synthetic fertility

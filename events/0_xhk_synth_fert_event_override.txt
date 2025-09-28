@@ -1,0 +1,308 @@
+
+namespace = machine_age
+
+country_event = {
+	id = machine_age.3100
+	title = "machine_age.3100.name"
+	desc = "machine_age.3100.desc"
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+	}
+
+	immediate = {
+		start_situation = {
+			type = situation_synthetic_fertility_digitization
+			target = root
+		}
+		begin_event_chain = {
+			event_chain = "synthetic_fertility_chain"
+			target = this
+		}
+	}
+
+	option = {
+		name = "machine_age.3100.a"
+		add_tech_option_or_research_effect = {
+			TECH = tech_robotic_workers
+			PROGRESS = 0.25
+			CATEGORY = engineering_research
+		}
+	}
+}
+
+country_event = {
+	id = machine_age.3110
+	title = "machine_age.3110.name"
+	desc = "machine_age.3110.desc"
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+		has_technology = tech_robotic_workers
+		NOT = {
+			has_country_flag = origin_synthetic_fertility_robots
+		}
+	}
+
+	immediate = {
+		set_country_flag = origin_synthetic_fertility_robots
+	}
+
+	option = {
+		name = "machine_age.3110.a"
+		custom_tooltip = "machine_age.3110.a.tooltip"
+		add_tech_option_or_research_effect = {
+			TECH = tech_droid_workers
+			PROGRESS = 0.20
+			CATEGORY = engineering_research
+		}
+		hidden_effect = {
+			create_built_robot_species = yes
+			last_created_species = {
+				save_global_event_target_as = synth_fert_surrogate@root.owner
+				set_citizenship_type = {
+					country = ROOT
+					type = citizenship_full
+					cooldown = yes
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					is_capital = yes
+				}
+				set_timed_planet_flag = {
+					flag = ignore_ai_building_limitations
+					days = 1
+				}
+				remove_building = building_abandoned_gene_clinic
+				add_building = building_robot_assembly_plant
+				while = {
+					count = 3
+					create_pop_group = {
+						species = last_created_species
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = machine_age.3115
+	title = "machine_age.3115.name"
+	desc = "machine_age.3115.desc"
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+		has_technology = tech_droid_workers
+		NOT = {
+			has_country_flag = origin_synthetic_fertility_droids
+		}
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = {
+				has_trait = trait_mechanical
+			}
+			set_colonization_controls = {
+				country = ROOT
+				type = colonization_control_no
+				cooldown = yes
+			}
+			set_citizenship_type = {
+				country = ROOT
+				type = citizenship_full
+				cooldown = yes
+			}
+			set_military_service_type = {
+				country = ROOT
+				type = military_service_full
+				cooldown = yes
+			}
+		}
+		set_country_flag = origin_synthetic_fertility_droids
+	}
+
+	option = {
+		name = "machine_age.3115.a"
+		add_tech_option_or_research_effect = {
+			TECH = tech_synthetic_workers
+			PROGRESS = 0.15
+			CATEGORY = engineering_research
+		}
+	}
+}
+
+country_event = {
+	id = machine_age.3120
+	title = "machine_age.3120.name"
+	desc = "machine_age.3120.desc"
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+		has_technology = tech_synthetic_workers
+		NOT = {
+			has_country_flag = origin_synthetic_fertility_synths
+		}
+	}
+
+	immediate = {
+		set_country_flag = origin_synthetic_fertility_synths
+		give_technology = {
+			tech = tech_synthetic_leaders
+			message = no
+		}
+		every_owned_species = {
+			limit = {
+				has_trait = trait_mechanical
+			}
+			set_citizenship_type = {
+				country = ROOT
+				type = citizenship_full
+				cooldown = yes
+			}
+			set_military_service_type = {
+				country = ROOT
+				type = military_service_full
+				cooldown = yes
+			}
+		}
+	}
+
+	option = {
+		name = "machine_age.3120.a"
+	 	custom_tooltip = "machine_age.3120.a.tooltip"
+	}
+}
+
+country_event = {
+	id = machine_age.3125
+	title = "machine_age.3125.name"
+	desc = {
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = synthetic_fertility_no_bodies_left
+				}
+			}
+		}
+		text = machine_age.3125.desc
+	}
+	desc = {
+		trigger = {
+			owner = {
+				has_country_flag = synthetic_fertility_no_bodies_left
+			}
+		}
+		text = machine_age.3125.nobody.desc
+	}
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_synthetic_fertility
+			has_country_flag = decision_origins_synthetic_fertility
+		}
+		has_tradition = tr_synthetics_adopt
+		NOT = {
+			has_country_flag = synthetics_traditions_unlocked
+		}
+	}
+
+	immediate = {
+		set_country_flag = origin_synthetic_fertility_synths
+		random_situation = {
+			limit = {
+				is_situation_type = situation_synthetic_fertility_digitization
+			}
+			destroy_situation = this
+		}
+		if = {
+			limit = {
+				has_country_flag = synthetic_fertility_no_bodies_left
+			}
+			capital_scope = {
+				create_synth_species_effect = yes
+			}
+			capital_scope = {
+				create_pop_group = {
+					species = event_target:synthspecies@root.owner
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "synth.105.a"
+		custom_tooltip = "synth.105.a.tt"
+		owner = { set_country_flag = synth_focus_rulers }
+		start_situation = {
+			type = situation_synthetic_fertility_synthesization
+			target = root
+		}
+	}
+	option = {
+		name = "synth.105.b"
+		custom_tooltip = "synth.105.b.tt"
+		owner = { set_country_flag = synth_focus_specialists }
+		start_situation = {
+			type = situation_synthetic_fertility_synthesization
+			target = root
+		}
+	}
+	option = {
+		name = "synth.105.c"
+		custom_tooltip = "synth.105.c.tt"
+		owner = { set_country_flag = synth_focus_workers }
+		start_situation = {
+			type = situation_synthetic_fertility_synthesization
+			target = root
+		}
+	}
+	option = {
+		name = "synth.105.d"
+		custom_tooltip = "synth.105.d.tt"
+		owner = { set_country_flag = synth_focus_upkeep }
+		start_situation = {
+			type = situation_synthetic_fertility_synthesization
+			target = root
+		}
+	}
+}

@@ -90,3 +90,7 @@
 
   edict_decision_origins_riftworld: "Decision Origins: Riftworld"
   edict_decision_origins_riftworld_desc: "Applies some of the effect of the Riftworld origin."
+
+  edict_decision_origins_synthetic_fertility: "Decision Origins: Synthetic Fertility"
+  edict_decision_origins_synthetic_fertility_desc: "Gives the situation, buildings, and pop traits of the Synthetic Fertility situation"
+  edict_decision_origins_synthetic_fertility_tt: "§RMAKE SURE YOU HAVE 2 FREE BUILDINGS SLOTS IN THE GOVERNMENT ZONE OF YOUR CAPITAL§!"
