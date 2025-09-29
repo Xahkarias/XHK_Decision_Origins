@@ -22,6 +22,7 @@ FULLY DONE
 	remnants
 	riftworld
 	synthetic ferility
+	teachers of shroud
 
 TODO:
 	
@@ -34,7 +35,7 @@ TODO:
 	shoulders of giants
 	here be dragons
 	treasure hunters
-	teachers of shroud
+	
 
 CANT CAUSE OF OVERRIDES
 	mind wardens

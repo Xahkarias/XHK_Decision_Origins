@@ -1,0 +1,205 @@
+namespace = origin
+
+# Shroudwalker Enclave: Initial Diplomatic Greeting for Teachers of the Shroud Origin
+# This = player country; event_target:shroudwalker_enclave_country = enclave country
+country_event = {
+	id = origin.5605
+	title = origin.5605.name
+	trigger = {
+		OR = {
+			has_country_flag = decision_origins_shroudwalker_apprentice
+			has_origin = origin_shroudwalker_apprentice
+		}
+		exists = event_target:shroudwalker_enclave_country
+		has_country_flag = first_contact_event
+		has_country_flag = Story2
+		has_country_flag = shroudwalker_enclave_diplomacy_engaged
+	}
+	desc = {
+		trigger = {
+			hidden:owner = {
+				switch = {
+					trigger = has_authority
+					auth_corporate = { text = origin.5605.corporate.desc }
+					default = { text = origin.5605.generic.desc }
+				}
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:shroudwalker_enclave_country
+		room = shroudwalkers_room
+	}
+
+	immediate = {
+		country_event = {
+			id = tutorial.2100 days = 1 # Tutorial: Enclave Diplomacy
+			scopes = { from = event_target:shroudwalker_enclave_country }
+		}
+	}
+
+	#Respond with awe and reverence - offers a callback flavour for future events.
+	option = {
+		name = origin.5605.a
+		custom_tooltip = shroud_beacon_info
+		custom_tooltip = origin.5605.tt #"We also receive:"
+		add_resource = { rare_crystals = 25 }
+		set_country_flag = shroudwalker_enclave_bought_shroud_beacon
+		hidden_effect = {
+			event_target:shroudwalker_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			set_country_flag = shroud_beacon
+		}
+	}
+	#Respond with arrogance - offers a callback flavour for future events.
+	option = {
+		name = origin.5605.b
+		custom_tooltip = shroud_beacon_info
+		custom_tooltip = origin.5605.tt #"We also receive:"
+		add_resource = { rare_crystals = 25 }
+		set_country_flag = shroudwalker_enclave_bought_shroud_beacon
+		hidden_effect = {
+			set_country_flag = shroud_beacon
+		}
+	}
+}
+
+## Teachers of the Shroud - Origin Event - Player Empire Enters the Shroudwalker Enclave system via hyperlane
+fleet_event = {
+	id = origin.5620
+	title = "origin.5615.name"
+	desc = {
+		trigger = {
+			has_fleet_flag = used_shroud_tunnel
+		}
+		text = origin.5620.b.desc
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				has_fleet_flag = used_shroud_tunnel
+			}
+		}
+		text = origin.5615.a.desc
+	}
+	location = event_target:shroudwalker_enclave_system
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:shroudwalker_enclave_country
+		room = shroudwalkers_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR = {
+				has_country_flag = decision_origins_shroudwalker_apprentice
+				has_origin = origin_shroudwalker_apprentice
+			}
+		}
+		fromfrom = {
+			has_star_flag = shroudwalker_enclave_system
+		}
+		NOT = {
+			owner = {
+				has_country_flag = teachers_origin_meet_enclave
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = teachers_origin_meet_enclave
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+## Teachers of the Shroud - Origin Event - Player Empire builds Shroud Beacon
+country_event = {
+	id = origin.5625
+	title = "origin.5625.name"
+	desc = {
+		trigger = {
+			NOT = { exists = event_target:shroudwalker_system_owner_closed }
+		}
+		text = "origin.5625.a.desc"
+	}
+	desc = {
+		trigger = {
+			exists = event_target:shroudwalker_system_owner_closed
+		}
+		text = "origin.5625.b.desc"
+	}
+	picture = GFX_evt_shroud_tunnel
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_origins_shroudwalker_apprentice
+			has_origin = origin_shroudwalker_apprentice
+		}
+		NOT = { has_country_flag = built_first_shroud_tunnel }
+		any_owned_starbase = {
+			has_starbase_building = shroud_beacon
+		}
+	}
+
+	immediate = {
+		event_target:shroudwalker_enclave_country = {
+			set_country_flag = shroud_beacon@root
+		}
+		if = {
+			limit = {
+				exists = event_target:shroudwalker_enclave_system
+				event_target:shroudwalker_enclave_system = {
+					exists = owner
+					owner = { has_closed_borders = root }
+				}
+			}
+			event_target:shroudwalker_enclave_system = {
+				owner = {
+					save_event_target_as = shroudwalker_system_owner_closed
+				}
+			}
+		}
+		owner = {
+			set_country_flag = built_first_shroud_tunnel
+			add_seen_bypass_type = shroud_tunnel
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { exists = event_target:shroudwalker_system_owner_closed }
+		}
+		name = "origin.5625.a.option"
+	}
+
+	option = {
+		trigger = {
+			exists = event_target:shroudwalker_system_owner_closed
+		}
+		name = UNDERSTOOD
+	}
+}

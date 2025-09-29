@@ -970,3 +970,67 @@ decision_origins_synthetic_fertility= {
 		show_only_custom_tooltip = no
 	}
 }
+
+# i dont set has_psionic_ascension, and synth fert doesnt set the synthetic asenson thing
+# ignores a lot of the flavor events for seeing a shroud tunnel for the first time etc
+decision_origins_shroudwalker_apprentice = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	
+	resources = {
+		category = edicts
+	}
+
+	potential = {
+		host_has_dlc = "Overlord"
+		is_ai = no
+		days_passed < 30
+		NOR = {
+			has_country_flag = decision_origins_shroudwalker_apprentice
+			has_origin = origin_shroudwalker_apprentice
+		}
+	}
+
+	allow = {
+		days_passed > 0
+	}
+
+	effect = {
+		hidden_effect = {
+			set_country_flag = decision_origins_shroudwalker_apprentice
+			# every_owned_species = {
+			# 	limit = {
+			# 		is_robotic = yes
+			# 	}
+			# 	change_species_characteristics = {
+			# 		add_trait = trait_latent_psionic_robot
+			# 	}
+			# }
+			every_owned_species = {
+				limit = {
+					is_robotic = no
+				}
+				change_species_characteristics = {
+					add_trait = trait_latent_psionic
+				}
+			}
+
+			set_country_flag = first_contact_event
+			set_country_flag = Story2 # Already encountered spacefarers
+			establish_communications_no_message = event_target:shroudwalker_enclave_country
+			set_country_flag = shroudwalker_enclave_diplomacy_engaged
+			set_country_flag = shroudwalker_enclave_bought_shroud_beacon
+
+			every_system = {
+				limit = {
+					has_star_flag = shroudwalker_enclave_system
+				}
+				root = { set_visited = prev }
+			}
+
+		}
+		add_research_option = tech_psionic_theory
+		custom_tooltip = "edict_decision_origins_shroudwalker_apprentice_tt"
+		show_only_custom_tooltip = no
+	}
+}

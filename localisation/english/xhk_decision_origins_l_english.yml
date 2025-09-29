@@ -93,4 +93,8 @@
 
   edict_decision_origins_synthetic_fertility: "Decision Origins: Synthetic Fertility"
   edict_decision_origins_synthetic_fertility_desc: "Gives the situation, buildings, and pop traits of the Synthetic Fertility situation"
-  edict_decision_origins_synthetic_fertility_tt: "§RMAKE SURE YOU HAVE 2 FREE BUILDINGS SLOTS IN THE GOVERNMENT ZONE OF YOUR CAPITAL§!"
+  edict_decision_origins_synthetic_fertility_tt: "Gives all species the Pathogenic Genes trait. Be careful with other things that give you extra starting pops.\n§RMAKE SURE YOU HAVE 2 FREE BUILDINGS SLOTS IN THE GOVERNMENT ZONE OF YOUR CAPITAL§!"
+
+  edict_decision_origins_shroudwalker_apprentice: "Decision Origins: Shroudwalker Apprentice"
+  edict_decision_origins_shroudwalker_apprentice_desc: "Gives contact with the Shroudwalker enclave and the Latent Psionic trait."
+  edict_decision_origins_shroudwalker_apprentice_tt: "Does not give some of the flavor events, nor the shroud tunnel starbase building"
