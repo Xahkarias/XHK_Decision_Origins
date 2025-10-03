@@ -5,3 +5,7 @@ has_toxic_knights_origin = {
 		has_country_flag = decision_toxic_knights 
 	}
 }
+
+xhk_decision_origins_mod_exists = {
+	always = yes
+}
