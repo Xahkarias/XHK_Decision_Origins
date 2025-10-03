@@ -935,6 +935,8 @@ decision_origins_synthetic_fertility= {
 
 			# starting event
 			country_event = { id = machine_age.3100 }
+
+			
 		}
 
 		
@@ -959,6 +961,20 @@ decision_origins_synthetic_fertility= {
 				which = num_dead_identities
 				value = 300
 			}
+		}
+
+		# set_variable = {
+		# 		which = remaining_synth_fert_pops
+		# 		value = 5700
+		# 	}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop_amount
+			parameters = {
+				limit = {
+					has_trait = trait_pathogenic_genes
+				}
+			}
+			variable = remaining_synth_fert_pops
 		}
 
 		# give techs
