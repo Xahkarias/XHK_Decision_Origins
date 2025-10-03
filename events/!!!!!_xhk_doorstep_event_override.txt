@@ -1,3 +1,5 @@
+namespace = origin
+
 # Galactic Doorstep - Pest Control
 country_event = {
 	id = origin.1030

@@ -1,3 +1,5 @@
+namespace = toxoids
+
 fleet_event = { #Enter the toxic system, meet the entity
 	id = toxoids.7310
 	title = "toxoids.7310.name"
@@ -72,7 +74,7 @@ fleet_event = { #Enter the toxic system, meet the entity - Non Knight
 	}
 
 	option = { # What the hell is this thing??
-		name = toxoids.7311.a
+		name = toxoids.7311.a 
 	}
 }
 
