@@ -1,0 +1,4 @@
+# overriden by gigas
+giga_has_frameworld_origin = {
+	always = no
+}

@@ -25,11 +25,6 @@
   xhk_decori_mechanists_machine_modifier: "Decision Origins: Mechanists but for Machines"
   xhk_decori_riftworld_modifier: "Decision Origins: Riftworld"
 
-### Zones
-#-------------------------------------------------------------------------------------------------------
-  xhk_zone_capital_knights: "$zone_habitat_knights$"
-  xhk_zone_capital_knights_desc: "$zone_habitat_knights_desc$"
-
 ### Edicts
 #-------------------------------------------------------------------------------------------------------
   edict_decision_origins_prosperous_unification: "Decision Origins: Prosperous Unification"
@@ -65,7 +60,7 @@
 
   edict_decision_origins_toxic_knights: "Decision Origins: Knights of the Toxic God"
   edict_decision_origins_toxic_knights_desc: "Applies some of the effects of the Knights of the Toxic God origin."
-  edict_decision_origins_toxic_knights_tt: "Increases capital size by 5 and adds the Toxic God deposits.\nReplaces the first city zone with §H$xhk_zone_capital_knights$§! and places a §H$building_order_keep$§!.\nHabitats need to be consecrated normally."
+  edict_decision_origins_toxic_knights_tt: "Creates a habitat in orbit around the capital and creates the Order's Hall.\n\n§RBE CAREFUL WHEN USING THIS WHEN YOUR CAPITAL IS NOT A NORMAL PLANET (AKA HABITAT OR SOME OTHER HABITABLE STRUCTURE).§!"
 
   edict_decision_origins_galactic_doorstep: "Decision Origins: Galactic Doorstep"
   edict_decision_origins_galactic_doorstep_desc: "Applies some of the effects of the Galactic Doorstep origin."
