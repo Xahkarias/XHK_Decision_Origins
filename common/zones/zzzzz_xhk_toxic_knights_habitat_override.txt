@@ -1,0 +1,74 @@
+zone_habitat_knights = {
+	icon = GFX_district_specialization_knight_commander
+	base_buildtime = @zone_buildtime
+
+	swap_type = district_orders_demesne
+	swap_type_weight = 5
+
+	potential = { # planet scope
+		exists = owner
+		owner = {
+			has_toxic_knights_origin = yes
+			NOT = {
+				has_country_flag = quest_abandoned
+			}
+		}
+		OR = {
+			has_planet_flag = toxic_knights_habitat
+			has_building = building_order_castle
+		}
+	}
+
+	unlock = { # planet scope
+		exists = owner
+		owner = {
+			has_toxic_knights_origin = yes
+			NOT = {
+				has_country_flag = quest_abandoned
+			}
+		}
+		OR = {
+			has_planet_flag = toxic_knights_habitat
+			has_building = building_order_castle
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	convert_to = {
+		zone_fortress
+	}
+
+	max_buildings = 3
+
+	zone_sets = {
+		habitat_urban
+	}
+
+	included_building_sets = {
+		knights
+		fortress
+		origin
+	}
+
+    triggered_district_planet_modifier = {
+		potential = {
+			always = yes
+		}
+        job_knight_add = @scaling_district_2_jobs
+		mult = owner.value:hab_void_dweller_jobs
+    }
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	inline_script = {
+		script = zones/shared_city_non_urban_zone_modifiers
+	}
+}
