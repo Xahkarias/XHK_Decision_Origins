@@ -959,7 +959,7 @@ decision_origins_synthetic_fertility= {
 	effect = {
 		hidden_effect = {
 			set_country_flag = decision_origins_synthetic_fertility
-			
+			set_country_flag = synthetics_traditions_unlocked
 			capital_scope = {
 				## add the genes
 				every_owned_species = {
@@ -989,11 +989,6 @@ decision_origins_synthetic_fertility= {
 						has_deposit = d_failing_infrastructure
 					}
 					remove_deposit = d_failing_infrastructure
-				}
-				# add abandoned cities
-				while = {
-					count = 2
-					add_deposit = d_abandoned_cities
 				}
 			}
 			
