@@ -23,10 +23,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_galactic_doorstep
-			has_country_flag = decision_origins_galactic_doorstep
-		}
+		has_doorstep_origin = yes
 		fromfromfrom = {
 			has_fleet_flag = gateway_vermin
 		}
@@ -52,10 +49,7 @@ country_event = {
 	specimen = secrets_black_crown
 
 	trigger = {
-		OR = {
-			has_origin = origin_galactic_doorstep
-			has_country_flag = decision_origins_galactic_doorstep
-		}
+		has_doorstep_origin = yes
 		fromfromfrom = { has_megastructure_flag = doorstep_gateway@root }
 	}
 

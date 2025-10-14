@@ -18,11 +18,7 @@ can_remove_positive_traits_organic = {
 		}
 		AND = {
 			has_toxoids = yes
-			OR = {
-				has_origin = origin_overtuned
-				## ADDED THIS LINE
-				has_country_flag = decision_origins_overtuned
-			}
+			has_overtuned_origin = yes
 		}
 		has_technology = tech_gene_expressions
 		has_technology = tech_epigenetic_triggers

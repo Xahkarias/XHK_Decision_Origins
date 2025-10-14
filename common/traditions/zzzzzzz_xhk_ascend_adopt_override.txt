@@ -2,10 +2,7 @@ tr_synthetics_adopt = {
 	possible = {
 		if = {
 			limit = { 
-				OR = { # ADDED
-					has_origin = origin_synthetic_fertility 
-					has_country_flag = decision_origins_synthetic_fertility
-				}		
+				has_synthetic_fertility_origin = yes	
 			}
 			has_technology = tech_synthetic_workers
 		}
@@ -51,10 +48,7 @@ tr_synthetics_adopt = {
 		hidden_effect = {
 			if = {
 				limit = { 
-					OR = { # ADDED
-						has_origin = origin_synthetic_fertility 
-						has_country_flag = decision_origins_synthetic_fertility
-					}
+					has_synthetic_fertility_origin = yes
 				}
 				country_event = { id = machine_age.3125 }
 			}

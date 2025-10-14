@@ -10,10 +10,7 @@ situation_event = { # Event to digitize pops
 		if = {
 			limit = {
 				owner = { # CHJANGED
-					NOR = { 
-						has_origin = origin_synthetic_fertility
-						has_country_flag = decision_origins_synthetic_fertility
-					}
+					has_synthetic_fertility_origin = no
 				}
 			}
 			owner = {
@@ -46,10 +43,7 @@ situation_event = { # Event to digitize pops
 				if = {
 					limit = {
 						owner = {
-							OR = { 
-								has_origin = origin_synthetic_fertility 
-								has_country_flag = decision_origins_synthetic_fertility
-							}
+							has_synthetic_fertility_origin = yes
 						}
 					}
 					synthesize_pops_effect = {

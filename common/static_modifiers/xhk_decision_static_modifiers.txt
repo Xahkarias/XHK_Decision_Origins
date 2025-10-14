@@ -38,3 +38,8 @@ xhk_decori_riftworld_modifier = {
 	country_astral_rift_speed_mult = 0.25
 	country_astral_rift_fail_mult = -0.5
 }
+
+xhk_decori_starlit_citadel_modifier = {
+    country_megastructure_build_cap_add = 1
+    deep_space_citadel_limit_add = 1
+}

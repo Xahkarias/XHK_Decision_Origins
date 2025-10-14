@@ -1,0 +1,294 @@
+namespace = bio
+
+Remains of the Enemy - Player destroys first wave of bioships
+# This = owner of fleet 1 (Player)
+# From = owner of fleet 2 (Abandoned Hatchery)
+# Fromfromfrom = fleet 2 (Attacking bioships)
+country_event = {
+    id = bio.2015
+    title = bio.2015.name
+    desc = bio.2015.desc
+    picture = GFX_evt_bio_ships_orbiting
+    location = event_target:bioship_debris
+    show_sound = event_space_battle
+    event_chain = abandoned_hatchery_chain_1
+
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = {
+            has_country_flag = defeated_first_wave
+        }
+        this = {
+            has_starlit_citadel_origin = yes
+        }
+        fromfromfrom = {
+            has_fleet_flag = first_starlit_attackers
+            NOT = {
+                has_fleet_flag = abandoned_hatchery_fleet
+            }
+        }
+    }
+
+    immediate = {
+        fromfromfrom = {
+            create_ambient_object = {
+                type = small_debris_object
+                scale = 0.1
+            }
+            last_created_ambient_object = {
+                save_event_target_as = bioship_debris
+            }
+        }
+    }
+
+    option = {
+        name = bio.2015.a
+        enable_special_project = {
+            name = PROJECT_HATCHERY_SHIP_REMAINS
+            location = event_target:bioship_debris
+        }
+    }
+
+    after = {
+        set_country_flag = defeated_first_wave
+    }
+}
+
+# Cradle of the Enemy - Player researches wormhole tech
+country_event = {
+    id = bio.2024
+    is_triggered_only = yes
+    hide_window = yes
+
+    trigger = {
+        has_starlit_citadel_origin = yes
+        last_increased_tech = tech_wormhole_stabilization
+        NOR = {
+            has_country_flag = explored_starlit_wormhole
+            has_country_flag = hatchery_destroyed
+        }
+    }
+
+    immediate = {
+        country_event = {
+            id = bio.2025
+            days = 5
+        }
+    }
+}
+
+# Abandoned Hatchery defenses destroyed
+# Called via on_ship_destroyed_perp
+# This = owner of ship 1 (combatant)
+# From = owner of ship 2 (destroyed)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+country_event = {
+    id = bio.2026
+    is_triggered_only = yes
+    hide_window = yes
+
+    trigger = {
+        from = {
+            has_country_flag = abandoned_hatchery_country_flag
+        }
+        fromfromfrom = {
+            fleet = {
+                NOR = {
+                    has_fleet_flag = abandoned_hatchery_fleet
+                    has_fleet_flag = first_starlit_attackers
+                    has_fleet_flag = starlit_attackers
+                }
+            }
+        }
+        NOT = {
+            has_country_flag = destroyed_abandoned_hatchery
+        }
+    }
+
+    immediate = {
+        set_country_flag = destroyed_abandoned_hatchery
+        fromfromfrom.solar_system = {
+            random_system_planet = {
+                limit = {
+                    has_planet_flag = biomechanical_world
+                }
+                save_global_event_target_as = biomechanical_world_target
+            }
+        }
+        every_system = {
+            limit = {
+                has_star_flag = starlit_nexus_system
+            }
+            root = {
+                set_visited = prev
+            }
+        }
+        if = {
+            limit = {
+                has_starlit_citadel_origin = yes
+            }
+            country_event = {
+                id = bio.2027 # Twilight of Fear
+                days = 1
+            }
+        }
+        every_playable_country = {
+            limit = {
+                has_starlit_citadel_origin = yes
+                NOT = {
+                    has_country_flag = destroyed_abandoned_hatchery
+                }
+            }
+            country_event = {
+                id = bio.2040 # Enemy Lost
+            }
+            set_country_flag = hatchery_destroyed
+        }
+    }
+}
+
+#Spawn BioShips in sister system and have them travel through the wormhole every few years
+country_event = {
+    id = bio.2035
+    is_triggered_only = yes
+    hide_window = yes
+
+    trigger = {
+        has_starlit_citadel_origin = yes
+        NOT = {
+            has_country_flag = destroyed_abandoned_hatchery
+        }
+    }
+
+    immediate = {
+        set_country_flag = seen_waves
+        #Create New Bioship Fleet in the Sealed System
+        event_target:starlit_sealed_system = {
+            create_fleet = {
+                settings = {
+                }
+                effect = {
+                    set_owner = event_target:bioship_hatchery
+                    create_ship_design = { design = "NAME_CHARGER_1" }
+                    while = {
+                        count = root.value:hatchery_fleet_mauler_count
+                        create_ship = {
+                            name = random
+                            design = last_created_design
+                            graphical_culture = "biogenesis_01"
+                            prefix = no
+                        }
+                    }
+                    create_ship_design = { design = "NAME_MOTH_1" }
+                    while = {
+                        count = root.value:hatchery_fleet_weaver_count
+                        create_ship = {
+                            name = random
+                            design = last_created_design
+                            graphical_culture = "biogenesis_01"
+                            prefix = no
+                        }
+                    }
+                    set_location = {
+                        target = event_target:abandoned_hatchery_base
+                        distance = 5
+                    }
+                    set_fleet_stance = aggressive
+                    set_aggro_range = 1000
+                    set_aggro_range_measure_from = self
+                    set_fleet_bombardment_stance = indiscriminate
+                    set_fleet_flag = starlit_attackers
+
+                    queue_actions = {
+                        orbit_planet = root.capital_scope
+                    }
+                }
+            }
+        }
+        #Increase potency of BioShips
+        event_target:bioship_hatchery = {
+            add_modifier = {
+                modifier = smarter_hatchery
+                multiplier = root.hatchery_fleet_visits
+            }
+        }
+        # Increase the number of BioShips by one and improve them against the player
+        change_variable = {
+            which = hatchery_fleet_visits
+            value = 1
+        }
+        # Schedule another invasion for 5 to 10 years time
+        country_event = {
+            id = bio.2035
+            days = 1800
+            random = 1800
+        }
+    }
+}
+
+
+#They Learn
+# on_fleet_destroyed_perp
+# This = owner of fleet 1 (combatant)
+# From = owner of fleet 2 (destroyed)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+country_event = {
+    id = bio.2036
+    title = bio.2036.name
+    desc = bio.2036.desc
+    picture = GFX_evt_deep_space_citadel
+    location = root.capital_scope
+    show_sound = event_space_battle
+    event_chain = abandoned_hatchery_chain_1
+
+    is_triggered_only = yes
+
+    trigger = {
+        NOT = {
+            has_country_flag = they_learn
+        }
+        this = {
+            has_starlit_citadel_origin = yes
+            has_country_flag = seen_waves
+        }
+        fromfromfrom = {
+            has_fleet_flag = starlit_attackers
+            NOT = {
+                has_fleet_flag = abandoned_hatchery_fleet
+            }
+        }
+    }
+
+    immediate = {
+        set_country_flag = they_learn
+    }
+
+    option = {
+        trigger = {
+            owner = {
+                is_spiritualist = yes
+            }
+        }
+        custom_tooltip = bio.2036.tt
+        name = bio.2036.a
+    }
+    option = {
+        trigger = {
+            owner = {
+                is_spiritualist = no
+            }
+        }
+        custom_tooltip = bio.2036.tt
+        name = bio.2036.b
+    }
+}
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
-# New Styff
-Added Riftworld
+# New Stuff
+Added Starlit Citadel
 
 # Bugfix
-Removed the ability to take some decision origins with the actual origin
-Changed the Order's Hall zone icon to match the habitat version
+Some cleanup in the backend
+Fixing more synth fert bugs
