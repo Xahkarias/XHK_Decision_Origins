@@ -1,3 +1,8 @@
+xhk_decision_origins_mod_exists = {
+    always = yes
+}
+
+
 # copied from daemonic incursion, also matches Ancient Cache of Knights
 has_toxic_knights_origin = {
 	OR = { 
@@ -6,6 +11,9 @@ has_toxic_knights_origin = {
 	}
 }
 
-xhk_decision_origins_mod_exists = {
-	always = yes
+has_starlit_citadel_origin = {
+    OR = {
+        has_country_flag = decision_origins_starlit_citadel
+        has_origin = origin_starlit_citadel
+    }
 }

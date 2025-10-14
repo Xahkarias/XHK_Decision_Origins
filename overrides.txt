@@ -9,11 +9,13 @@ building_order_keep
 building_order_castle
 holding_knight_commandery
 building_knightly_theme_park
-	all of these are editied with the knights decision flag
+	all of these are edited with the knights decision flag
 	can be safely overriden by Ancient Cache of Knights
 building_identity_repository
 building_abandoned_gene_clinic
 	synthetic fertility
+building_citadel_uplink
+    starlit citadel
 
 ### Deposits:
 d_dimensional_manipulation_device

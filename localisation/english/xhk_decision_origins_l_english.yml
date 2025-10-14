@@ -24,6 +24,7 @@
   xhk_decori_doorstep_modifier: "Decision Origins: Galactic Doorstep"
   xhk_decori_mechanists_machine_modifier: "Decision Origins: Mechanists but for Machines"
   xhk_decori_riftworld_modifier: "Decision Origins: Riftworld"
+  xhk_decori_starlit_citadel_modifier: "Decision Origins: Starlit Citadel"
 
 ### Edicts
 #-------------------------------------------------------------------------------------------------------
@@ -93,3 +94,7 @@
   edict_decision_origins_shroudwalker_apprentice: "Decision Origins: Shroudwalker Apprentice"
   edict_decision_origins_shroudwalker_apprentice_desc: "Gives contact with the Shroudwalker enclave and the Latent Psionic trait."
   edict_decision_origins_shroudwalker_apprentice_tt: "Does not give some of the flavor events, nor the shroud tunnel starbase building"
+
+  edict_decision_origins_starlit_citadel: "Decision Origins: Starlit Citadel"
+  edict_decision_origins_starlit_citadel_desc: "Creates the Deep Space Citadel and the hatchery system and associated attacks."
+  edict_decision_origins_starlit_citadel_tt: "Creates the hatchery system if it does not already exist."
