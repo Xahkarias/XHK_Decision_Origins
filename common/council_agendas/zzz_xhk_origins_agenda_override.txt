@@ -4,8 +4,7 @@ agenda_synthetic_evolution = {
 	allow = {
 		OR = {
 			has_ascension_perk = ap_synthetic_evolution
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
+			has_synthetic_fertility_origin = yes
 		}
 	}
 	potential = {

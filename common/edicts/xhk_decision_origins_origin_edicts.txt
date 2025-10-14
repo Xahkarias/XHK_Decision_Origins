@@ -45,7 +45,7 @@ decision_origins_prosperous_unification = {
 		}
 		add_research_option = tech_planetary_unification
 		custom_tooltip = edict_decision_origins_prosperous_unification_tt
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -125,7 +125,7 @@ decision_origins_life_seeded = {
 			add_deposit = d_crystalline_caverns
 		}
 		custom_tooltip = "edict_decision_origins_life_seeded_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -186,7 +186,7 @@ decision_origins_resource_consolidation = {
 			
 		}
 		custom_tooltip = "edict_decision_origins_resource_consolidation_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -243,7 +243,7 @@ decision_origins_post_apocalyptic = {
 		
 		
 		custom_tooltip = "edict_decision_origins_post_apocalyptic_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -304,7 +304,7 @@ decision_origins_ocean_paradise = {
 		}
 
 		custom_tooltip = "edict_decision_origins_ocean_paradise_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -353,7 +353,7 @@ decision_origins_subterranean = {
 		}
 		add_modifier = { modifier = xhk_decori_subterranean_modifier }
 		custom_tooltip = "edict_decision_origins_subterranean_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -369,10 +369,7 @@ decision_origins_overtuned = {
 		host_has_dlc = "Toxoids Species Pack"
 		is_ai = no
 		days_passed < 30
-		NOR = {
-			has_country_flag = decision_origins_overtuned
-			has_origin = origin_overtuned
-		}
+        has_overtuned_origin = no
 	}
 
 	effect = {
@@ -381,7 +378,7 @@ decision_origins_overtuned = {
 			set_country_flag = decision_origins_overtuned
 		}
 		custom_tooltip = "edict_decision_origins_overtuned_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -402,10 +399,7 @@ decision_origins_toxic_knights = {
 			NOT = { is_planet_class = pc_habitat }
 		}
 		days_passed < 30
-		NOR = {
-			has_country_flag = decision_toxic_knights
-			has_origin = origin_toxic_knights
-		}
+		has_toxic_knights_origin = no
 		NOT = { giga_has_frameworld_origin = yes }
 	}
 
@@ -520,7 +514,7 @@ decision_origins_toxic_knights = {
 			type = situation_toxic_knights
 		}
 		custom_tooltip = "edict_decision_origins_toxic_knights_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -582,7 +576,7 @@ decision_origins_mechanist = {
 		}
 		
 		custom_tooltip = "edict_decision_origins_mechanist_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -598,10 +592,7 @@ decision_origins_galactic_doorstep = {
 		is_ai = no
 		# no dlc needed for this one
 		days_passed < 30
-		NOR = {
-			has_country_flag = decision_origins_galactic_doorstep
-			has_origin = origin_galactic_doorstep
-		}
+		has_doorstep_origin = no
 	}
 
 	effect = {
@@ -630,7 +621,7 @@ decision_origins_galactic_doorstep = {
 			}
 		}
 		custom_tooltip = "edict_decision_origins_galactic_doorstep_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -760,7 +751,7 @@ decision_origins_syncretic_evolution = {
 		}
 
 		custom_tooltip = "edict_decision_origins_syncretic_evolution_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -807,7 +798,7 @@ decision_origins_spawn_shattered_ring = {
 	}
 }
 
-decision_origins_remnants= {
+decision_origins_remnants = {
 	length = 1
 	icon = "GFX_edict_type_policy"
 	
@@ -852,11 +843,11 @@ decision_origins_remnants= {
 		}
 
 		# custom_tooltip = "edict_decision_origins_remnants_tt"
-		# show_only_custom_tooltip = no
+		# 
 	}
 }
 
-decision_origins_riftworld= {
+decision_origins_riftworld = {
 	length = 1
 	icon = "GFX_edict_type_policy"
 	
@@ -946,10 +937,7 @@ decision_origins_synthetic_fertility= {
 		is_ai = no
 		## TODO: check if organic
 		days_passed < 30
-		NOR = {
-			has_country_flag = decision_origins_synthetic_fertility
-			has_origin = origin_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = no
 	}
 	
 	allow = {
@@ -959,7 +947,8 @@ decision_origins_synthetic_fertility= {
 	effect = {
 		hidden_effect = {
 			set_country_flag = decision_origins_synthetic_fertility
-			set_country_flag = synthetics_traditions_unlocked
+			#set_country_flag = synthetics_traditions_unlocked
+				# this flag causes problem if put too early
 			capital_scope = {
 				## add the genes
 				every_owned_species = {
@@ -1043,7 +1032,7 @@ decision_origins_synthetic_fertility= {
 		give_technology = {	tech = tech_sapient_ai message = no }
 
 		custom_tooltip = "edict_decision_origins_synthetic_fertility_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -1107,7 +1096,7 @@ decision_origins_shroudwalker_apprentice = {
 		}
 		add_research_option = tech_psionic_theory
 		custom_tooltip = "edict_decision_origins_shroudwalker_apprentice_tt"
-		show_only_custom_tooltip = no
+		
 	}
 }
 
@@ -1138,6 +1127,6 @@ decision_origins_starlit_citadel = {
             starlit_citadel_start_effect = yes
         }
         custom_tooltip = "edict_decision_origins_starlit_citadel_tt"
-        show_only_custom_tooltip = no
+        
     }
 }

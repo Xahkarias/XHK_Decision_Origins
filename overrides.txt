@@ -76,8 +76,15 @@ machine_age.3110
 machine_age.3115
 machine_age.3120
 machine_age.3125
+machine_age.3315
 	synthetic fertility
 origin.5605
 origin.5620
 origin.5625
 	shroudwalker
+bio.2015
+bio.2024
+bio.2026
+bio.2035
+bio.2036
+	starlit citadel

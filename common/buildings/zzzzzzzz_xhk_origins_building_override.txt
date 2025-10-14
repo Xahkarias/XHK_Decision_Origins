@@ -18,10 +18,7 @@ building_identity_repository = {
 	potential = {
 		exists = owner
 		owner = {
-			OR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}	
+			has_synthetic_fertility_origin = yes
 			NOT = { has_country_flag = synthetic_fertility_no_identity_left_behind }
 		}
 	}
@@ -29,10 +26,7 @@ building_identity_repository = {
 	destroy_trigger = {
 		exists = owner
 		owner = {
-			NOR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}
+			has_synthetic_fertility_origin = no
 		}
 	}
 
@@ -42,10 +36,7 @@ building_identity_repository = {
 
 	allow = {
 		owner = { 
-			OR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}
+			has_synthetic_fertility_origin = yes
 		}
 	}
 
@@ -62,10 +53,7 @@ building_identity_repository = {
 			trigger = {
 				exists = owner
 				owner = { 
-					OR = {
-						has_origin = origin_synthetic_fertility
-						has_country_flag = decision_origins_synthetic_fertility
-					}
+					has_synthetic_fertility_origin = yes
 				}
 			}
 			physics_research = 0.02
@@ -102,29 +90,20 @@ building_abandoned_gene_clinic = {
 	potential = {
 		exists = owner
 		owner = { 
-			OR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}
+			has_synthetic_fertility_origin = yes
 		}
 	}
 
 	destroy_trigger = {
 		exists = owner
 		owner = { 
-			NOR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}
+			has_synthetic_fertility_origin = no
 		}
 	}
 
 	allow = {
 		owner = { 
-			OR = {
-				has_origin = origin_synthetic_fertility
-				has_country_flag = decision_origins_synthetic_fertility
-			}
+			has_synthetic_fertility_origin = yes
 		}
 	}
 

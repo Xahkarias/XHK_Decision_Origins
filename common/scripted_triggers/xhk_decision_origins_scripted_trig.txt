@@ -17,3 +17,24 @@ has_starlit_citadel_origin = {
         has_origin = origin_starlit_citadel
     }
 }
+
+has_overtuned_origin = {
+    OR = {
+        has_country_flag = decision_origins_overtuned
+        has_origin = origin_overtuned
+    }
+}
+
+has_doorstep_origin = {
+    OR = {
+        has_country_flag = decision_origins_galactic_doorstep
+        has_origin = origin_galactic_doorstep
+    }
+}
+
+has_synthetic_fertility_origin = {
+    OR = {
+        has_country_flag = decision_origins_synthetic_fertility
+        has_origin = origin_synthetic_fertility
+    }
+}

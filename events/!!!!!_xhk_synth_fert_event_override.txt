@@ -12,10 +12,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = yes
 	}
 
 	immediate = {
@@ -50,10 +47,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = yes
 		has_technology = tech_robotic_workers
 		NOT = {
 			has_country_flag = origin_synthetic_fertility_robots
@@ -114,10 +108,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = yes
 		has_technology = tech_droid_workers
 		NOT = {
 			has_country_flag = origin_synthetic_fertility_droids
@@ -169,10 +160,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = yes
 		has_technology = tech_synthetic_workers
 		NOT = {
 			has_country_flag = origin_synthetic_fertility_synths
@@ -236,10 +224,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_origin = origin_synthetic_fertility
-			has_country_flag = decision_origins_synthetic_fertility
-		}
+		has_synthetic_fertility_origin = yes
 		has_tradition = tr_synthetics_adopt
 		NOT = {
 			has_country_flag = synthetics_traditions_unlocked
@@ -303,6 +288,47 @@ country_event = {
 		start_situation = {
 			type = situation_synthetic_fertility_synthesization
 			target = root
+		}
+	}
+}
+
+country_event = {
+	id = machine_age.3315
+	title = "machine_age.3315.name"
+	desc = "machine_age.3315.desc"
+	picture = GFX_evt_synth_fertility
+	show_sound = event_radio_chatter
+	event_chain = synthetic_fertility_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = synthetics_traditions_unlocked
+		set_country_flag = synthetic_empire
+		set_country_flag = upload_center_available
+	}
+
+	option = {
+		name = "machine_age.3315.a"
+		end_event_chain = "synthetic_fertility_chain"
+		owner = {
+			add_modifier = {
+				modifier = synthetic_dawn
+				days = -1
+			}
+		}
+		custom_tooltip = machine_age.3315.a.tt
+		owner_main_species = {
+			change_species_characteristics = {
+				add_trait = trait_robot_synthetic_dawn
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_active_tradition = tr_synthetics_finish }
+				country_event = { id = synth.500 days = 180 }
+			}
+			set_country_flag = synth_assimilation
 		}
 	}
 }
