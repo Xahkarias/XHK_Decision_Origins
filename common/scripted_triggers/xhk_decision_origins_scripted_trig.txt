@@ -38,3 +38,10 @@ has_synthetic_fertility_origin = {
         has_origin = origin_synthetic_fertility
     }
 }
+
+has_clone_army_origin = {
+    OR = {
+        has_country_flag = decision_origins_clone_army
+        has_origin = origin_clone_army
+    }
+}

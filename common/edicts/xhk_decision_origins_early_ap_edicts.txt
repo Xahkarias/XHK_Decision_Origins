@@ -1,0 +1,35 @@
+xhk_decision_origins_clone_army_biomorphosis = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_country_flag = decision_origins_clone_army
+        NOT = { has_ascension_perk = ap_engineered_evolution}
+    }
+
+    allow = {
+        # custom_tooltip = {
+        #     fail_text = "requires_free_tradition_tree"
+        #     check_variable_arithmetic = {
+        #         which = xhk_num_ap
+        #         value < xhk_num_apslot
+        #     }
+        # }
+        custom_tooltip = {
+            fail_text = "clone_soldier_locked_genes"
+            OR = {
+                has_country_flag = clone_army_fertility_unlocked
+                has_country_flag = clone_army_full_potential
+            }
+        }
+    }
+
+    effect = {
+        custom_tooltip = xhk_decision_origins_clone_army_biomorphosis_tt
+        add_ascension_perk = ap_engineered_evolution
+    }
+}

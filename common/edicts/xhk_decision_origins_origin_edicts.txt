@@ -922,8 +922,7 @@ decision_origins_riftworld = {
 
 # not touching the species rights part
 # events:
-# 3100 is the start 
-
+# 3100 is the start
 decision_origins_synthetic_fertility= {
 	length = 1
 	icon = "GFX_edict_type_policy"
@@ -1037,7 +1036,7 @@ decision_origins_synthetic_fertility= {
 	}
 }
 
-# i dont set has_psionic_ascension, and synth fert doesnt set the synthetic asenson thing
+# i dont set has_psionic_ascension
 # ignores a lot of the flavor events for seeing a shroud tunnel for the first time etc
 decision_origins_shroudwalker_apprentice = {
 	length = 1
@@ -1129,5 +1128,57 @@ decision_origins_starlit_citadel = {
         }
         custom_tooltip = "edict_decision_origins_starlit_citadel_tt"
         
+    }
+}
+
+# notes:
+# i overwrote species_can_live_on_planet, cringe but have to
+decision_origins_clone_army = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_humanoids = yes
+        is_ai = no
+        days_passed < 180
+        is_machine_empire = no
+        is_individual_machine = no
+        #NOT = { giga_has_frameworld_origin = yes }
+        NOR = {
+            has_clone_army_origin = yes
+        }
+    }
+
+    allow = {
+        days_passed > 0
+    }
+
+    effect = {
+
+        hidden_effect = {
+            founder_species = {
+                change_species_characteristics = {
+                    add_trait = trait_clone_soldier_infertile
+                }
+            }
+
+            set_country_flag = decision_origins_clone_army
+            give_technology = { tech = tech_cloning message = no }
+            give_technology = { tech = tech_gene_banks message = no}
+            country_event = { id = xhk_decision_origin_triggered.5 }
+
+            capital_scope = {
+                add_building = building_clone_army_clone_vat
+                add_building = building_clone_army_clone_vat
+                planet_event = { id = clones.10 days = 1095 random = 720 }
+                #planet_event = { id = clones.10 }
+            }
+        }
+
+        custom_tooltip = edict_decision_origins_clone_army_tt
     }
 }

@@ -98,3 +98,10 @@
   edict_decision_origins_starlit_citadel: "Decision Origins: Starlit Citadel"
   edict_decision_origins_starlit_citadel_desc: "Creates the Deep Space Citadel and the hatchery system and associated attacks."
   edict_decision_origins_starlit_citadel_tt: "Creates the hatchery system if it does not already exist."
+
+  edict_decision_origins_clone_army: "Decision Origins: Clone Army"
+  edict_decision_origins_clone_army_desc: "Gives the associated techs, building, traits, and event chain."
+  edict_decision_origins_clone_army_tt: "§YOnly the founder species is given the clone trait.§!\n§RYou will NEED to activate Biogenesis via an EDICT when you have an open ascension perk slot to get it early.§!"
+  edict_xhk_decision_origins_clone_army_biomorphosis: "§GCLONE ARMY: CLICK ME FOR THE EARLY BIO ASCENSION§!"
+  edict_xhk_decision_origins_clone_army_biomorphosis_desc: "In order to avoid mod incompatbilities, you need to CLICK THIS to get the Biomorphosis AP early (as in before the 3 AP limit).\n§YDue to some annoying bugs on PDX's end, I cannot check if you have an open AP slot. So I just have to pray that you behave yourself and NOT take this early when you don't have an available AP slot.§!\n\n§RYou will be a good kid and not cheat right?§!\n\nIf you click this early, you just won't get an open AP slot when you finish your next AP, Biomorphosis will just eat that slot. So its not a real problem."
+  xhk_decision_origins_clone_army_biomorphosis_tt: "Gives the §GBiomorphosis§! AP and starts the associated situation."
