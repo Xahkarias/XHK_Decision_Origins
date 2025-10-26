@@ -142,12 +142,17 @@ decision_origins_resource_consolidation = {
 		is_ai = no
 		days_passed < 180
 		is_machine_empire = yes
+        NOT = { has_civic = civic_machine_servitor }
 		capital_scope = { is_artificial = no }
 		NOR = {
 			has_country_flag = decision_origins_resource_consolidation
 			has_origin = origin_machine
 		}
 	}
+
+    allow = {
+        days_passed > 0
+    }
 
 	effect = {
 		hidden_effect = {
@@ -182,6 +187,10 @@ decision_origins_resource_consolidation = {
 					zone = zone_minerals_nexus
 					replace = yes
 				}
+                clear_blockers = yes
+                add_deposit = d_machine_prototype_pc_machine
+                add_deposit = d_machine_ongoing_construction
+                add_deposit = d_machine_ongoing_construction
 			}
 			
 		}
