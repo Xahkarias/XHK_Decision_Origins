@@ -1142,6 +1142,7 @@ decision_origins_starlit_citadel = {
 
 # notes:
 # i overwrote species_can_live_on_planet, cringe but have to
+# disabled for frame
 decision_origins_clone_army = {
     length = 1
     icon = "GFX_edict_type_policy"
@@ -1160,6 +1161,7 @@ decision_origins_clone_army = {
         NOR = {
             has_clone_army_origin = yes
         }
+        NOT = { giga_has_frameworld_origin = yes }
     }
 
     allow = {
