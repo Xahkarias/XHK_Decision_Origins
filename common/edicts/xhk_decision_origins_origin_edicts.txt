@@ -8,7 +8,7 @@ decision_origins_prosperous_unification = {
 
 	potential = {
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_prosperous_unification
 			has_origin = origin_default
@@ -58,9 +58,9 @@ decision_origins_tree_of_life = {
 	}
 
 	potential = {
-		host_has_dlc = "Utopia"
+		has_utopia = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_tree_of_life
 			has_origin = origin_tree_of_life
@@ -88,9 +88,9 @@ decision_origins_life_seeded = {
 	}
 
 	potential = {
-		host_has_dlc = "Apocalypse"
+		has_apocalypse_dlc = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		capital_scope = { is_artificial = no }
 		NOR = {
 			has_country_flag = decision_origins_life_seeded
@@ -138,16 +138,21 @@ decision_origins_resource_consolidation = {
 	}
 
 	potential = {
-		host_has_dlc = "Synthetic Dawn Story Pack"
+		has_synthetic_dawn = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		is_machine_empire = yes
+        NOT = { has_civic = civic_machine_servitor }
 		capital_scope = { is_artificial = no }
 		NOR = {
 			has_country_flag = decision_origins_resource_consolidation
 			has_origin = origin_machine
 		}
 	}
+
+    allow = {
+        days_passed > 0
+    }
 
 	effect = {
 		hidden_effect = {
@@ -182,6 +187,10 @@ decision_origins_resource_consolidation = {
 					zone = zone_minerals_nexus
 					replace = yes
 				}
+                clear_blockers = yes
+                add_deposit = d_machine_prototype_pc_machine
+                add_deposit = d_machine_ongoing_construction
+                add_deposit = d_machine_ongoing_construction
 			}
 			
 		}
@@ -199,10 +208,10 @@ decision_origins_post_apocalyptic = {
 	}
 
 	potential = {
-		host_has_dlc = "Apocalypse"
+		has_apocalypse_dlc = yes
 		is_ai = no
 		capital_scope = { is_artificial = no }
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_post_apocalyptic
 			has_origin = origin_post_apocalyptic
@@ -256,10 +265,10 @@ decision_origins_ocean_paradise = {
 	}
 
 	potential = {
-		host_has_dlc = "Aquatics Species Pack"
+		has_aquatics = yes
 		is_ai = no
 		capital_scope = { is_artificial = no }
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_ocean_paradise
 			has_origin = origin_ocean_paradise
@@ -317,9 +326,9 @@ decision_origins_subterranean = {
 	}
 
 	potential = {
-		host_has_dlc = "Overlord"
+		has_overlord_dlc = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_subterranean
 			has_origin = origin_subterranean
@@ -366,9 +375,9 @@ decision_origins_overtuned = {
 	}
 
 	potential = {
-		host_has_dlc = "Toxoids Species Pack"
+		has_toxoids = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
         has_overtuned_origin = no
 	}
 
@@ -392,13 +401,13 @@ decision_origins_toxic_knights = {
 	}
 
 	potential = {
-		host_has_dlc = "Toxoids Species Pack"
+		has_toxoids = yes
 		is_ai = no
 		is_gestalt = no
 		capital_scope = {
 			NOT = { is_planet_class = pc_habitat }
 		}
-		days_passed < 30
+		days_passed < 180
 		has_toxic_knights_origin = no
 		NOT = { giga_has_frameworld_origin = yes }
 	}
@@ -527,9 +536,9 @@ decision_origins_mechanist = {
 	}
 
 	potential = {
-		host_has_dlc = "Utopia"
+		has_utopia = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_mechanist
 			has_origin = origin_mechanists
@@ -549,7 +558,7 @@ decision_origins_mechanist = {
 				}
 				capital_scope = {
 					add_building = {
-						zone = slot_city_government
+						zone = zone_default
 						building = building_robot_assembly_plant
 					}
 				}
@@ -591,7 +600,7 @@ decision_origins_galactic_doorstep = {
 	potential = {
 		is_ai = no
 		# no dlc needed for this one
-		days_passed < 30
+		days_passed < 180
 		has_doorstep_origin = no
 	}
 
@@ -634,9 +643,9 @@ decision_origins_syncretic_evolution = {
 	}
 
 	potential = {
-		host_has_dlc = "Utopia"
+		has_utopia = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_syncretic_evolution
 			has_origin = origin_syncretic_evolution
@@ -766,8 +775,8 @@ decision_origins_spawn_shattered_ring = {
 
 	potential = {
 		is_ai = no
-		host_has_dlc = "Federations"
-		days_passed < 30
+		has_federations_dlc = yes
+		days_passed < 180
 		NOT = {
 			has_country_flag = decision_origins_shattered_ring
 		}
@@ -807,9 +816,9 @@ decision_origins_remnants = {
 	}
 
 	potential = {
-		host_has_dlc = "Ancient Relics Story Pack"
+		has_ancrel = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_remnants
 			has_origin = origin_remnants
@@ -856,9 +865,9 @@ decision_origins_riftworld = {
 	}
 
 	potential = {
-		host_has_dlc = "Astral Planes"
+		has_astral_planes_dlc = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_riftworld
 			has_origin = origin_riftworld
@@ -922,8 +931,7 @@ decision_origins_riftworld = {
 
 # not touching the species rights part
 # events:
-# 3100 is the start 
-
+# 3100 is the start
 decision_origins_synthetic_fertility= {
 	length = 1
 	icon = "GFX_edict_type_policy"
@@ -933,10 +941,11 @@ decision_origins_synthetic_fertility= {
 	}
 
 	potential = {
-		host_has_dlc = "The Machine Age"
+		has_machine_age_dlc = yes
 		is_ai = no
-		## TODO: check if organic
-		days_passed < 30
+        is_machine_empire = no
+        is_individual_machine = no
+		days_passed < 180
 		has_synthetic_fertility_origin = no
 	}
 	
@@ -1036,7 +1045,7 @@ decision_origins_synthetic_fertility= {
 	}
 }
 
-# i dont set has_psionic_ascension, and synth fert doesnt set the synthetic asenson thing
+# i dont set has_psionic_ascension
 # ignores a lot of the flavor events for seeing a shroud tunnel for the first time etc
 decision_origins_shroudwalker_apprentice = {
 	length = 1
@@ -1047,9 +1056,9 @@ decision_origins_shroudwalker_apprentice = {
 	}
 
 	potential = {
-		host_has_dlc = "Overlord"
+		has_overlord_dlc = yes
 		is_ai = no
-		days_passed < 30
+		days_passed < 180
 		NOR = {
 			has_country_flag = decision_origins_shroudwalker_apprentice
 			has_origin = origin_shroudwalker_apprentice
@@ -1109,9 +1118,9 @@ decision_origins_starlit_citadel = {
     }
 
     potential = {
-        host_has_dlc = "BioGenesis"
+        has_biogenesis_dlc = yes
         is_ai = no
-        days_passed < 30
+        days_passed < 180
         NOR = {
             has_starlit_citadel_origin = yes
         }
@@ -1128,5 +1137,59 @@ decision_origins_starlit_citadel = {
         }
         custom_tooltip = "edict_decision_origins_starlit_citadel_tt"
         
+    }
+}
+
+# notes:
+# i overwrote species_can_live_on_planet, cringe but have to
+# disabled for frame
+decision_origins_clone_army = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_humanoids = yes
+        is_ai = no
+        days_passed < 180
+        is_machine_empire = no
+        is_individual_machine = no
+        #NOT = { giga_has_frameworld_origin = yes }
+        NOR = {
+            has_clone_army_origin = yes
+        }
+        NOT = { giga_has_frameworld_origin = yes }
+    }
+
+    allow = {
+        days_passed > 0
+    }
+
+    effect = {
+
+        hidden_effect = {
+            founder_species = {
+                change_species_characteristics = {
+                    add_trait = trait_clone_soldier_infertile
+                }
+            }
+
+            set_country_flag = decision_origins_clone_army
+            give_technology = { tech = tech_cloning message = no }
+            give_technology = { tech = tech_gene_banks message = no}
+            country_event = { id = xhk_decision_origin_triggered.5 }
+
+            capital_scope = {
+                add_building = building_clone_army_clone_vat
+                add_building = building_clone_army_clone_vat
+                planet_event = { id = clones.10 days = 1095 random = 720 }
+                #planet_event = { id = clones.10 }
+            }
+        }
+
+        custom_tooltip = edict_decision_origins_clone_army_tt
     }
 }

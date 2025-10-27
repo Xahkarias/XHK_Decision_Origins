@@ -1,5 +1,8 @@
 namespace = xhk_decision_origin_triggered
 
+#################################################################################
+# TREE OF LIFE
+#################################################################################
 #Add ToL to new colonies
 planet_event = {
 	id = xhk_decision_origin_triggered.1
@@ -117,3 +120,66 @@ planet_event = {
 		}
 	}
 }
+
+#################################################################################
+# CLONE ARMY
+#################################################################################
+
+country_event = {
+    id = xhk_decision_origin_triggered.5
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_country_flag = decision_origins_clone_army
+        founder_species = {
+            has_trait = trait_clone_soldier_infertile
+        }
+    }
+
+    immediate = {
+        every_owned_leader = {
+            limit = {
+                leader_class = commander
+                is_same_species_class = root.founder_species
+                #species = { has_trait = trait_clone_soldier_fertile}
+            }
+            add_trait = {
+                trait = leader_trait_clone_army_commander
+            }
+        }
+        every_pool_leader = {
+            limit = {
+                leader_class = commander
+                is_same_species_class = root.founder_species
+                #species = { has_trait = trait_clone_soldier_fertile}
+            }
+            add_trait = {
+                trait = leader_trait_clone_army_commander
+            }
+        }
+    }
+}
+
+#################################################################################
+# THE COUNTER
+#################################################################################
+# # this doesnt work but i am leaving it here cause PAIN
+#
+# country_event = {
+#     id = xhk_decision_origin_triggered.999
+#     hide_window = yes
+#
+#     is_triggered_only = yes
+#
+#     trigger = {
+#         is_country_type = default
+#     }
+#
+#     immediate = {
+#         export_trigger_value_to_variable = { trigger = num_ascension_perks variable = xhk_num_ap}
+#         export_trigger_value_to_variable = { trigger = num_ascension_perk_slots variable = xhk_num_apslot}
+#     }
+# }
+

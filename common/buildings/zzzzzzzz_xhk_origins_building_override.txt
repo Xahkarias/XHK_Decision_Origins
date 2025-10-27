@@ -244,3 +244,171 @@ building_citadel_uplink = {
         text = job_skywatcher_drone_add_dsc_tt
     }
 }
+
+building_clone_army_clone_vat = {
+    icon = building_ancient_relics
+    base_buildtime = 90
+    position_priority = 100
+
+    empire_limit = {
+        base = 5
+    }
+
+    category = pop_assembly
+
+    building_sets = {
+        origin
+    }
+
+    potential = {
+        exists = owner
+        owner = {
+            has_clone_army_origin = yes
+            NOT = {
+                has_country_flag = clone_army_fertility_unlocked
+            }
+        }
+    }
+
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = {
+                OR = {
+                    has_clone_army_origin = no
+                    is_synthetic_empire = yes
+                    has_country_flag = clone_army_fertility_unlocked
+                }
+            }
+        }
+    }
+
+    planet_modifier = {
+        clone_soldiers_sustained = @clones_sustained_high
+    }
+
+    # Add growth from 0 to 25 depending on 'clone_pops_missing_per_vat'.
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            has_infertile_clone_soldier_trait = yes
+            planet = {
+                check_variable = { which = clone_pops_missing_per_vat value > 2200 }
+            }
+        }
+        bonus_pop_growth = 25
+    }
+    triggered_planet_modifier = {
+        potential = {
+            check_variable = { which = clone_pops_missing_per_vat value > 2200 }
+        }
+        fake_pop_growth_mod = 25
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 2200
+        LOWER_LIMIT = 2000
+        GROWTH = 22
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 2000
+        LOWER_LIMIT = 1800
+        GROWTH = 20
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 1800
+        LOWER_LIMIT = 1600
+        GROWTH = 17
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 1600
+        LOWER_LIMIT = 1400
+        GROWTH = 15
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 1400
+        LOWER_LIMIT = 1200
+        GROWTH = 12
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 1200
+        LOWER_LIMIT = 1000
+        GROWTH = 10
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 1000
+        LOWER_LIMIT = 800
+        GROWTH = 7
+    }
+
+    inline_script = {
+        script = buildings/clone_army_vat_output
+        UPPER_LIMIT = 800
+        LOWER_LIMIT = 600
+        GROWTH = 5
+    }
+
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            has_infertile_clone_soldier_trait = yes
+            planet = {
+                check_variable = { which = clone_pops_missing_per_vat value <= 600 }
+            }
+        }
+        bonus_pop_growth = 2
+    }
+    triggered_planet_modifier = {
+        potential = {
+            check_variable = { which = clone_pops_missing_per_vat value <= 600 }
+        }
+        fake_pop_growth_mod = 2
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_cloning_authority = yes
+                is_megacorp = yes
+            }
+        }
+        planet_jobs_trade_produces_mult = @replicatory_association_trade_mult
+        planet_amenities_add = @replicatory_association_amenities_add
+        mult = 2
+    }
+
+    resources = {
+        category = planet_buildings_clone_vats
+        cost = {
+            minerals = @b2_minerals
+        }
+        upkeep = {
+            energy = @b2_upkeep
+        }
+    }
+
+    upgrades = {
+    }
+
+    prerequisites = {
+    }
+
+    triggered_desc = {
+        text = building_clone_army_clone_vat_effect_desc
+    }
+
+    is_essential = yes
+    ai_estimate_without_unemployment = yes
+}

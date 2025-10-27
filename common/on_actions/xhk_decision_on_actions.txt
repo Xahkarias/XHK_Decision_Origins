@@ -6,7 +6,7 @@ on_colony_destroyed = {
 
 on_colonized = {
 	events = {
-		xhk_decision_origin_triggered.1 #add_the_tree
+        xhk_decision_origin_triggered.1 # add_the_tree
 	}
 }
 

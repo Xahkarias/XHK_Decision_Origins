@@ -16,6 +16,8 @@ building_abandoned_gene_clinic
 	synthetic fertility
 building_citadel_uplink
     starlit citadel
+building_clone_army_clone_vat
+    clone army
 
 ### Deposits:
 d_dimensional_manipulation_device
@@ -30,6 +32,9 @@ damn_the_consequences
 ### Game Rules:
 can_remove_positive_traits_organic
 	overtuned decision flag
+species_can_live_on_planet
+should_force_decline_species
+    clone army
 
 ### Policies:
 knightly_duties
@@ -88,3 +93,7 @@ bio.2026
 bio.2035
 bio.2036
 	starlit citadel
+clones.3
+clones.5
+clones.20
+    clone army
