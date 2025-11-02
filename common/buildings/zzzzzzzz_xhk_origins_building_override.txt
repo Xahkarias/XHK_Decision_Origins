@@ -264,8 +264,10 @@ building_clone_army_clone_vat = {
         exists = owner
         owner = {
             has_clone_army_origin = yes
-            NOT = {
+            NOR = {
                 has_country_flag = clone_army_fertility_unlocked
+                giga_has_frameworld_origin = yes
+                    #frame will use the district version
             }
         }
     }
