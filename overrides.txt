@@ -18,12 +18,20 @@ building_citadel_uplink
     starlit citadel
 building_clone_army_clone_vat
     clone army
+holding_tree_of_life_sapling
+    tree of life
+holding_experimental_crater
+    calamitous birth
 
 ### Deposits:
 d_dimensional_manipulation_device
 	nerf to 10% districts when not a habitat
 d_ruined_arcology
 	added ability to get tech back as decision remnants
+d_buried_lithoids
+d_buried_lithoids_overlord
+d_lithoid_crater
+    calamitous birth
 
 ### Edicts:
 damn_the_consequences
@@ -97,3 +105,8 @@ clones.3
 clones.5
 clones.20
     clone army
+aquatics.120
+aquatics.180
+aquatics.190
+aquatics.305
+    here be dragons

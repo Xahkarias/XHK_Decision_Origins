@@ -1,3 +1,4 @@
+# REMNANTS
 d_ruined_arcology = {
 	time = 360
 	icon = d_city_ruins
@@ -80,4 +81,148 @@ d_ruined_arcology = {
 	ai_weight = {
 		weight = 2
 	}
+}
+
+# CALAMITOUS BIRTH
+d_buried_lithoids = {
+    icon = d_buried_lithoids
+    time = 360
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare_blocker
+
+    potential = { always = no }
+
+    on_cleared = {
+        if = {
+            limit = {
+                NOT = { owner = { has_calamitous_birth_origin = yes } }
+            }
+            owner = { add_resource = { minerals = 300 } }
+        }
+
+        if = {
+            limit = {
+                owner = { has_calamitous_birth_origin = yes }
+            }
+            create_pop_group = {
+                species = owner
+            }
+        }
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            trigger = {
+                NOT = { owner = { has_calamitous_birth_origin = yes } }
+            }
+            energy = 300
+        }
+        cost = {
+            trigger = {
+                owner = { has_calamitous_birth_origin = yes }
+            }
+            minerals = 1000
+        }
+    }
+
+    ai_weight = {
+        weight = 2
+
+        modifier = {
+            factor = 0
+            AND = {
+                owner = { has_calamitous_birth_origin = yes }
+                from = { num_unemployed > 0 }
+            }
+        }
+    }
+}
+
+d_buried_lithoids_overlord = {
+    icon = d_buried_lithoids
+    time = 360
+
+    is_for_colonizable = yes
+    category = deposit_cat_rare_blocker
+
+    potential = { always = no }
+
+    on_cleared = {
+        if = {
+            limit = {
+                NOT = { owner.overlord = { has_calamitous_birth_origin = yes } }
+            }
+            owner = { add_resource = { minerals = 300 } }
+        }
+
+        if = {
+            limit = {
+                owner.overlord = { has_calamitous_birth_origin = yes }
+            }
+            create_pop_group = {
+                species = owner.overlord
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 2
+
+        modifier = {
+            factor = 0
+            AND = {
+                owner.overlord = { has_calamitous_birth_origin = yes }
+                from = { num_unemployed > 0 }
+            }
+        }
+    }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            trigger = {
+                NOT = { owner = { has_calamitous_birth_origin = yes } }
+            }
+            energy = 300
+        }
+        cost = {
+            trigger = {
+                owner = { has_calamitous_birth_origin = yes }
+            }
+            minerals = 1000
+        }
+    }
+
+    ai_weight = {
+        weight = 2
+    }
+}
+
+d_lithoid_crater = {
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+
+    icon = d_crater
+
+    potential = {
+        exists = owner
+        owner = {
+            has_calamitous_birth_origin = yes
+        }
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = 6
+        district_farming_max_add = -6
+        logistic_growth_mult = 0.25
+        district_mining_max_add = 6
+    }
+
+    custom_tooltip = d_lithoid_crater_custom_tooltip
+
+    drop_weight = {
+        weight = 0
+    }
 }

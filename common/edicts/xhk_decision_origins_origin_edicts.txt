@@ -1193,3 +1193,63 @@ decision_origins_clone_army = {
         custom_tooltip = edict_decision_origins_clone_army_tt
     }
 }
+
+decision_origins_calamitous_birth = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_lithoids = yes
+        is_ai = no
+        days_passed < 180
+        is_lithoid_empire = yes
+        country_uses_bio_ships = no
+        NOR = {
+            has_calamitous_birth_origin = yes
+        }
+    }
+
+
+    effect = {
+        hidden_effect = {
+            set_country_flag = decision_origins_calamitous_birth
+        }
+        capital_scope = {
+            add_deposit = d_lithoid_crater
+        }
+        custom_tooltip = edict_decision_origins_calamitous_birth_tt
+    }
+}
+
+decision_origins_here_be_dragons = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_aquatics = yes
+        is_ai = no
+        days_passed < 180
+        NOR = {
+            has_here_be_dragons_origin = yes
+        }
+    }
+
+
+    effect = {
+        hidden_effect = {
+            set_country_flag = decision_origins_here_be_dragons
+            country_event = { id = aquatics.100 }
+                # the setup event
+            set_country_flag = origin_dragon_not_ready
+        }
+        custom_tooltip = edict_decision_origins_here_be_dragons_tt
+    }
+}
