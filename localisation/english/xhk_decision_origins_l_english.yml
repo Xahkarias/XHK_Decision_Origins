@@ -88,11 +88,11 @@
   edict_decision_origins_riftworld_desc: "Applies some of the effect of the Riftworld origin."
 
   edict_decision_origins_synthetic_fertility: "Decision Origins: Synthetic Fertility"
-  edict_decision_origins_synthetic_fertility_desc: "Gives the situation, buildings, and pop traits of the Synthetic Fertility situation"
+  edict_decision_origins_synthetic_fertility_desc: "Gives the situation, buildings, and pop traits of the Synthetic Fertility situation.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
   edict_decision_origins_synthetic_fertility_tt: "Gives all species the Pathogenic Genes trait. Be careful with other things that give you extra starting pops.\n§RMAKE SURE YOU HAVE 2 FREE BUILDINGS SLOTS IN THE GOVERNMENT ZONE OF YOUR CAPITAL§!"
 
   edict_decision_origins_shroudwalker_apprentice: "Decision Origins: Shroudwalker Apprentice"
-  edict_decision_origins_shroudwalker_apprentice_desc: "Gives contact with the Shroudwalker enclave and the Latent Psionic trait."
+  edict_decision_origins_shroudwalker_apprentice_desc: "Gives contact with the Shroudwalker enclave and the Latent Psionic trait.\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
   edict_decision_origins_shroudwalker_apprentice_tt: "Does not give some of the flavor events, nor the shroud tunnel starbase building"
 
   edict_decision_origins_starlit_citadel: "Decision Origins: Starlit Citadel"
@@ -101,7 +101,7 @@
 
   edict_decision_origins_clone_army: "Decision Origins: Clone Army"
   edict_decision_origins_clone_army_desc: "Gives the associated techs, building, traits, and event chain."
-  edict_decision_origins_clone_army_tt: "§YOnly the founder species is given the clone trait.§!\n§RYou will NEED to activate Biogenesis via an EDICT when you have an open ascension perk slot to get it early.§!"
+  edict_decision_origins_clone_army_tt: "§YOnly the founder species is given the clone trait.§!\n§RYou will NEED to activate Biogenesis via an EDICT when you have an open ascension perk slot to get it early.§!\n$decision_origins_cache_warning$$decision_origins_modify_warning$"
   edict_xhk_decision_origins_clone_army_biomorphosis: "§GCLONE ARMY: CLICK ME FOR THE EARLY BIO ASCENSION§!"
   edict_xhk_decision_origins_clone_army_biomorphosis_desc: "In order to avoid mod incompatbilities, you need to CLICK THIS to get the Biomorphosis AP early (as in before the 3 AP limit).\n§YDue to some annoying bugs on PDX's end, I cannot check if you have an open AP slot. So I just have to pray that you behave yourself and NOT take this early when you don't have an available AP slot.§!\n\n§RYou will be a good kid and not cheat right?§!\n\nIf you click this early, you just won't get an open AP slot when you finish your next AP, Biomorphosis will just eat that slot. So its not a real problem."
   xhk_decision_origins_clone_army_biomorphosis_tt: "Gives the §GBiomorphosis§! AP and starts the associated situation."
