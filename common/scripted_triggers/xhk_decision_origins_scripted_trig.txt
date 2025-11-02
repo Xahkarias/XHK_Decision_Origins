@@ -59,3 +59,10 @@ has_tree_of_life_origin = {
         has_origin = origin_tree_of_life
     }
 }
+
+has_here_be_dragons_origin = {
+    OR = {
+        has_country_flag = decision_origins_here_be_dragons
+        has_origin = origin_here_be_dragons
+    }
+}

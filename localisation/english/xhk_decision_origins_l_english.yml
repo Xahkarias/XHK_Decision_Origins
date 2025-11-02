@@ -109,3 +109,7 @@
   edict_decision_origins_calamitous_birth: "Decision Origins: Calamitous Birth"
   edict_decision_origins_calamitous_birth_desc: "Gives the capital planetary feature and the new features on colonization."
   edict_decision_origins_calamitous_birth_tt: "Does not give access to the special colony ship, but gives the normal colony ship the asteroid colonization effects."
+
+  edict_decision_origins_here_be_dragons: "Decision Origins: Here Be Dragons"
+  edict_decision_origins_here_be_dragons_desc: "Spawns the Sky Dragon and begins the related delayed event chains."
+  edict_decision_origins_here_be_dragons_desc_tt: "Missing some unique flavor text for first contact."
