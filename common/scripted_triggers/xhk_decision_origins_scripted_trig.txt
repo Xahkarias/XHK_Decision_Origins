@@ -45,3 +45,17 @@ has_clone_army_origin = {
         has_origin = origin_clone_army
     }
 }
+
+has_calamitous_birth_origin = {
+    OR = {
+        has_country_flag = decision_origins_calamitous_birth
+        has_origin = origin_lithoid
+    }
+}
+
+has_tree_of_life_origin = {
+    OR = {
+        has_country_flag = decision_origins_tree_of_life
+        has_origin = origin_tree_of_life
+    }
+}
