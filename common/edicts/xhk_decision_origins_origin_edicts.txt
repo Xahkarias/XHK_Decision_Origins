@@ -1250,6 +1250,6 @@ decision_origins_here_be_dragons = {
                 # the setup event
             set_country_flag = origin_dragon_not_ready
         }
-        custom_tooltip = edict_decision_origins_here_be_dragons_tt
+        custom_tooltip = edict_decision_origins_here_be_dragons_desc_tt
     }
 }
