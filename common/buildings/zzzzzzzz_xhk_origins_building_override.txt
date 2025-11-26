@@ -40,35 +40,33 @@ building_identity_repository = {
 		}
 	}
 
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = @b4_minerals
-		}
-		upkeep = {
-			energy = 0.02
-			mult = owner.value:identity_repository_scaling_mult
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = { 
-					has_synthetic_fertility_origin = yes
-				}
-			}
-			physics_research = 0.02
-			society_research = 0.02
-			engineering_research = 0.02
-			unity = 0.02
-			trade = 0.02
-			mult = owner.value:identity_repository_scaling_mult
-		}
-	}
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @b4_minerals
+        }
+        upkeep = {
+            energy = 0.025
+            mult = owner.value:identity_repository_scaling_mult
+        }
+        produces = {
+            trigger = {
+                exists = owner
+                owner = { has_synthetic_fertility_origin = yes }
+            }
+            physics_research = 0.015
+            society_research = 0.015
+            engineering_research = 0.015
+            unity = 0.015
+            trade = 0.015
+            mult = owner.value:identity_repository_scaling_mult
+        }
+    }
 
-	triggered_planet_modifier = {
-		robotic_pop_bonus_workforce_mult = 0.0001
-		mult = owner.value:identity_repository_scaling_mult
-	}
+    triggered_planet_modifier = {
+        robotic_pop_bonus_workforce_mult = 0.000075
+        mult = owner.value:identity_repository_scaling_mult
+    }
 
 	triggered_desc = {
 		text = building_identity_repository_tt
@@ -287,7 +285,7 @@ building_clone_army_clone_vat = {
         clone_soldiers_sustained = @clones_sustained_high
     }
 
-    # Add growth from 0 to 25 depending on 'clone_pops_missing_per_vat'.
+    # Add growth from 0 to 20 depending on 'clone_pops_missing_per_vat'.
     triggered_planet_pop_group_modifier_for_species = {
         potential = {
             has_infertile_clone_soldier_trait = yes
@@ -295,69 +293,69 @@ building_clone_army_clone_vat = {
                 check_variable = { which = clone_pops_missing_per_vat value > 2200 }
             }
         }
-        bonus_pop_growth = 25
+        bonus_pop_growth = 20
     }
     triggered_planet_modifier = {
         potential = {
             check_variable = { which = clone_pops_missing_per_vat value > 2200 }
         }
-        fake_pop_growth_mod = 25
+        fake_pop_growth_mod = 20
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 2200
         LOWER_LIMIT = 2000
-        GROWTH = 22
+        GROWTH = 19
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 2000
         LOWER_LIMIT = 1800
-        GROWTH = 20
+        GROWTH = 17
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 1800
         LOWER_LIMIT = 1600
-        GROWTH = 17
+        GROWTH = 14
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 1600
         LOWER_LIMIT = 1400
-        GROWTH = 15
+        GROWTH = 12
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 1400
         LOWER_LIMIT = 1200
-        GROWTH = 12
+        GROWTH = 9
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 1200
         LOWER_LIMIT = 1000
-        GROWTH = 10
+        GROWTH = 7
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 1000
         LOWER_LIMIT = 800
-        GROWTH = 7
+        GROWTH = 5
     }
 
     inline_script = {
         script = buildings/clone_army_vat_output
         UPPER_LIMIT = 800
         LOWER_LIMIT = 600
-        GROWTH = 5
+        GROWTH = 4
     }
 
     triggered_planet_pop_group_modifier_for_species = {
@@ -396,6 +394,33 @@ building_clone_army_clone_vat = {
         }
         upkeep = {
             energy = @b2_upkeep
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_or_infernal_empire = no
+                }
+            }
+            food = @b2_upkeep
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            minerals = @b2_upkeep
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_infernal_empire = yes
+                }
+            }
+            alloys = @b2_alloy_upkeep
         }
     }
 

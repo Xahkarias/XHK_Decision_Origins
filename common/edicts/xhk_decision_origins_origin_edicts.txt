@@ -116,13 +116,7 @@ decision_origins_life_seeded = {
 		## add deposit
 		capital_scope = {
 			change_pc = pc_gaia
-			set_planet_size = 30
-			add_deposit = d_tempestous_mountain
-			add_deposit = d_submerged_ore_veins
-			add_deposit = d_teeming_reef
-			add_deposit = d_dust_caverns
-			add_deposit = d_bubbling_swamp
-			add_deposit = d_crystalline_caverns
+			create_life_seeded_planet = yes
 		}
 		custom_tooltip = "edict_decision_origins_life_seeded_tt"
 		
@@ -581,7 +575,7 @@ decision_origins_mechanist = {
 		
 		add_tech_progress = {
 			tech = tech_robomodding
-			progress = 0
+			progress = 0.1
 		}
 		
 		custom_tooltip = "edict_decision_origins_mechanist_tt"

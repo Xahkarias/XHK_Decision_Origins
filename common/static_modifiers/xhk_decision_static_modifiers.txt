@@ -10,6 +10,7 @@ xhk_decori_subterranean_modifier = {
 	planet_structures_upkeep_mult = 0.10
 	planet_building_build_speed_mult = -0.10
 	planet_storm_devastation_mult = -0.25
+    planet_non_artificial_max_districts_add = 2
 }
 
 xhk_decori_overtuned_modifier = {
