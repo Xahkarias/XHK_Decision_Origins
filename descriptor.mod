@@ -1,4 +1,4 @@
-version="v4p1u5"
+version="v4p2u0"
 tags={
 	"Fixes"
 	"Buildings"
@@ -7,5 +7,5 @@ tags={
 }
 picture="thumbnail.png"
 name="Decision Origins: Electric Boogaloo"
-supported_version="v4.1.*"
+supported_version="v4.2.*"
 remote_file_id="3561670409"

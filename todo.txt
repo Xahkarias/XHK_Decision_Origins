@@ -1,3 +1,5 @@
-TO VERIFY:
-	synthetic fert is having issues starting the second situation properly
-	starlit citadel isnt aggro
+TODO:
+    under one rule
+    necrophage
+    red giant
+    cosmic dawn
