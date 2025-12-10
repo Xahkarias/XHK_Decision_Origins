@@ -1247,3 +1247,38 @@ decision_origins_here_be_dragons = {
         custom_tooltip = edict_decision_origins_here_be_dragons_desc_tt
     }
 }
+
+decision_origins_cosmic_dawn = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+    }
+
+    potential = {
+        has_infernals = yes
+        is_ai = no
+        days_passed < 180
+        NOR = {
+            has_cosmic_dawn_origin = yes
+        }
+    }
+
+    effect = {
+        country_event = { id = infernals.2500 days = 1 }
+        capital_scope = {
+            while = {
+                count = 5
+                add_deposit = d_stasis_pods
+            }
+        }
+        hidden_effect = {
+            set_country_flag = decision_origins_cosmic_dawn
+            capital_scope = {
+                set_planet_flag = cosmic_dawn_homeworld
+            }
+        }
+        custom_tooltip = edict_decision_origins_cosmic_dawn_desc_tt
+    }
+}

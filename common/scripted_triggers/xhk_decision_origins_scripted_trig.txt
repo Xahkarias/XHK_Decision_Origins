@@ -66,3 +66,10 @@ has_here_be_dragons_origin = {
         has_origin = origin_here_be_dragons
     }
 }
+
+has_cosmic_dawn_origin = {
+    OR = {
+        has_country_flag = decision_origins_cosmic_dawn
+        has_origin = origin_cosmic_dawn
+    }
+}

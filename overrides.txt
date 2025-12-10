@@ -30,6 +30,8 @@ d_buried_lithoids
 d_buried_lithoids_overlord
 d_lithoid_crater
     calamitous birth
+d_stasis_pods
+    cosmic dawn
 
 ### Edicts:
 damn_the_consequences

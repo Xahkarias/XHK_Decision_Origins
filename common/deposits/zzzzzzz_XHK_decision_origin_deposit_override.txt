@@ -226,3 +226,43 @@ d_lithoid_crater = {
         weight = 0
     }
 }
+
+# Cosmic Dawn - Stasis Pod
+d_stasis_pods = {
+    icon = d_ancient_vault
+    time = 360
+    is_for_colonizable = yes
+    category = deposit_cat_rare_blocker
+    potential = { always = no }
+
+    resources = {
+        category = deposit_blockers
+        cost = {
+            energy = 750
+        }
+        produces = {
+            society_research = 3 #if changed, adjust concept_inf_cd_deposit_desc
+        }
+    }
+
+    on_cleared = {
+        hidden_effect = {
+            if = {
+                limit = { owner = { has_cosmic_dawn_origin = yes } }
+                create_pop_group = { species = owner }
+            }
+            else = {
+                owner = { add_resource = { society_research = 350 } }
+            }
+            if = {
+                limit = { NOT = { has_deposit = d_cd_ancient_tunnels } }
+                add_deposit = d_cd_ancient_tunnels
+            }
+            change_variable = { which = cd_pods_var value = 1 }
+        }
+        custom_tooltip = d_stasis_pods_tt
+    }
+
+    inline_script = deposits/ai_weight_pop_creating_blocker
+}
+

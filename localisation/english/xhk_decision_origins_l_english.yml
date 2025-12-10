@@ -113,3 +113,7 @@
   edict_decision_origins_here_be_dragons: "Decision Origins: Here Be Dragons"
   edict_decision_origins_here_be_dragons_desc: "Spawns the Sky Dragon and begins the related delayed event chains."
   edict_decision_origins_here_be_dragons_desc_tt: "Missing some unique flavor text for first contact."
+
+  edict_decision_origins_cosmic_dawn: "Decision Origins: Cosmic Dawn"
+  edict_decision_origins_cosmic_dawn_desc: "Begins the special project, Deep Excavation situation, and Interstellar Refugia quest chain."
+  edict_decision_origins_cosmic_dawn_desc_tt: "Flavor text may not make much sense if you aren't infernal. Restrictions on this decision origin are intentionally relaxed."

@@ -1,4 +1,4 @@
-version="v4p2u0"
+version="v4p2u1"
 tags={
 	"Fixes"
 	"Buildings"
@@ -6,6 +6,6 @@ tags={
 	"Gameplay"
 }
 picture="thumbnail.png"
-name="Decision Origins: Electric Boogaloo"
+name="XHK Decision Origins: Electric Boogaloo"
 supported_version="v4.2.*"
 remote_file_id="3561670409"
