@@ -33,17 +33,8 @@ species_can_live_on_planet = {
             NOR = {
                 has_trait = trait_machine_unit
                 has_trait = trait_mechanical
-                AND = {
-                    has_trait = trait_cybernetic
-                    exists = root.owner
-                    root.owner = {
-                        is_machine_empire = yes
-                        OR = {
-                            has_civic = civic_machine_assimilator # Assimilator empire
-                            has_ascension_perk = ap_mechromancy
-                        }
-                    }
-                }
+                has_trait = trait_cybernetic
+                has_unplugged_positive_trait = yes
             }
         }
         if = {
