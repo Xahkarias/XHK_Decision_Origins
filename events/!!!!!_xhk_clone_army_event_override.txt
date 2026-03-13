@@ -142,7 +142,7 @@ planet_event = {
     }
 }
 
-
+# "The Ancient Clone Vats" Special Project complete
 country_event = {
     id = clones.20
     title = clones.20.name
