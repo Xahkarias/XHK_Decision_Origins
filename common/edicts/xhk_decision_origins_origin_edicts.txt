@@ -983,7 +983,7 @@ decision_origins_synthetic_fertility= {
 					remove_deposit = d_failing_infrastructure
 				}
 			}
-			
+            give_technology = {	tech = tech_powered_exoskeletons message = no }
 
 			# starting event
 			country_event = { id = machine_age.3100 }
@@ -1030,11 +1030,10 @@ decision_origins_synthetic_fertility= {
 		}
 
 		# give techs
-		give_technology = {	tech = tech_administrative_ai message = no }
-		give_technology = {	tech = tech_self_aware_logic message = no }
-		give_technology = {	tech = tech_sapient_ai message = no }
-
-		custom_tooltip = "edict_decision_origins_synthetic_fertility_tt"
+        # shouldnt need to, starting event should
+        # add_tech_progress = { tech = tech_robotic_workers progress = 0.15 }
+        # add_tech_progress = { tech = tech_administrative_ai progress = 0.5 }
+        custom_tooltip = "edict_decision_origins_synthetic_fertility_tt"
 		
 	}
 }

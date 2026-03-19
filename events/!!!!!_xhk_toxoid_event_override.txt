@@ -147,6 +147,7 @@ country_event = { # Upon defeating the Entity
 		custom_tooltip = toxoids.7315.a.tt
 		hidden_effect = {
 			owner = {
+                set_country_flag = knights_detox
 				country_event = { id = toxoids.7320 days = 900 }
 				create_fleet = {
 					name = "NAME_Toxic_God"

@@ -1,6 +1,6 @@
 namespace = bio
 
-Remains of the Enemy - Player destroys first wave of bioships
+# Remains of the Enemy - Player destroys first wave of bioships
 # This = owner of fleet 1 (Player)
 # From = owner of fleet 2 (Abandoned Hatchery)
 # Fromfromfrom = fleet 2 (Attacking bioships)

@@ -26,14 +26,11 @@ country_event = {
 		}
 	}
 
-	option = {
-		name = "machine_age.3100.a"
-		add_tech_option_or_research_effect = {
-			TECH = tech_robotic_workers
-			PROGRESS = 0.25
-			CATEGORY = engineering_research
-		}
-	}
+    option = {
+        name = "machine_age.3100.a"
+        add_tech_progress = { tech = tech_robotic_workers progress = 0.15 }
+        add_tech_progress = { tech = tech_administrative_ai progress = 0.5 }
+    }
 }
 
 country_event = {
