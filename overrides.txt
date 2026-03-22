@@ -44,6 +44,10 @@ species_can_live_on_planet
 should_force_decline_species
     clone army
 
+### Megastructures (these need to be checked with gigas as well)
+quantum_catapult_restored_slingshot
+    slingshot
+
 ### Policies:
 knightly_duties
 	knights decision flag
@@ -110,3 +114,8 @@ aquatics.180
 aquatics.190
 aquatics.305
     here be dragons
+over.25
+over.30
+origin.3505
+origin.3510
+    slingshot to the stars

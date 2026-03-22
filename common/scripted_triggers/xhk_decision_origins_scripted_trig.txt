@@ -73,3 +73,10 @@ has_cosmic_dawn_origin = {
         has_origin = origin_cosmic_dawn
     }
 }
+
+has_star_slingshot_origin = {
+    OR = {
+        has_country_flag = decision_origins_star_slingshot
+        has_origin = origin_star_slingshot
+    }
+}

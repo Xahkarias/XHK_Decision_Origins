@@ -1,0 +1,153 @@
+namespace = origin
+
+# On Occupy the System with Quantum Catapult (Ship Event)
+ship_event = {
+    id = origin.3505
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        owner = { has_star_slingshot_origin = yes }
+        solar_system = {
+            has_star_flag = quantum_catapult_system_flag@root.owner
+            NOT = { has_star_flag = quantum_catapult_occupied }
+        }
+    }
+
+    immediate = {
+        solar_system = {
+            set_star_flag = quantum_catapult_occupied
+        }
+        owner = {
+            country_event = {
+                id = origin.3510
+            }
+        }
+    }
+}
+
+# On Occupying the System with Quantum Catapult (Country Event)
+country_event = {
+    id = origin.3510
+    title = origin.3510.title
+    desc = origin.3510.desc
+    picture = GFX_evt_slingshot_stars
+    show_sound = evn_ove_slingshot_stars
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_star_slingshot_origin = yes
+    }
+
+    option = {
+        name = origin.3510.a
+        add_resource = { influence = 150 }
+    }
+}
+
+##############################################################################################
+##############################################################################################
+##############################################################################################
+
+namespace = over
+
+# Ruined Quantum Catapult Restored
+country_event = {
+    id = over.25
+    title = "over.25.name"
+    desc = {
+        trigger = {
+            has_origin = origin_star_slingshot
+            NOT = { has_technology = tech_quantum_catapult }
+        }
+        text = over.25.a.desc
+    }
+    desc = "over.25.desc"
+    picture = GFX_evt_quantum_catapult_build
+    show_sound = evn_ove_quantum_catapult_construction
+    location = FROM
+
+    is_triggered_only = yes
+
+    option = {
+        name = EXCELLENT
+    }
+
+    immediate = {
+        FROM = { save_event_target_as = quantum_catapult_system }
+        if = {
+            limit = {
+                has_star_slingshot_origin = yes
+                has_tech_option = tech_quantum_catapult
+            }
+            add_tech_progress = {
+                tech = tech_quantum_catapult
+                progress = 0.99
+            }
+        }
+        else_if = {
+            limit = {
+                has_star_slingshot_origin = yes
+                NOT = { has_technology = tech_quantum_catapult }
+            }
+            give_technology = {
+                tech = tech_quantum_catapult
+            }
+        }
+    }
+}
+
+#Ambush modifier after yeet
+fleet_event = {
+    id = over.30
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = {
+                owner = {
+                    has_star_slingshot_origin = yes
+                }
+            }
+            if = {
+                limit = {
+                    owner = {
+                        has_modifier = quantum_catapult_insight_2_modifier
+                    }
+                }
+                add_modifier = {
+                    modifier = quantic_ambush_specialists_astral
+                    days = 240
+                }
+            }
+            else = {
+                add_modifier = {
+                    modifier = quantic_ambush_specialists
+                    days = 120
+                }
+            }
+        }
+        else = {
+            if = {
+                limit = {
+                    owner = {
+                        has_modifier = quantum_catapult_insight_2_modifier
+                    }
+                }
+                add_modifier = {
+                    modifier = quantic_ambush_astral
+                    days = 240
+                }
+            }
+            else = {
+                add_modifier = {
+                    modifier = quantic_ambush
+                    days = 120
+                }
+            }
+        }
+    }
+}

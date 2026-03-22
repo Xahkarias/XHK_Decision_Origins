@@ -44,3 +44,9 @@ xhk_decori_starlit_citadel_modifier = {
     country_megastructure_build_cap_add = 1
     deep_space_citadel_limit_add = 1
 }
+
+xhk_decori_star_slingshot_modifier = {
+    country_starbase_influence_cost_distance_mult = -0.75
+    starbase_outpost_cost_mult = -0.15
+    catapult_spread_mult = 0.5
+}

@@ -1,0 +1,3 @@
+# scripted variables are FIOS, so gigas should overwrite this
+
+@has_gigastructures = 0

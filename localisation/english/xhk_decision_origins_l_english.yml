@@ -117,3 +117,7 @@
   edict_decision_origins_cosmic_dawn: "Decision Origins: Cosmic Dawn"
   edict_decision_origins_cosmic_dawn_desc: "Begins the special project, Deep Excavation situation, and Interstellar Refugia quest chain."
   edict_decision_origins_cosmic_dawn_desc_tt: "Flavor text may not make much sense if you aren't infernal. Restrictions on this decision origin are intentionally relaxed."
+
+  edict_decision_origins_star_slingshot: "Decision Origins: Slingshot to the Stars"
+  edict_decision_origins_star_slingshot_desc: "Spawns the catapult and archaelogy site in an adjacent system, and gives the ability to fix it + research the Quantum Catapult tech."
+  edict_decision_origins_star_slingshot_desc_tt: "For compatibility purposes, acts as if the Quantum Catapult Insight astral action was used."
