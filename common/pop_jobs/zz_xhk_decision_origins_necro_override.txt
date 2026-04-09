@@ -1,0 +1,581 @@
+necro_apprentice = {
+    category = specialist
+    exempt_from_ai_amenity_prioritization = yes
+    can_be_automated = no
+
+    swappable_data = {
+        default = {
+            condition_string = NECRO_APPRENTICE_JOB_TRIGGER
+            building_icon = building_chamber_of_elevation_1
+        }
+
+        swap_type = {
+            desc = job_necro_apprentice_desc_hive
+            trigger = {
+                exists = owner
+                owner = { is_hive_empire = yes }
+            }
+            weight = 1
+        }
+    }
+
+    tags = { unity }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible = { #deliberately allows slaves!
+        species = { species_can_be_necrophaged = yes }
+        owner = {
+            has_trait = trait_necrophage
+            has_necrophage_origin = yes
+        }
+    }
+
+    resources = {
+        category = planet_necro_apprentices
+        produces = {
+            unity = 0.75
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = { is_hive_empire = no }
+            }
+            consumer_goods = 1
+        }
+
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = { is_hive_empire = yes }
+            }
+            minerals = @living_standard_food_normal
+        }
+    }
+
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            NOT = {
+                has_trait = trait_necrophage
+            }
+        }
+        bonus_pop_growth = 0.5
+    }
+
+    triggered_planet_modifier = {
+        fake_pop_growth_mod = 0.5
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                NOT = {
+                    has_valid_civic = civic_dystopian_society
+                }
+            }
+        }
+        planet_amenities_add = 500
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+
+    weight = {
+        weight = @ruler_job_weight #deliberate
+        mult = value:job_weights_modifier|JOB|necro_apprentice|RESOURCE|unity|FACTOR|0.5|
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+        modifier = {
+            factor = 0.75
+            is_enslaved = yes #willing apprentices first, please
+        }
+        modifier = {
+            factor = 0.75
+            pop_has_happiness = no
+        }
+
+        modifier = {
+            factor = 0.1
+            exists = owner
+            owner = { is_ai = yes }
+            exists = planet
+            planet = {
+                NOT = {
+                    any_owned_pop_group = {
+                        NOT = { is_same_value = root }
+                        species = { species_can_be_necrophaged = yes }
+                    }
+                }
+                num_assigned_jobs = {
+                    job = necro_apprentice
+                    value > 1
+                }
+            }
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_unity"
+
+    promotion = {
+        time = @standard_promotion_time
+        effect = {
+            pop_amount_change_category = {
+                CATEGORY = specialist
+                AMOUNT = local_pop_amount
+            }
+        }
+    }
+}
+
+spawning_drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_spawning_pool
+        }
+        # Offspring Drone
+        swap_type = {
+            trigger = {
+                spawning_drone_is_offspring_drone_trigger = yes
+            }
+            name = offspring_drone
+            desc = offspring_drone
+            building_icon = building_offspring_nest
+            condition_string = DRONE_JOB_TRIGGER
+            weight = 10
+        }
+        # Genomic Drones
+        swap_type = {
+            trigger = {
+                healthcare_is_genomic_researcher_trigger = yes
+            }
+            name = genomic_drone
+            desc = genomic_drone
+            icon = genomic_drone
+            building_icon = building_genomic_facility
+            condition_string = DRONE_JOB_TRIGGER
+            weight = 15
+        }
+        # Broodsymbiont
+        swap_type = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_wilderness_empire = yes
+                }
+            }
+            name = broodsymbiont
+            desc = broodsymbiont
+            building_icon = seed_cradle_2
+            condition_string = DRONE_JOB_TRIGGER
+            weight = 100
+        }
+    }
+
+    tags = { pop_assembly }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_enslaved = no
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    possible = {
+        can_think = yes
+    }
+
+    resources = {
+        category = planet_pop_assemblers
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_or_infernal_empire = no
+                }
+            }
+            food = 5
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            minerals = 5
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_infernal_empire = yes
+                }
+            }
+            alloys = 2
+        }
+        # Job Swap - Genomic Drone
+        produces = {
+            trigger = {
+                exists = planet
+                planet = {
+                    healthcare_is_genomic_researcher_trigger = yes
+                }
+            }
+            society_research = 1.75
+        }
+        produces = {
+            trigger = {
+                exists = planet
+                planet = {
+                    healthcare_is_genomic_researcher_trigger = yes
+                }
+                exists = owner
+                owner = {
+                    has_completed_genetic_situation = yes
+                }
+            }
+            society_research = 1.75
+        }
+        upkeep = {
+            trigger = {
+                exists = planet
+                planet = {
+                    healthcare_is_genomic_researcher_trigger = yes
+                }
+                exists = owner
+                owner = {
+                    is_lithoid_or_infernal_empire = no
+                }
+            }
+            food = 5
+        }
+        upkeep = {
+            trigger = {
+                exists = planet
+                planet = {
+                    healthcare_is_genomic_researcher_trigger = yes
+                }
+                exists = owner
+                owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            minerals = 5
+        }
+        upkeep = {
+            trigger = {
+                exists = planet
+                planet = {
+                    healthcare_is_genomic_researcher_trigger = yes
+                }
+                exists = owner
+                owner = {
+                    is_infernal_empire = yes
+                }
+            }
+            alloys = 2
+        }
+    }
+
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            is_hive_species = yes
+        }
+        bonus_pop_growth = 2
+    }
+
+    triggered_planet_modifier = {
+        fake_pop_growth_mod = 2
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_necrophage_origin = yes }
+            exists = planet.growing_species
+            planet.growing_species = {
+                NOT = { has_trait = trait_hive_mind }
+            }
+        }
+        modifier = {
+            logistic_growth_mult = 0.1
+        }
+    }
+
+    #Offpring Drones
+    triggered_planet_modifier = {
+        potential = {
+            spawning_drone_is_offspring_drone_trigger = yes
+        }
+        modifier = {
+            planet_jobs_simple_drone_produces_mult = 0.1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_no_happiness_add = 500
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+
+    inline_script = "output/genomic_triggered_modifiers"
+
+    weight = {
+        weight = @spawner_drone_job_weight
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+        mult = value:scripted_job_weight_shroud_forged_mult
+        modifier = {
+            add = 20
+            exists = owner
+            owner = {
+                has_origin = origin_progenitor_hive
+            }
+        }
+        modifier = {
+            factor = 0.5 # job is less useful if pop control is active, but still gives amenities
+            planet = {
+                has_modifier = planet_population_control_gestalt
+            }
+        }
+        modifier = {
+            factor = 0.01 # crisis purge
+            exists = planet
+            exists = planet.controller
+            planet.controller = {
+                OR = {
+                    is_country_type = swarm
+                    is_country_type = ai_empire
+                }
+            }
+        }
+    }
+
+    promotion = {
+        time = @standard_promotion_time
+        effect = {
+            pop_amount_change_category = {
+                CATEGORY = complex_drone
+                AMOUNT = local_pop_amount
+            }
+        }
+    }
+}
+
+overlord_spawning_drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_spawning_pool
+        }
+    }
+
+    tags = { }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_enslaved = no
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    possible = {
+        can_think = yes
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_no_happiness_add = 500
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            is_hive_species = yes
+        }
+        bonus_pop_growth = 2
+    }
+
+    triggered_planet_modifier = {
+        fake_pop_growth_mod = 2
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_necrophage_origin = yes }
+            exists = planet.growing_species
+            planet.growing_species = {
+                NOT = { has_trait = trait_hive_mind }
+            }
+        }
+        modifier = {
+            logistic_growth_mult = 0.1
+        }
+    }
+
+    resources = {
+        category = planet_pop_assemblers
+        upkeep = {
+            trigger = {
+                exists = planet.assembling_species
+                planet.assembling_species = { is_lithoid = no }
+            }
+            food = 5
+        }
+        upkeep = {
+            trigger = {
+                exists = planet.assembling_species
+                planet.assembling_species = { is_lithoid = yes }
+            }
+            minerals = 5
+        }
+    }
+
+    weight = {
+        weight = @spawner_drone_job_weight
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+        modifier = {
+            factor = 0.5 # job is less useful if pop control is active, but still gives amenities
+            planet = {
+                has_modifier = planet_population_control_gestalt
+            }
+        }
+        modifier = {
+            factor = 0.01 # crisis purge
+            exists = planet
+            exists = planet.controller
+            planet.controller = {
+                OR = {
+                    is_country_type = swarm
+                    is_country_type = ai_empire
+                }
+            }
+        }
+    }
+
+    promotion = {
+        time = @standard_promotion_time
+        effect = {
+            pop_amount_change_category = {
+                CATEGORY = complex_drone
+                AMOUNT = local_pop_amount
+            }
+        }
+    }
+}
+
+overlord_spawning_drone_lithoid = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_spawning_pool
+        }
+    }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_enslaved = no
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    possible = {
+        can_think = yes
+        is_lithoid = yes
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_no_happiness_add = 500
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+
+    triggered_planet_pop_group_modifier_for_species = {
+        potential = {
+            is_hive_species = yes
+        }
+        bonus_pop_growth = 2
+    }
+
+    triggered_planet_modifier = {
+        fake_pop_growth_mod = 2
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_necrophage_origin = yes }
+            exists = planet.growing_species
+            planet.growing_species = {
+                NOT = { has_trait = trait_hive_mind }
+            }
+        }
+        modifier = {
+            logistic_growth_mult = 0.1
+        }
+    }
+
+    resources = {
+        category = planet_jobs
+        upkeep = {
+            minerals = 5
+        }
+    }
+
+    weight = {
+        weight = @spawner_drone_job_weight
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+        modifier = {
+            factor = 0.5 # job is less useful if pop control is active, but still gives amenities
+            planet = {
+                has_modifier = planet_population_control_gestalt
+            }
+        }
+        modifier = {
+            factor = 0.01 # crisis purge
+            exists = planet
+            exists = planet.controller
+            planet.controller = {
+                OR = {
+                    is_country_type = swarm
+                    is_country_type = ai_empire
+                }
+            }
+        }
+    }
+
+    promotion = {
+        time = @standard_promotion_time
+        effect = {
+            pop_amount_change_category = {
+                CATEGORY = complex_drone
+                AMOUNT = local_pop_amount
+            }
+        }
+    }
+}

@@ -25,6 +25,7 @@
   xhk_decori_mechanists_machine_modifier: "Decision Origins: Mechanists but for Machines"
   xhk_decori_riftworld_modifier: "Decision Origins: Riftworld"
   xhk_decori_starlit_citadel_modifier: "Decision Origins: Starlit Citadel"
+  xhk_decori_necrophage_modifier: "Decision Origins: Necrophage"
 
 ### Edicts
 #-------------------------------------------------------------------------------------------------------
@@ -121,3 +122,7 @@
   edict_decision_origins_star_slingshot: "Decision Origins: Slingshot to the Stars"
   edict_decision_origins_star_slingshot_desc: "Spawns the catapult and archaelogy site in an adjacent system, and gives the ability to fix it + research the Quantum Catapult tech."
   edict_decision_origins_star_slingshot_desc_tt: "For compatibility purposes, acts as if the Quantum Catapult Insight astral action was used."
+
+  edict_decision_origins_necrophage: "Decision Origins: Necrophage"
+  edict_decision_origins_necrophage_desc: "Gives the main species §YNecrophage§! trait.\nKills 2400 pops (1200 if hive), spawns that amount of prepatent pops.\nUnlocks necrophage related species rights and sets game rules.\nChanges guaranteed habitables to have primitives.\nGrants §YChamber of Elevation§! building to the capital."
+  edict_decision_origins_necrophage_desc_tt: "§KTHIS IS VERY SENSITIVE ORIGIN THAT DOES A LOT OF OVERRIDES, OTHER MODS MAY CONFLICT§!\n§RMAKE SURE THAT YOU CAN PURGE BEFORE TAKING THIS, THOSE POLICIES ARE A MESS TO OVERRIDE AND SO IT FALLS TO YOU TO BE SMART ABOUT MAKING YOUR EMPIRE WHEN YOU TAKE THIS§!\nDoes not exclude illegal civic combos, BE CAREFUL.\n§HIF YOUR PREPATENT SPECIES DOES NOT GROW, CHECK THEIR POPULATION CONTROL SETTINGS§!\nDoes not include the tradition swap.\nDoes not include necrophage themed event choices, like eating envoys.\nDoes not include modifying tech weights.\nDoes not give the warning event for the initial pop conversion.$decision_origins_cache_warning$"

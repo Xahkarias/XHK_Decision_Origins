@@ -50,3 +50,7 @@ xhk_decori_star_slingshot_modifier = {
     starbase_outpost_cost_mult = -0.15
     catapult_spread_mult = 0.5
 }
+
+xhk_decori_necrophage_modifier = {
+    refugee_attraction = -0.25
+}

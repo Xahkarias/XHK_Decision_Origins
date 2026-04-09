@@ -47,7 +47,7 @@ species_can_live_on_planet = {
                     exists = root.owner
                     root.owner = {
                         is_hive_empire = yes
-                        has_origin = origin_necrophage
+                        has_necrophage_origin = yes
                         prev = { species_can_be_necrophaged = yes }
                     }
                 }
@@ -128,6 +128,79 @@ should_force_decline_species = {
                 success_text = VOIDSPAWN_FORCE_DECLINE
                 exists = this
                 has_modifier = voidspawn_colony_mod
+            }
+        }
+    }
+}
+
+has_enough_pops_for_necrophage_on_planet = {
+    owner = { has_necrophage_origin = yes }
+    has_available_jobs = necro_apprentice
+    if = {
+        limit = {
+            has_planet_flag = necrophage_alert_timer
+        }
+        count_owned_species = {
+            count = 0
+            limit = { species_can_be_necrophaged = yes }
+        }
+    }
+    else = {
+        NOT = { any_owned_pop_group = { can_work_specific_job = necro_apprentice } }
+    }
+}
+
+can_fill_ruler_job = {
+    if = {
+        limit = {
+            exists = owner
+            owner = {
+                has_necrophage_origin = yes
+                has_trait = trait_necrophage
+            }
+        }
+        custom_tooltip = {
+            text = RULER_JOB_NECROPHAGE_TRIGGER
+            has_trait = trait_necrophage
+            is_enslaved = no
+            is_being_purged = no
+            is_being_assimilated = no
+        }
+    }
+    else = {
+        custom_tooltip = RULER_JOB_TRIGGER
+        hidden_trigger = {
+            NOT = { has_ethic = ethic_gestalt_consciousness }
+            exists = owner
+            is_enslaved = no
+            is_being_purged = no
+            is_being_assimilated = no
+            NOT = { has_trait = trait_syncretic_proles }
+            # Rule out Traits for servitude & lack of free will
+            can_think = yes
+            # Rule out Disconnected Drones
+            has_disconnected_drone_citizenship_type = no
+            # Rule out Machine Pops, unless they're rendered sapient
+            OR = {
+                NOT = { has_trait = trait_mechanical }
+                AND = {
+                    owner = { has_technology = tech_synthetic_workers }
+                    owner = { has_policy_flag = ai_full_rights }
+                }
+            }
+            # Rule out Organic Trophies
+            NOT = {
+                has_citizenship_type = {
+                    type = citizenship_organic_trophy
+                    country = owner
+                }
+            }
+            # Rule out violations of the 'Right to Work' Resolution (prioritises organic workers)
+            if = {
+                limit = {
+                    divinity_right_to_work_job_check_trigger_exempt = no
+                }
+                divinity_right_to_work_job_check_trigger_ruler = yes
             }
         }
     }

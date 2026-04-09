@@ -1,0 +1,260 @@
+building_necrophage_elevation_chamber = {
+    icon = building_chamber_of_elevation_1
+    base_buildtime = @b1_time
+    planet_limit = 1
+    position_priority = 100
+    skip_automation_upgrading = yes #colony automation will not try to upgrade this
+
+    category = pop_assembly
+
+    building_sets = {
+        government
+        urban
+    }
+
+    desc = {
+        trigger = {
+            OR = {
+                NOT = { exists = owner }
+                owner = { is_hive_empire = no }
+            }
+        }
+        text = building_necrophage_elevation_chamber_desc
+    }
+    desc = {
+        trigger = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        text = building_necrophage_elevation_chamber_desc_hive
+    }
+
+    potential = {
+        exists = owner
+        owner = {
+            has_necrophage_origin = yes
+            has_trait = trait_necrophage
+            NOR = {
+                has_valid_civic = civic_fanatic_purifiers
+                has_valid_civic = civic_hive_devouring_swarm
+            }
+        }
+    }
+
+    allow = {
+        custom_tooltip = {
+            fail_text = NO_CULTURE_SHOCK
+            NOT = { has_modifier = planet_culture_shock }
+        }
+        if = {
+            limit = { owner = { is_hive_empire = no } }
+            NOT = { is_planet_class = pc_hive }
+        }
+        NOT = { is_planet_class = pc_machine }
+        hidden_trigger = {
+            if = {
+                limit = {
+                    owner = { is_ai = yes }
+                }
+                any_owned_species = {
+                    species_can_be_necrophaged = yes
+                }
+                pop_amount > 500
+            }
+        }
+    }
+
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = {
+                OR = {
+                    NOT = { has_necrophage_origin = yes }
+                    NOT = { has_trait = trait_necrophage }
+                }
+            }
+            AND = {
+                owner = { is_ai = yes }
+                NOT = {
+                    any_owned_species = {
+                        species_can_be_necrophaged = yes
+                    }
+                }
+            }
+        }
+    }
+
+    planet_modifier = {
+        job_necro_apprentice_add = 100
+    }
+
+    #you are not meant to run out of necrophaging pops on a planet with this building
+    triggered_planet_modifier = {
+        potential = {
+            organic_pops_last_month_growth >= 1
+        }
+        job_necro_apprentice_add = 100
+    }
+    triggered_planet_modifier = {
+        potential = {
+            organic_pops_last_month_growth >= 2
+        }
+        job_necro_apprentice_add = 100
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @b1_minerals
+        }
+        upkeep = {
+            energy = @b1_upkeep
+        }
+    }
+
+    upgrades = {
+        building_necrophage_house_of_apotheosis
+    }
+
+    prerequisites = {
+    }
+
+    triggered_desc = {
+        text = necrophage_elevation_timer_tooltip
+        trigger = {
+            has_planet_flag = necrophage_elevation_timer
+        }
+    }
+
+    triggered_desc = {
+        text = building_necrophage_elevation_chamber_scaling_tooltip
+    }
+
+    triggered_desc = {
+        text = disables_necrophage_growth
+    }
+
+    is_essential = yes
+}
+
+building_necrophage_house_of_apotheosis = {
+    icon = building_chamber_of_elevation_2
+    base_buildtime = @b3_time
+    can_build = no
+    position_priority = 100
+
+    category = pop_assembly
+
+    building_sets = {
+        government
+        urban
+    }
+
+    desc = {
+        trigger = {
+            OR = {
+                NOT = { exists = owner }
+                owner = { is_hive_empire = no }
+            }
+        }
+        text = building_necrophage_house_of_apotheosis_desc
+    }
+    desc = {
+        trigger = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        text = building_necrophage_house_of_apotheosis_desc_hive
+    }
+
+    potential = {
+        exists = owner
+        owner = {
+            has_necrophage_origin = yes
+            has_trait = trait_necrophage
+            NOR = {
+                has_valid_civic = civic_fanatic_purifiers
+                has_valid_civic = civic_hive_devouring_swarm
+            }
+            is_ai = no #the AI will just kill all its necrophytes
+        }
+    }
+
+    allow = {
+        hidden_trigger = {
+            if = {
+                limit = {
+                    owner = { is_ai = yes }
+                }
+                any_owned_species = {
+                    species_can_be_necrophaged = yes
+                }
+            }
+        }
+    }
+
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = {
+                OR = {
+                    NOT = { has_necrophage_origin = yes }
+                    NOT = { has_trait = trait_necrophage }
+                }
+            }
+            AND = {
+                owner = { is_ai = yes }
+                NOT = {
+                    any_owned_species = {
+                        species_can_be_necrophaged = yes
+                    }
+                }
+            }
+        }
+    }
+
+    planet_modifier = {
+        job_necro_apprentice_add = 600
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            is_planet_class = pc_hive
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        job_necro_apprentice_add = 400
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @b2_minerals
+            exotic_gases = @b2_rare_cost
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            exotic_gases = @b2_rare_upkeep
+        }
+    }
+
+    prerequisites = {
+        tech_glandular_acclimation
+    }
+
+    show_tech_unlock_if = {
+        has_necrophage_origin = yes
+        has_trait = trait_necrophage
+    }
+
+    triggered_desc = {
+        text = disables_necrophage_growth
+    }
+
+    triggered_desc = {
+        text = necrophage_elevation_timer_tooltip
+        trigger = {
+            has_planet_flag = necrophage_elevation_timer
+        }
+    }
+}

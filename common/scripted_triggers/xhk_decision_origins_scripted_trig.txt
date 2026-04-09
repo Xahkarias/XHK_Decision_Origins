@@ -80,3 +80,10 @@ has_star_slingshot_origin = {
         has_origin = origin_star_slingshot
     }
 }
+
+has_necrophage_origin = {
+    OR = {
+        has_country_flag = decision_origins_necrophage
+        has_origin = origin_necrophage
+    }
+}

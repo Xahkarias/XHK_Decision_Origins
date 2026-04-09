@@ -162,8 +162,6 @@ country_event = {
     }
 }
 
-
-
 #################################################################################
 # CALAMITOUS BIRTH
 #################################################################################
@@ -185,6 +183,75 @@ planet_event = {
         add_modifier = { modifier = lithoid_crater }
     }
 }
+
+
+#################################################################################
+# NECROPHAGE
+#################################################################################
+
+# Make starting colonisables be Primitives
+country_event = {
+    id = xhk_decision_origin_triggered.15
+    is_triggered_only = yes
+    hide_window = yes
+
+    trigger = {
+        has_country_flag = decision_origins_necrophage
+    }
+
+    immediate = {
+        capital_scope.solar_system = {
+            closest_system = {
+                limit = { has_star_flag = neighbor_t1_first_colony }
+                max_steps = 3
+                random_system_planet = {
+                    limit = {
+                        is_colonizable = yes
+                        is_colony = no
+                        has_planet_flag = prescripted_ideal
+                    }
+                    generate_very_early_pre_ftls_on_planet = yes
+                    set_name = random
+                    change_colony_foundation_date = -461
+
+                    while = {
+                        count = 4
+                        create_army = {
+                            owner = last_created_country
+                            type = primitive_additional_army
+                            species = last_created_country
+                        }
+                    }
+                }
+            }
+            reroll_random = yes
+            closest_system = {
+                limit = { has_star_flag = neighbor_t2_second_colony }
+                max_steps = 6
+                random_system_planet = {
+                    limit = {
+                        is_colonizable = yes
+                        is_colony = no
+                        has_planet_flag = prescripted_ideal
+                    }
+                    generate_very_early_pre_ftls_on_planet = yes
+                    set_name = random
+                    change_colony_foundation_date = -1275
+
+                    while = {
+                        count = 4
+                        create_army = {
+                            owner = last_created_country
+                            type = primitive_additional_army
+                            species = last_created_country
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 #################################################################################
 # THE COUNTER

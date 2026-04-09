@@ -22,6 +22,9 @@ holding_tree_of_life_sapling
     tree of life
 holding_experimental_crater
     calamitous birth
+building_necrophage_elevation_chamber
+building_necrophage_house_of_apotheosis
+    necrophage
 
 ### Deposits:
 d_ruined_arcology
@@ -43,6 +46,9 @@ can_remove_positive_traits_organic
 species_can_live_on_planet
 should_force_decline_species
     clone army
+has_enough_pops_for_necrophage_on_planet
+can_fill_ruler_job
+    necrophage
 
 ### Megastructures (these need to be checked with gigas as well)
 quantum_catapult_restored_slingshot
@@ -51,6 +57,13 @@ quantum_catapult_restored_slingshot
 ### Policies:
 knightly_duties
 	knights decision flag
+
+### Pop jobs:
+necro_apprentice
+spawning_drone
+overlord_spawning_drone
+overlord_spawning_drone_lithoid
+    necrophage
 
 ### Relics:
 r_toxic_god 
@@ -63,6 +76,16 @@ can_add_overtuned_traits
 	overtuned decision flag
 can_remove_overtuned_traits
 	overtuned decision flag
+can_be_leader
+    necrophage
+
+### Species Rights - Population Controls
+population_control_no
+    necrophage (has bug branch compat)
+
+### Species Rights - Purge
+purge_necrophage
+    necrophage
 
 ### Traditions:
 tr_synthetics_adopt
@@ -119,3 +142,7 @@ over.30
 origin.3505
 origin.3510
     slingshot to the stars
+necroids.1
+necroids.5
+necroids.10
+    necrophage
