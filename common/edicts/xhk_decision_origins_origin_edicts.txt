@@ -1313,6 +1313,7 @@ decision_origins_star_slingshot = {
     }
 }
 
+# intentionally disabled for frameworld
 decision_origins_necrophage = {
     length = 1
     icon = "GFX_edict_type_policy"
@@ -1330,6 +1331,7 @@ decision_origins_necrophage = {
             is_machine_empire = yes
             is_individual_machine = yes
         }
+        NOT = { giga_has_frameworld_origin = yes }
     }
 
     allow = {
