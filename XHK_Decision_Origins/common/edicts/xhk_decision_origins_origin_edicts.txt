@@ -380,6 +380,7 @@ decision_origins_overtuned = {
 		hidden_effect = {
 			set_country_flag = decision_origins_overtuned
 		}
+        add_modifier = { modifier = xhk_decori_overtuned_modifier }
 		custom_tooltip = "edict_decision_origins_overtuned_tt"
 		
 	}
