@@ -58,7 +58,6 @@ decision_origins_tree_of_life = {
 	}
 
 	potential = {
-		has_utopia = yes
 		is_ai = no
 		days_passed < 180
 		NOR = {
@@ -132,7 +131,6 @@ decision_origins_resource_consolidation = {
 	}
 
 	potential = {
-		has_synthetic_dawn = yes
 		is_ai = no
 		days_passed < 180
 		is_machine_empire = yes
@@ -531,7 +529,6 @@ decision_origins_mechanist = {
 	}
 
 	potential = {
-		has_utopia = yes
 		is_ai = no
 		days_passed < 180
 		NOR = {
@@ -638,7 +635,6 @@ decision_origins_syncretic_evolution = {
 	}
 
 	potential = {
-		has_utopia = yes
 		is_ai = no
 		days_passed < 180
 		NOR = {
@@ -1146,7 +1142,6 @@ decision_origins_clone_army = {
     }
 
     potential = {
-        has_humanoids = yes
         is_ai = no
         days_passed < 180
         is_machine_empire = no
