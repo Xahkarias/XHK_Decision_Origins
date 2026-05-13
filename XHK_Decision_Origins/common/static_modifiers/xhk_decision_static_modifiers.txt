@@ -14,7 +14,6 @@ xhk_decori_subterranean_modifier = {
 }
 
 xhk_decori_overtuned_modifier = {
-	BIOLOGICAL_species_trait_points_add = 2
 	BIOLOGICAL_species_trait_picks_add = 1
 }
 
