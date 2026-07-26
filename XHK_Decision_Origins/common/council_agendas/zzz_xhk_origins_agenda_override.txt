@@ -68,5 +68,9 @@ agenda_synthetic_evolution = {
 	}
 	ai_weight = {
 		base = @ascension_tech_agenda_weight
+		modifier = {
+			factor = @ascension_agenda_pending_multiplier
+			has_ap_pending = yes
+		}
 	}
 }

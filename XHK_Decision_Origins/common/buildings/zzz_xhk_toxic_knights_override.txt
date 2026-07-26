@@ -18,7 +18,7 @@ building_order_keep = {
 	potential = {
 		## CHANGED THIS
 		owner = { has_toxic_knights_origin = yes }
-		has_planet_flag = toxic_knights_habitat
+		planet = { has_carrier_flag = toxic_knights_habitat }
 		owner = { NOT = { has_country_flag = quest_abandoned } }
 	}
 
@@ -65,7 +65,7 @@ building_order_keep = {
 		potential = {
 			owner = { has_country_flag = toxoids_7090_a }
 		}
-		planet_stability_add = 15
+		planet_stability_add = 5
 	}
 
 	triggered_planet_modifier = {
@@ -104,8 +104,12 @@ building_order_keep = {
 	}
 
 	resources = {
-		cost = {
-			minerals = 1000
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = 1000
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
 		}
 		category = planet_buildings
 	}
@@ -169,8 +173,12 @@ holding_knight_commandery = {
 
 	resources = {
 		category = planet_holdings
-		cost = {
-			minerals = @b1_minerals
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @b1_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
 		}
 		upkeep = {
 			energy = @b1_upkeep
@@ -317,6 +325,13 @@ building_knightly_theme_park = {
 
 	resources = {
 		category = planet_branch_office_buildings
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @b3_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
+		}
 		cost = {
 			influence = 25
 			minerals = @b3_minerals
@@ -324,7 +339,7 @@ building_knightly_theme_park = {
 		cost = {
 			trigger = {
 				owner = {
-					has_authority = auth_corporate
+					is_megacorp = yes
 				}
 			}
 			influence = 25

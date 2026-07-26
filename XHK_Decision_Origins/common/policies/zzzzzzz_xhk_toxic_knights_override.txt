@@ -18,7 +18,7 @@ knightly_duties = {
 			ship_anomaly_generation_chance_mult = 0.05
 		}
 
-		AI_weight = {
+		ai_weight = {
 			factor = 5 #This should make sure AIs stick to this policy
 		}
 	}

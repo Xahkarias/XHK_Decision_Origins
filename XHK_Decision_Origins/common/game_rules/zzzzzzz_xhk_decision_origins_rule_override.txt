@@ -1,16 +1,16 @@
 can_remove_positive_traits_organic = {
 	OR = {
 		AND = {
-            OR = {
-                has_tradition = tr_genetics_resequencing
-                has_active_tradition = tr_cybernetics_integrated_anatomy
-                has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
-                has_active_tradition = tr_purity_genotype_regeneration
-                has_active_tradition = tr_purity_genotype_regeneration_wilderness
-                has_active_tradition = tr_cloning_somatic_synthesization
-                has_active_tradition = tr_cloning_somatic_synthesization_clone_army
-                has_active_tradition = tr_mutation_unnatural_selection
-            }
+			OR = {
+				has_tradition = tr_genetics_resequencing
+				has_active_tradition = tr_cybernetics_integrated_anatomy
+				has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				has_active_tradition = tr_purity_genotype_regeneration
+				has_active_tradition = tr_purity_genotype_regeneration_wilderness
+				has_active_tradition = tr_cloning_somatic_synthesization
+				has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+				has_active_tradition = tr_mutation_unnatural_selection
+			}
 		}
 		AND = {
 			has_toxoids = yes
@@ -22,182 +22,186 @@ can_remove_positive_traits_organic = {
 }
 
 species_can_live_on_planet = {
-    hidden_trigger = {
-        exists = root #somehow this appeared in the error log. No idea how!
-        NAND = {
-            root = { is_planet_class = pc_machine }
-            NOR = {
-                has_trait = trait_machine_unit
-                has_trait = trait_mechanical
-                has_trait = trait_cybernetic
-                has_unplugged_positive_trait = yes
-            }
-        }
-        if = {
-            limit = {
-                root = { is_planet_class = pc_hive }
-            }
-            OR = {
-                has_trait = trait_hive_mind
-                AND = { #Necrophage Hive Mind can have Necrophytes
-                    exists = root.owner
-                    root.owner = {
-                        is_hive_empire = yes
+	hidden_trigger = {
+		exists = root #somehow this appeared in the error log. No idea how!
+		NAND = {
+			root = { is_planet_class = pc_machine }
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+				has_trait = trait_cybernetic
+				has_unplugged_positive_trait = yes
+			}
+		}
+		if = {
+			limit = {
+				root = { is_planet_class = pc_hive }
+			}
+			OR = {
+				has_trait = trait_hive_mind
+				AND = { #Necrophage Hive Mind can have Necrophytes
+					exists = root.owner
+					root.owner = {
+						is_hive_empire = yes
                         has_necrophage_origin = yes
-                        prev = { species_can_be_necrophaged = yes }
-                    }
-                }
-            }
-        }
-    }
-    if = {
-        limit = {
-            exists = root.owner
-            root.owner = {
+						prev = { species_can_be_necrophaged = yes }
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = root.owner
+			root.owner = {
                 has_clone_army_origin = yes
-            }
-            OR = {
-                has_trait = trait_clone_soldier_infertile
-                has_trait = trait_clone_soldier_infertile_full_potential
-            }
-        }
-        custom_tooltip = {
-            fail_text = CLONE_ARMY_FORCE_DECLINE
-            root = {
-                check_variable = { which = clone_pops_missing value >= 0 }
-            }
-        }
-    }
-    custom_tooltip = {
-        fail_text = WILDERNESS_NATURAL_WORLDS_DECLINE
-        if = {
-            limit = {
-                has_trait = trait_wilderness
-            }
-            root = { is_habitable_for_wilderness = yes }
-        }
-    }
+			}
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+		}
+		custom_tooltip = {
+			fail_text = CLONE_ARMY_FORCE_DECLINE
+			root = {
+				check_variable = { which = clone_pops_missing value >= 0 }
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = WILDERNESS_NATURAL_WORLDS_DECLINE
+		if = {
+			limit = {
+				has_trait = trait_wilderness
+			}
+			root = { is_habitable_for_wilderness = yes }
+		}
+	}
 
-    custom_tooltip = {
-        fail_text = WILDERNESS_DEAD_WORLD
-        if = {
-            limit = {
-                has_trait = trait_wilderness
-                exists = root.owner
-            }
-            root.owner = { is_wilderness_empire = yes }
-        }
-    }
+	custom_tooltip = {
+		fail_text = WILDERNESS_DEAD_WORLD
+		if = {
+			limit = {
+				has_trait = trait_wilderness
+				exists = root.owner
+			}
+			root.owner = { is_wilderness_empire = yes }
+		}
+	}
 }
 
 should_force_decline_species = {
-    OR = {
-        # Infertile Clone Army pops should decline if in Country that can't have Vats, or there is a Vat shortage.
-        custom_tooltip = {
-            success_text = CLONE_ARMY_FORCE_DECLINE
-            exists = this
-            OR = {
-                has_trait = trait_clone_soldier_infertile
-                has_trait = trait_clone_soldier_infertile_full_potential
-            }
-            from = {
-                OR = {
-                    # Check if country is unable to build Vats for this species.
-                    AND = {
-                        exists = owner
-                        owner = {
-                            OR = {
+	OR = {
+		# Infertile Clone Army pops should decline if in Country that can't have Vats, or there is a Vat shortage.
+		custom_tooltip = {
+			success_text = CLONE_ARMY_FORCE_DECLINE
+			exists = this
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+			from = {
+				OR = {
+					# Check if country is unable to build Vats for this species.
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
                                 NOT = { has_clone_army_origin = yes }					# Can't have Vats.
-                                has_country_flag = clone_army_fertility_unlocked			# Can't have Vats anymore.
-                                NOT = { owner_main_species = { is_same_species = root } }	# Our Vats can't build this species.
-                            }
-                        }
-                    }
-                    # Vats check out, but are there more pops than Vats support?
-                    check_variable = { which = clone_pops_missing value < 0 }
-                }
-            }
-        }
+								has_country_flag = clone_army_fertility_unlocked			# Can't have Vats anymore.
+								NOT = { owner_main_species = { is_same_species = root } }	# Our Vats can't build this species.
+							}
+						}
+					}
+					# Vats check out, but are there more pops than Vats support?
+					check_variable = { which = clone_pops_missing value < 0 }
+				}
+			}
+		}
 
-        from = {
-            custom_tooltip = {
-                success_text = VOIDSPAWN_FORCE_DECLINE
-                exists = this
-                has_modifier = voidspawn_colony_mod
-            }
-        }
-    }
+		from = {
+			custom_tooltip = {
+				success_text = VOIDSPAWN_FORCE_DECLINE
+				exists = this
+				has_modifier = voidspawn_colony_mod
+			}
+		}
+	}
 }
 
-has_enough_pops_for_necrophage_on_planet = {
-    owner = { has_necrophage_origin = yes }
-    has_available_jobs = necro_apprentice
-    if = {
-        limit = {
-            has_planet_flag = necrophage_alert_timer
-        }
-        count_owned_species = {
-            count = 0
-            limit = { species_can_be_necrophaged = yes }
-        }
-    }
-    else = {
-        NOT = { any_owned_pop_group = { can_work_specific_job = necro_apprentice } }
-    }
+has_enough_pops_for_necrophage_on_colony = {
+	owner = { has_necrophage_origin = yes }
+	has_available_jobs = necro_apprentice
+	if = {
+		limit = {
+			has_carrier_flag = necrophage_alert_timer
+		}
+		count_owned_species = {
+			count = 0
+			limit = { species_can_be_necrophaged = yes }
+		}
+	}
+	else = {
+		NOT = { any_owned_pop_group = { can_work_specific_job = necro_apprentice } }
+	}
 }
 
 can_fill_ruler_job = {
-    if = {
-        limit = {
-            exists = owner
-            owner = {
+	if = {
+		limit = {
+			exists = owner
+			owner = {
                 has_necrophage_origin = yes
-                has_trait = trait_necrophage
-            }
-        }
-        custom_tooltip = {
-            text = RULER_JOB_NECROPHAGE_TRIGGER
-            has_trait = trait_necrophage
-            is_enslaved = no
-            is_being_purged = no
-            is_being_assimilated = no
-        }
-    }
-    else = {
-        custom_tooltip = RULER_JOB_TRIGGER
-        hidden_trigger = {
-            NOT = { has_ethic = ethic_gestalt_consciousness }
-            exists = owner
-            is_enslaved = no
-            is_being_purged = no
-            is_being_assimilated = no
-            NOT = { has_trait = trait_syncretic_proles }
-            # Rule out Traits for servitude & lack of free will
-            can_think = yes
-            # Rule out Disconnected Drones
-            has_disconnected_drone_citizenship_type = no
-            # Rule out Machine Pops, unless they're rendered sapient
-            OR = {
-                NOT = { has_trait = trait_mechanical }
-                AND = {
-                    owner = { has_technology = tech_synthetic_workers }
-                    owner = { has_policy_flag = ai_full_rights }
-                }
-            }
-            # Rule out Organic Trophies
-            NOT = {
-                has_citizenship_type = {
-                    type = citizenship_organic_trophy
-                    country = owner
-                }
-            }
-            # Rule out violations of the 'Right to Work' Resolution (prioritises organic workers)
-            if = {
-                limit = {
-                    divinity_right_to_work_job_check_trigger_exempt = no
-                }
-                divinity_right_to_work_job_check_trigger_ruler = yes
-            }
-        }
-    }
+				has_trait = trait_necrophage
+			}
+		}
+		custom_tooltip = {
+			text = RULER_JOB_NECROPHAGE_TRIGGER
+			has_trait = trait_necrophage
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+		}
+	}
+	else = {
+		custom_tooltip = RULER_JOB_TRIGGER
+		hidden_trigger = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			exists = owner
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+			NOT = { has_trait = trait_syncretic_proles }
+			# Rule out Traits for servitude & lack of free will
+			can_think = yes
+			# Rule out Disconnected Drones
+			has_disconnected_drone_citizenship_type = no
+			# Rule out Machine Pops, unless they're rendered sapient
+			OR = {
+				NOT = { has_trait = trait_mechanical }
+				AND = {
+					owner = { has_technology = tech_synthetic_workers }
+					owner = { has_policy_flag = ai_full_rights }
+				}
+			}
+			# Rule out Organic Trophies
+			NOR = {
+				has_citizenship_type = {
+					type = citizenship_organic_trophy
+					country = owner
+				}
+				has_citizenship_type = {
+					type = citizenship_cruise_passenger
+					country = owner
+				}
+			}
+			# Rule out violations of the 'Right to Work' Resolution (prioritises organic workers)
+			if = {
+				limit = {
+					divinity_right_to_work_job_check_trigger_exempt = no
+				}
+				divinity_right_to_work_job_check_trigger_ruler = yes
+			}
+		}
+	}
 }

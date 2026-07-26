@@ -14,22 +14,24 @@ zone_habitat_knights = {
 			}
 		}
 		OR = {
-			has_planet_flag = toxic_knights_habitat
+			has_carrier_flag = toxic_knights_habitat
 			has_building = building_order_castle
 		}
 	}
 
 	unlock = { # planet scope
-		exists = owner
-		owner = {
+		hidden_trigger = {
+			exists = owner
+			owner = {
 			has_toxic_knights_origin = yes
-			NOT = {
-				has_country_flag = quest_abandoned
+				NOT = {
+					has_country_flag = quest_abandoned
+				}
 			}
-		}
-		OR = {
-			has_planet_flag = toxic_knights_habitat
-			has_building = building_order_castle
+			OR = {
+				has_carrier_flag = toxic_knights_habitat
+				has_building = building_order_castle
+			}
 		}
 	}
 
@@ -56,13 +58,13 @@ zone_habitat_knights = {
 		origin
 	}
 
-    triggered_district_planet_modifier = {
+	triggered_district_planet_modifier = {
 		potential = {
 			always = yes
 		}
-        job_knight_add = @scaling_district_2_jobs
+		job_knight_add = @scaling_district_2_jobs
 		mult = owner.value:hab_void_dweller_jobs
-    }
+	}
 
 	planet_modifier = {
 		zone_building_slots_add = 3
