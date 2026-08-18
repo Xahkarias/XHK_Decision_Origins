@@ -1,5 +1,7 @@
 namespace = toxoids
 
+# Scope = Fleet
+# From = System
 fleet_event = { #Enter the toxic system, meet the entity
 	id = toxoids.7310
 	title = "toxoids.7310.name"
@@ -74,11 +76,13 @@ fleet_event = { #Enter the toxic system, meet the entity - Non Knight
 	}
 
 	option = { # What the hell is this thing??
-		name = toxoids.7311.a 
+		name = toxoids.7311.a
 	}
 }
 
 
+# Scope = Fleet
+# From = System
 fleet_event = { #Enter the toxic system, but there is not entity
 	id = toxoids.7312
 	title = "toxoids.7312.name"
@@ -147,7 +151,7 @@ country_event = { # Upon defeating the Entity
 		custom_tooltip = toxoids.7315.a.tt
 		hidden_effect = {
 			owner = {
-                set_country_flag = knights_detox
+				set_country_flag = knights_detox
 				country_event = { id = toxoids.7320 days = 900 }
 				create_fleet = {
 					name = "NAME_Toxic_God"
@@ -217,9 +221,6 @@ country_event = {
 }
 
 
-
-
-
 ######### KEEP RELATED STUFF
 
 #We lost the Keep!
@@ -236,10 +237,10 @@ country_event = {
 				has_country_flag = toxic_knights_lost_keep
 				has_country_flag = toxic_knights_destroyed_keep
 				any_owned_planet = {
-					has_planet_flag = toxic_knights_habitat
+					has_carrier_flag = toxic_knights_habitat
 				}
 				any_planet_within_border = {
-					has_planet_flag = keep_evacuated
+					has_carrier_flag = keep_evacuated
 				}
 			}
 		}
@@ -253,7 +254,7 @@ country_event = {
 					has_country_flag = toxic_knights_lost_keep
 					has_country_flag = toxic_knights_destroyed_keep
 					any_owned_planet = {
-						has_planet_flag = toxic_knights_habitat
+						has_carrier_flag = toxic_knights_habitat
 					}
 				}
 			}
@@ -270,14 +271,14 @@ country_event = {
 }
 
 #The Keep got destroyed!
-planet_event = {
+carrier_event = {
 	id = toxoids.8016
 	hide_window = yes
 
 	is_triggered_only = yes
 
 	trigger = {
-		has_planet_flag = toxic_knights_habitat
+		has_carrier_flag = toxic_knights_habitat
 		owner = {
 			has_toxic_knights_origin = yes
 		}
@@ -308,7 +309,7 @@ country_event = {
 			has_country_flag = toxic_knights_destroyed_keep
 		}
 		any_owned_planet = {
-			has_planet_flag = toxic_knights_habitat
+			has_carrier_flag = toxic_knights_habitat
 		}
 	}
 

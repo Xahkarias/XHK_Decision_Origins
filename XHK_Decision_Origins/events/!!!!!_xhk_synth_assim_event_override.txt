@@ -1,5 +1,6 @@
 namespace = synth
 
+# Fired by: situation on_monthly and event
 situation_event = { # Event to digitize pops
 	id = synth.3
 	hide_window = yes

@@ -26,11 +26,11 @@ country_event = {
 		}
 	}
 
-    option = {
-        name = "machine_age.3100.a"
-        add_tech_progress = { tech = tech_robotic_workers progress = 0.15 }
-        add_tech_progress = { tech = tech_administrative_ai progress = 0.5 }
-    }
+	option = {
+		name = "machine_age.3100.a"
+		add_tech_progress = { tech = tech_robotic_workers progress = 0.15 }
+		add_tech_progress = { tech = tech_administrative_ai progress = 0.5 }
+	}
 }
 
 country_event = {
@@ -73,11 +73,11 @@ country_event = {
 					cooldown = yes
 				}
 			}
-			random_owned_planet = {
+			random_owned_colony = {
 				limit = {
 					is_capital = yes
 				}
-				set_timed_planet_flag = {
+				set_timed_carrier_flag = {
 					flag = ignore_ai_building_limitations
 					days = 1
 				}
@@ -189,7 +189,7 @@ country_event = {
 
 	option = {
 		name = "machine_age.3120.a"
-	 	custom_tooltip = "machine_age.3120.a.tooltip"
+		custom_tooltip = "machine_age.3120.a.tooltip"
 	}
 }
 

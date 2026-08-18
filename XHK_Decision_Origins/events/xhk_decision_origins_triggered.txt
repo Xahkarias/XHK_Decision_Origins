@@ -4,7 +4,7 @@ namespace = xhk_decision_origin_triggered
 # TREE OF LIFE
 #################################################################################
 #Add ToL to new colonies
-planet_event = {
+colony_event = {
 	id = xhk_decision_origin_triggered.1
 	hide_window = yes
 
@@ -17,14 +17,24 @@ planet_event = {
 	}
 
 	immediate = {
-		add_deposit = d_tree_of_life_colony
-		remove_modifier = no_lifetree #as the planet transfer events fire before this
+		if = {
+			limit = {
+				NOT = { has_deposit = d_tree_of_life_colony }
+			}
+			add_deposit = d_tree_of_life_colony
+		}
+		if = {
+			limit = {
+				has_modifier =  #as the planet transfer events fire before this
+			}
+			remove_modifier = no_lifetree
+		}
 	}
 }
 
 #Tree destroyed (oh no!)
 #silently kill tree
-planet_event = {
+colony_event = {
 	id = xhk_decision_origin_triggered.2
 	hide_window = yes
 
@@ -77,7 +87,7 @@ planet_event = {
 }
 
 #modify the modifier for lacking Tree
-planet_event = {
+colony_event = {
 	id = xhk_decision_origin_triggered.4
 	hide_window = yes
 
@@ -199,57 +209,57 @@ country_event = {
         has_country_flag = decision_origins_necrophage
     }
 
-    immediate = {
-        capital_scope.solar_system = {
-            closest_system = {
-                limit = { has_star_flag = neighbor_t1_first_colony }
-                max_steps = 3
-                random_system_planet = {
-                    limit = {
-                        is_colonizable = yes
-                        is_colony = no
-                        has_planet_flag = prescripted_ideal
-                    }
-                    generate_very_early_pre_ftls_on_planet = yes
-                    set_name = random
-                    change_colony_foundation_date = -461
+	immediate = {
+		capital_scope.solar_system = {
+			closest_system = {
+				limit = { has_star_flag = neighbor_t1_first_colony }
+				max_steps = 3
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_carrier_flag = prescripted_ideal
+					}
+					generate_very_early_pre_ftls_on_planet = yes
+					set_name = random
+					change_colony_foundation_date = -461
 
-                    while = {
-                        count = 4
-                        create_army = {
-                            owner = last_created_country
-                            type = primitive_additional_army
-                            species = last_created_country
-                        }
-                    }
-                }
-            }
-            reroll_random = yes
-            closest_system = {
-                limit = { has_star_flag = neighbor_t2_second_colony }
-                max_steps = 6
-                random_system_planet = {
-                    limit = {
-                        is_colonizable = yes
-                        is_colony = no
-                        has_planet_flag = prescripted_ideal
-                    }
-                    generate_very_early_pre_ftls_on_planet = yes
-                    set_name = random
-                    change_colony_foundation_date = -1275
+					while = {
+						count = 4
+						create_army = {
+							owner = last_created_country
+							type = primitive_additional_army
+							species = last_created_country
+						}
+					}
+				}
+			}
+			reroll_random = yes
+			closest_system = {
+				limit = { has_star_flag = neighbor_t2_second_colony }
+				max_steps = 6
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_carrier_flag = prescripted_ideal
+					}
+					generate_very_early_pre_ftls_on_planet = yes
+					set_name = random
+					change_colony_foundation_date = -1275
 
-                    while = {
-                        count = 4
-                        create_army = {
-                            owner = last_created_country
-                            type = primitive_additional_army
-                            species = last_created_country
-                        }
-                    }
-                }
-            }
-        }
-    }
+					while = {
+						count = 4
+						create_army = {
+							owner = last_created_country
+							type = primitive_additional_army
+							species = last_created_country
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 
