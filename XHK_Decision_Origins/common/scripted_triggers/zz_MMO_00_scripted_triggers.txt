@@ -1,0 +1,65 @@
+has_void_dweller_origin = {
+	OR = {
+		has_country_flag = decision_void_dwellers
+		has_origin = origin_void_dwellers
+		has_origin = origin_void_machines
+	}
+}
+
+has_engineered_evolution_synergy = {
+	OR = {
+		has_origin = origin_syncretic_evolution
+		has_country_flag = decision_syncretic_evolution
+		has_origin = origin_life_seeded
+		has_country_flag = decision_life_seeded
+		has_origin = origin_necrophage
+		has_country_flag = decision_necrophage
+		has_origin = origin_clone_army
+		has_country_flag = decision_clone_army
+		has_origin = origin_evolutionary_predators
+		has_country_flag = decision_evolutionary_predators
+	}
+}
+
+influence_building_destruction_trigger = {
+	exists = owner
+	owner = { is_ai = yes }
+	solar_system = {
+		system_has_storm_repelling_tech = yes
+	}
+	owner = {
+		has_storm_attraction_civic = no
+		NOR = {
+			has_country_flag = decision_storm_chasers
+			has_origin = origin_storm_chasers
+		}
+	}
+}
+
+should_use_increased_treasure_trove_drops = {
+	OR = {
+		has_origin = origin_treasure_hunters
+		has_country_flag = decision_treasure_hunters
+		has_all_treasure_troves_specimens = yes
+	}
+}
+
+# Country scope
+has_precursor_intro = {
+	OR = {
+		has_country_flag = vultaum_intro
+		has_country_flag = yuht_intro
+		has_country_flag = first_league_intro
+		has_country_flag = irassian_intro
+		has_country_flag = cybrex_intro
+		has_country_flag = zroni_intro
+		has_country_flag = baol_intro
+		has_country_flag = inetian_intro
+		has_country_flag = adakkaria_intro
+		# Still in the early stages of 'On the Shoulders of Giants'
+		AND = {
+			has_shoulders_of_giants_origin = yes
+			NOT = { has_country_flag = origin_shoulders_closure }
+		}
+	}
+}

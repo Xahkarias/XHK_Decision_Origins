@@ -1,0 +1,16 @@
+
+has_wrangler_job = {
+	is_regular_empire = yes
+	OR = {
+		has_origin = origin_primal_calling
+		has_country_flag = decision_primal_calling
+	}
+}
+
+has_drone_wrangler_job = {
+	is_gestalt = yes
+	OR = {
+		has_origin = origin_primal_calling
+		has_country_flag = decision_primal_calling
+	}
+}

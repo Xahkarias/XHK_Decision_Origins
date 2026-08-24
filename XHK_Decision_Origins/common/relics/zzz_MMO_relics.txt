@@ -1,0 +1,144 @@
+########################
+# Relics - Main File
+########################
+
+
+###################
+### Origin Relics
+###################
+
+r_plasmic_core = {
+	activation_duration = @triumph_duration
+	portrait = "GFX_plasmic_core"
+	sound = "relic_activation_plasmic_core"
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = @activation_cost
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_robot_empire = no
+		}
+		logistic_growth_mult = 0.1
+	}
+	triggered_country_modifier = {
+		potential = {
+			is_robot_empire = yes
+		}
+		species_leader_exp_gain = 0.1
+	}
+
+	score = 3000
+
+	active_effect = {
+		if = {
+			limit = {
+				OR = {
+					is_robot_empire = yes
+					is_wilderness_empire = yes
+				}
+			}
+			custom_tooltip = machine_plasmic_core_effect
+			hidden_effect = {
+				random_owned_leader = {
+					add_trait = {
+						trait = random_common
+					}
+					add_trait = {
+						trait = random_common
+					}
+					add_trait = {
+						trait = random_common
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { has_origin = origin_evolutionary_predators }
+				any_owned_pop_group = {
+					is_robot_pop_group = no
+					NOT = { pop_group_has_trait = trait_plasmic }
+				}
+			}
+			custom_tooltip = plasmic_core_effect
+			hidden_effect = {
+				random_owned_planet = {
+					limit = {
+						any_owned_pop_group = {
+							is_robot_pop_group = no
+							NOT = { pop_group_has_trait = trait_plasmic }
+						}
+					}
+					every_owned_pop_group = {
+						limit = {
+							is_robot_pop_group = no
+						}
+						modify_species = {
+							species = this
+							add_trait = trait_plasmic
+							portrait = this
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_origin = origin_evolutionary_predators
+					has_country_flag = decision_evolutionary_predators
+				}
+			}
+			custom_tooltip = plasmic_core_effect_evopred
+			hidden_effect = {
+				set_country_flag = consumed_plasmic_dna
+				random_situation = {
+					limit = {
+						is_situation_type = evolutionary_predators_situation
+					}
+					add_situation_progress = value:evopred_50
+				}
+			}
+		}
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+
+	# Possible check for activation
+	possible = {
+		custom_tooltip = {
+			fail_text = "plasmic_core_no_suitable_planet"
+			OR = {
+				is_robot_empire = yes
+				is_wilderness_empire = yes
+				has_origin = origin_evolutionary_predators
+				any_owned_planet = {
+					any_owned_pop_group = {
+						is_robot_pop_group = no
+						NOT = { pop_group_has_trait = trait_plasmic }
+					}
+				}
+			}
+		}
+		inline_script = {
+			script = relics/activation_checks
+			RELIC = r_plasmic_core
+		}
+	}
+}

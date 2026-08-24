@@ -1,0 +1,631 @@
+
+namespace = bio
+
+##################################################################
+# Evolutionary Predators Events - Namespace: bio.1000 - bio.1999 #
+##################################################################
+
+# Newly colonized planets gains modifier
+carrier_event = {
+	id = bio.1010
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = game_started
+		is_colony = yes
+		owner = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+		}
+		habitable_planet_not_urban = yes
+		NOT = { has_modifier = genetic_soup }
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_carrier_flag = evolutionary_predator_assimilate@owner } }
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = days_by_planet_size
+			}
+			multiply_variable = {
+				which = days_by_planet_size
+				value = 360
+			}
+			set_carrier_flag = evolutionary_predator_assimilate@owner
+			add_modifier = {
+				modifier = fresh_biosphere
+				days = 1
+				time_multiplier = days_by_planet_size
+			}
+			carrier_event = {
+				id = bio.1020
+				days = days_by_planet_size
+				scopes = { from = owner }
+			}
+		}
+		else = {
+			add_modifier = { modifier = exhausted_biosphere }
+		}
+	}
+}
+
+carrier_event = {
+	id = bio.1015 #removes the modifier if you lose the planet
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_colony = yes
+		OR = {
+			has_modifier = fresh_biosphere
+			has_modifier = exhausted_biosphere
+			has_modifier = genetic_soup
+		}
+	}
+
+	immediate = {
+		remove_modifier = fresh_biosphere
+		remove_modifier = exhausted_biosphere
+		remove_modifier = genetic_soup
+		if = {
+			limit = {
+				from = {
+					OR = {
+						has_country_flag = decision_evolutionary_predators
+						has_origin = origin_evolutionary_predators
+					}
+				}
+				NOT = { has_carrier_flag = evolutionary_predator_assimilate@from }
+			}
+			export_trigger_value_to_variable = {
+				trigger = planet_size
+				variable = days_by_planet_size
+			}
+			multiply_variable = {
+				which = days_by_planet_size
+				value = 360
+			}
+			set_carrier_flag = evolutionary_predator_assimilate@from
+			add_modifier = { modifier = fresh_biosphere days = 1 time_multiplier = days_by_planet_size }
+		}
+		else_if = {
+			limit = {
+				from = {
+					OR = {
+						has_country_flag = decision_evolutionary_predators
+						has_origin = origin_evolutionary_predators
+					}
+				}
+			}
+			add_modifier = { modifier = exhausted_biosphere }
+		}
+	}
+}
+
+# A pop has finished purging
+# This = Planet scope
+# From = Country
+# FromFrom = Pop
+carrier_event = {
+	id = bio.1070
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+				AND = {
+					has_origin = origin_nomadic_purger
+					overlord? = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+					}
+				}
+			}
+		}
+		fromfrom = {
+			OR = {
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+				is_archetype = PRESAPIENT
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					has_origin = origin_nomadic_purger
+				}
+			}
+			fromfrom = {
+				switch = {
+					trigger = is_species_class
+					HUM = {
+						from.overlord = { set_evopred_flag = { TYPE = humanoid } }
+					}
+					MAM = {
+						from.overlord = { set_evopred_flag = { TYPE = mammalian } }
+					}
+					REP = {
+						from.overlord = { set_evopred_flag = { TYPE = reptilian } }
+					}
+					AVI = {
+						from.overlord = { set_evopred_flag = { TYPE = avian } }
+					}
+					ART = {
+						from.overlord = { set_evopred_flag = { TYPE = arthropoid } }
+					}
+					MOL = {
+						from.overlord = { set_evopred_flag = { TYPE = molluscoid } }
+					}
+					FUN = {
+						from.overlord = { set_evopred_flag = { TYPE = fungoid } }
+					}
+					PLANT = {
+						from.overlord = { set_evopred_flag = { TYPE = plantoid } }
+					}
+					LITHOID = {
+						from.overlord = { set_evopred_flag = { TYPE = lithoid } }
+					}
+					NECROID = {
+						from.overlord = { set_evopred_flag = { TYPE = necroid } }
+					}
+					AQUATIC = {
+						from.overlord = { set_evopred_flag = { TYPE = aquatic } }
+					}
+					TOX = {
+						from.overlord = { set_evopred_flag = { TYPE = toxoid } }
+					}
+					INF = {
+						from.overlord = { set_evopred_flag = { TYPE = infernal } }
+					}
+					PRE_MAM = {
+						from.overlord = { set_evopred_flag = { TYPE = mammalian } }
+					}
+					PRE_REP = {
+						from.overlord = { set_evopred_flag = { TYPE = reptilian } }
+					}
+					PRE_AVI = {
+						from.overlord = { set_evopred_flag = { TYPE = avian } }
+					}
+					PRE_ART = {
+						from.overlord = { set_evopred_flag = { TYPE = arthropoid } }
+					}
+					PRE_MOL = {
+						from.overlord = { set_evopred_flag = { TYPE = molluscoid } }
+					}
+					PRE_FUN = {
+						from.overlord = { set_evopred_flag = { TYPE = fungoid } }
+					}
+					PRE_PLANT = {
+						from.overlord = { set_evopred_flag = { TYPE = plantoid } }
+					}
+					PRE_LITHOID = {
+						from.overlord = { set_evopred_flag = { TYPE = lithoid } }
+					}
+					PRE_AQUATIC = {
+						from.overlord = { set_evopred_flag = { TYPE = aquatic } }
+					}
+					PRE_TOX = {
+						from.overlord = { set_evopred_flag = { TYPE = toxoid } }
+					}
+					PSIONIC = {
+						from.overlord = { set_evopred_flag = { TYPE = psionic } }
+					}
+					PRE_INF = {
+						from.overlord = { set_evopred_flag = { TYPE = infernal } }
+					}
+				}
+			}
+		}
+		else = {
+			fromfrom = {
+				switch = {
+					trigger = is_species_class
+					HUM = {
+						from = { set_evopred_flag = { TYPE = humanoid } }
+					}
+					MAM = {
+						from = { set_evopred_flag = { TYPE = mammalian } }
+					}
+					REP = {
+						from = { set_evopred_flag = { TYPE = reptilian } }
+					}
+					AVI = {
+						from = { set_evopred_flag = { TYPE = avian } }
+					}
+					ART = {
+						from = { set_evopred_flag = { TYPE = arthropoid } }
+					}
+					MOL = {
+						from = { set_evopred_flag = { TYPE = molluscoid } }
+					}
+					FUN = {
+						from = { set_evopred_flag = { TYPE = fungoid } }
+					}
+					PLANT = {
+						from = { set_evopred_flag = { TYPE = plantoid } }
+					}
+					LITHOID = {
+						from = { set_evopred_flag = { TYPE = lithoid } }
+					}
+					NECROID = {
+						from = { set_evopred_flag = { TYPE = necroid } }
+					}
+					AQUATIC = {
+						from = { set_evopred_flag = { TYPE = aquatic } }
+					}
+					TOX = {
+						from = { set_evopred_flag = { TYPE = toxoid } }
+					}
+					INF = {
+						from = { set_evopred_flag = { TYPE = infernal } }
+					}
+					PRE_MAM = {
+						from = { set_evopred_flag = { TYPE = mammalian } }
+					}
+					PRE_REP = {
+						from = { set_evopred_flag = { TYPE = reptilian } }
+					}
+					PRE_AVI = {
+						from = { set_evopred_flag = { TYPE = avian } }
+					}
+					PRE_ART = {
+						from = { set_evopred_flag = { TYPE = arthropoid } }
+					}
+					PRE_MOL = {
+						from = { set_evopred_flag = { TYPE = molluscoid } }
+					}
+					PRE_FUN = {
+						from = { set_evopred_flag = { TYPE = fungoid } }
+					}
+					PRE_PLANT = {
+						from = { set_evopred_flag = { TYPE = plantoid } }
+					}
+					PRE_LITHOID = {
+						from = { set_evopred_flag = { TYPE = lithoid } }
+					}
+					PRE_AQUATIC = {
+						from = { set_evopred_flag = { TYPE = aquatic } }
+					}
+					PRE_TOX = {
+						from = { set_evopred_flag = { TYPE = toxoid } }
+					}
+					PSIONIC = {
+						from = { set_evopred_flag = { TYPE = psionic } }
+					}
+					PRE_INF = {
+						from = { set_evopred_flag = { TYPE = infernal } }
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bio.1075
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_democratic_authority = yes
+		is_mutation_authority = yes
+	}
+
+	immediate = {
+		remove_country_flag = imperialist_leading
+		remove_country_flag = isolationist_leading
+		remove_country_flag = progressive_leading
+		remove_country_flag = prosperity_leading
+		remove_country_flag = supremacist_leading
+		remove_country_flag = technologist_leading
+		remove_country_flag = totalitarian_leading
+		remove_country_flag = traditionalist_leading
+		remove_country_flag = xenoist_leading
+		remove_country_flag = manifesti_leading
+		ordered_pop_faction = {
+			position = 0
+			order_by = trigger:pop_amount
+			switch = {
+				trigger = is_pop_faction_type
+				imperialist = {
+					root = { set_country_flag = imperialist_leading }
+				}
+				isolationist = {
+					root = { set_country_flag = isolationist_leading }
+				}
+				progressive = {
+					root = { set_country_flag = progressive_leading }
+				}
+				prosperity = {
+					root = { set_country_flag = prosperity_leading }
+				}
+				supremacist = {
+					root = { set_country_flag = supremacist_leading }
+				}
+				technologist = {
+					root = { set_country_flag = technologist_leading }
+				}
+				totalitarian = {
+					root = { set_country_flag = totalitarian_leading }
+				}
+				traditionalist = {
+					root = { set_country_flag = traditionalist_leading }
+				}
+				xenoist = {
+					root = { set_country_flag = xenoist_leading }
+				}
+				manifesti = {
+					root = { set_country_flag = manifesti_leading }
+				}
+			}
+		}
+	}
+}
+
+# A war has been won
+# Root = Winner Warleader
+# From = Loser Warleader
+# FromFrom = War
+country_event = {
+	id = bio.1080
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		is_dictatorial_authority = yes
+	}
+
+	immediate = {
+		from.species = {
+			apex_predator_switch = {
+				COUNTRY = root
+			}
+		}
+	}
+}
+
+# A galcom resolution failed to pass
+# this/root = proposer
+# from = target if valid
+country_event = {
+	id = bio.1085
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+			is_mutation_authority = yes
+			is_dictatorial_authority = yes
+			position_on_last_resolution = oppose
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				OR = {
+					has_country_flag = decision_evolutionary_predators
+					has_origin = origin_evolutionary_predators
+				}
+				is_mutation_authority = yes
+				is_dictatorial_authority = yes
+				position_on_last_resolution = oppose
+			}
+			root.species = {
+				apex_predator_switch = {
+					COUNTRY = prev
+				}
+			}
+		}
+	}
+}
+
+# This = subject
+# From = subject's overlord
+country_event = {
+	id = bio.1090
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+			is_mutation_authority = yes
+			is_dictatorial_authority = yes
+		}
+	}
+
+	immediate = {
+		species = {
+			apex_predator_switch = {
+				COUNTRY = from
+			}
+		}
+	}
+}
+
+# Executed when a ruler is created. Called after the leader is set as ruler of the country
+# This = Country
+# FROM = Leader
+country_event = {
+	id = bio.1095
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		is_dictatorial_authority = yes
+		ruler = {
+			NOT = { has_trait = trait_ruler_apex_predator }
+		}
+	}
+
+	immediate = {
+		ruler = {
+			add_trait = {
+				trait = trait_ruler_apex_predator
+			}
+		}
+		if = {
+			limit = {
+				is_overlord = yes
+			}
+			every_subject = {
+				country_event = {
+					id = bio.1090
+					days = 5
+					scopes = {
+						from = root
+					}
+				}
+			}
+		}
+	}
+}
+
+# Executed just as country is changing its government, after the new one is applied
+# THIS = country
+country_event = {
+	id = bio.1100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		is_dictatorial_authority = no
+		any_owned_leader = {
+			has_trait = trait_ruler_apex_predator
+		}
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				has_trait = trait_ruler_apex_predator
+			}
+			remove_trait = trait_ruler_apex_predator
+		}
+	}
+}
+
+
+# Scope: Leader (after assignment)
+leader_event = {
+	id = bio.1115
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_councilor = yes
+		is_immortal = no
+		is_organic_species = yes
+		owner = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+			is_mutation_authority = yes
+			is_oligarchic_authority = yes
+		}
+	}
+
+	immediate = {
+		set_immortal = yes
+		set_leader_flag = evopred_oligarch_immortal
+	}
+}
+
+# Executed just as country is changing its government, after the new one is applied
+# THIS = country
+country_event = {
+	id = bio.1130
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		is_oligarchic_authority = no
+		any_owned_leader = {
+			has_leader_flag = evopred_oligarch_immortal
+		}
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = evopred_oligarch_immortal
+			}
+			set_immortal = no
+			remove_leader_flag = evopred_oligarch_immortal
+		}
+	}
+}
+
+country_event = {
+	id = bio.1131
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		is_oligarchic_authority = yes
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				is_councilor = yes
+				is_immortal = no
+				is_organic_species = yes
+			}
+			set_immortal = yes
+			set_leader_flag = evopred_oligarch_immortal
+		}
+	}
+}

@@ -1,0 +1,30 @@
+
+
+trait_pc_habitat_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_habitat_preference.dds"
+	short_name = "trait_pc_habitat_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+		hidden_trigger = { exists = from }
+		from = {
+			OR = {
+				has_origin = origin_void_dwellers
+				has_country_flag = decision_void_dwellers
+			}
+		}
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	species_possible_remove = {
+		NOT = { has_trait = trait_void_dweller_1 }
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	modifier = {
+		pc_habitat_habitability = @primary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}

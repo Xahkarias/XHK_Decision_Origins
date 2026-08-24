@@ -1,0 +1,79 @@
+
+
+@diff_t0 = 4
+@diff_t1 = 5
+@diff_t2 = 6
+@diff_t3 = 7
+@diff_t4 = 8
+@diff_t5 = 9
+@diff_t6 = 10
+@diff_t7 = 11
+@diff_t8 = 12
+@diff_t9 = 13
+
+@operationTargetedByTimer = 10800 
+
+operation_evolutionary_predator_procure_dna = {
+	target = none
+	categories = { op_cat_subterfuge op_cat_government }
+	picture = GFX_evt_genetic_modification
+	desc = operation_evolutionary_predator_procure_dna_desc
+	stages = 3
+
+	resources = {
+		category = operations
+		cost = {
+			influence = 45
+		}
+		upkeep = {
+			energy = 6
+		}
+	}
+
+	spy_power_cost = 30
+	potential = {
+		owner = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+		}
+		target = {
+			is_primitive = no
+			is_synthetic_empire = no #Robots don't have DNA
+			species = { NOT = { is_same_species = root.owner.species } }
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = { #Install operatives
+		difficulty = @diff_t1
+		icon = GFX_espionage_chapter_icon_surveillance
+		event = bio.1050
+	}
+	stage = { #Target identified
+		difficulty = @diff_t1
+		icon = GFX_espionage_chapter_icon_target
+		event = bio.1055
+	}
+	stage = { #Result
+		difficulty = @diff_t1
+		icon = GFX_espionage_chapter_icon_motion
+		event = bio.1060
+	}
+	on_roll_failed = {
+		standard_espionage_operation_on_roll_failed = { RANDOM_EVENTS = operation_random_events_generic }
+	}
+	on_create = {
+		target = {
+			set_timed_country_flag = {
+				flag = espionage_operation_targeted_by@root.owner #Used in random Spy Network events
+				days = @operationTargetedByTimer
+			}
+		}
+	}
+}

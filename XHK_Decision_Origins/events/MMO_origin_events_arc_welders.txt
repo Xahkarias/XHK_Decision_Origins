@@ -1,0 +1,18 @@
+namespace = mmo_arc_welders
+
+
+event = {
+id = mmo_arc_welders.01
+hide_window = yes
+is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				has_country_flag = decision_arc_welders
+			}
+			mmo_arc_welders_start_effect = yes
+		}
+	}
+}
+

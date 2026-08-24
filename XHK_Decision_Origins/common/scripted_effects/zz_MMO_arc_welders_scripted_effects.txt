@@ -1,0 +1,88 @@
+mmo_arc_welders_start_effect = {
+	save_event_target_as = arc_welders_empire
+	capital_scope.solar_system = {
+		# Prefer existing molten planets...
+		random_system_planet = {
+			limit = {
+				is_moon = no
+				is_planet_class = pc_molten
+				NOT = {
+					has_deposit_for = shipclass_research_station
+				}
+			}
+			save_event_target_as = arc_furnace_site
+		}
+		# If none exist, find a toxic or barren planet instead...
+		if = {
+			limit = {
+				NOT = {
+					exists = event_target:arc_furnace_site
+				}
+			}
+			random_system_planet = {
+				limit = {
+					is_moon = no
+					OR = {
+						is_planet_class = pc_toxic
+						is_planet_class = pc_barren
+					}
+					NOT = {
+						has_deposit_for = shipclass_research_station
+					}
+				}
+				change_pc = pc_molten
+				save_event_target_as = arc_furnace_site
+			}
+		}
+		# Failing that, resort to a molten, toxic or barren moon
+		if = {
+			limit = {
+				NOT = {
+					exists = event_target:arc_furnace_site
+				}
+			}
+			random_system_planet = {
+				limit = {
+					OR = {
+						is_planet_class = pc_molten
+						is_planet_class = pc_toxic
+						is_planet_class = pc_barren
+						is_planet_class = pc_barren_cold
+					}
+					NOT = {
+						has_deposit_for = shipclass_research_station
+					}
+				}
+				change_pc = pc_molten
+				save_event_target_as = arc_furnace_site
+			}
+		}
+		spawn_megastructure = {
+			type = orbital_arc_furnace_1
+			owner = event_target:arc_welders_empire
+			planet = event_target:arc_furnace_site
+			coords_from = event_target:arc_furnace_site
+			graphical_culture = event_target:arc_welders_empire
+		}
+		closest_system = {
+			
+			spawn_system = { min_distance = 5 max_distance = 10 initializer = arc_welders_construction_system hyperlane = yes max_jumps=1 } #Add ideal 2nd Arc Furnace site in new system, don't override a guarantied habitable
+		}
+	}
+	country_event = {
+		id = machine_age.3410	# Need to set the variable for number of arc furnaces constructed
+		days = 1
+	}
+	give_technology = { tech = tech_orbital_arc_furnace message = no}
+	capital_scope = {
+		while = {
+			count = 3
+			random_owned_pop_group = {
+				limit = {
+					is_same_species = event_target:arc_welders_empire.species
+				}
+				kill_single_pop = yes
+			}
+		}
+	}
+}

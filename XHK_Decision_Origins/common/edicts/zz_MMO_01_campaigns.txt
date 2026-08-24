@@ -1,0 +1,68 @@
+
+@Edict1Cost = 20
+@Edict2Cost = 25
+@Edict3Cost = 30
+
+@EdictDuration = -1
+
+# Sets the cost for all campaigns with this variable
+@campaignCost = 15
+@hiveFood = 15
+@infernalAlloys = 4
+@campaignDuration = -1
+
+
+zro_observators = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_zro = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		biologist_jobs_bonus_workforce_mult = 0.1
+	}
+
+	potential = {
+		OR = {
+			has_country_flag = decision_shroud_forged
+			has_origin = origin_shroud_forged
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+	}
+}
+
+shroud_bonded = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_zro = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		country_unity_produces_mult = 0.1
+	}
+
+	potential = {
+		OR = {
+			has_country_flag = decision_shroud_forged
+			has_origin = origin_shroud_forged
+		}
+		has_country_flag = finish_shroud_forged_liberation_flag
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+	}
+}

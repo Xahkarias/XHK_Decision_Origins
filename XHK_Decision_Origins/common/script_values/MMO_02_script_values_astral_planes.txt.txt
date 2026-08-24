@@ -1,0 +1,22 @@
+###################################
+# Scripted Values - Astral Planes #
+###################################
+
+progressive_rifts_additional_weight = {
+	base = 1
+	modifier = {
+		multiply = 2
+		OR = {
+			has_country_flag = decision_riftworld
+			has_origin = origin_riftworld
+		}
+	}
+	modifier = {
+		multiply = 2
+		is_dimensional_worship_empire = yes
+	}
+	modifier = {
+		multiply = 10
+		has_country_flag = situation_a_rift_in_space_locked
+	}
+}

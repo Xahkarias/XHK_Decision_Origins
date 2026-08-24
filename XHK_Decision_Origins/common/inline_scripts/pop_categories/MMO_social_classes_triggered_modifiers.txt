@@ -1,0 +1,18 @@
+triggered_pop_group_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_origin = origin_evolutionary_predators
+				has_country_flag = decision_evolutionary_predators
+			}
+			is_mutation_authority = yes
+		}
+		species = {
+			is_variable_set = species_traits_evopred_count
+		}
+	}
+	key = origin_evolutionary_predators
+	species_empire_size_mult = -0.01
+	mult = species.species_traits_evopred_count
+}

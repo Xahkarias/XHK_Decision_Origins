@@ -1,0 +1,224 @@
+### Stormfall Situation ###
+
+# Fired by: on_game_start_country
+country_event = { #
+	id = cstorms.3101
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_cosmic_storms_dlc = yes
+		OR = {
+			has_country_flag = decision_storm_chasers
+			has_origin = origin_storm_chasers
+		}
+	}
+
+	immediate = {
+		owner.capital_scope = {
+			create_ambient_object = {
+				type = nebula_L3_entity
+				scale = 0.02
+				location = this
+				use_3d_location = yes
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = stormfall_planet_nascent
+			}
+			add_modifier = {
+				modifier = cs_storm_chasers_homeworld_storm_attraction
+			}
+			create_influence_field_if_needed = yes
+		}
+
+		start_situation = {
+			type = situation_stormfall
+			target = root
+		}
+	}
+}
+
+country_event = {
+	id = cstorms.3205
+	title = "cstorms.3205.name"
+	picture = GFX_evt_cosmic_storms_shroud_storm
+	show_sound = event_public_unrest
+
+	is_triggered_only = yes
+
+	desc = {
+		trigger = {
+			is_gestalt = no
+		}
+		text = "cstorms.3205.normal"
+	}
+	desc = {
+		trigger = {
+			is_gestalt = yes
+		}
+		text = "cstorms.3205.gestalt"
+	}
+
+	trigger = {
+		has_cosmic_storms_dlc = yes
+		OR = {
+			has_country_flag = decision_storm_chasers
+			has_origin = origin_storm_chasers
+		}
+	}
+
+	option = {
+		name = "cstorms.3205.a"
+		custom_tooltip = "cstorms.3205.tooltip"
+		add_modifier = {
+			modifier = cs_storm_chasers_bad_vibes
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = cstorms.300
+				}
+			}
+		}
+	}
+}
+
+# Storm Frenzy: Genesis of the Big One
+country_event = {
+	id = cstorms.3230
+	title = "cstorms.3230.name"
+	desc = "cstorms.3230.desc"
+	picture = GFX_evt_cosmic_storms_nexus_storm
+	show_sound = event_conversation
+	event_chain = cs_stormfrenzy_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		spawn_random_storm = {
+			type = "nexus_storm"
+			cosmic_storm_start_position = capital_scope.solar_system
+			immediate = yes
+		}
+		every_ambient_object = {
+			limit = {
+				has_ambient_object_flag = nascent_nexus_storm
+			}
+			destroy_ambient_object = this
+		}
+
+		set_country_flag = is_nexus_spawner
+		set_country_flag = has_spawned_nexus_storm
+	}
+
+	option = {
+		name = "cstorms.3230.a"
+		end_event_chain = cs_stormfrenzy_chain
+		custom_tooltip = "nexus_opinion_summon_hit_tt"
+		trigger = {
+			owner = { 
+				OR = {
+					has_country_flag = decision_storm_chasers
+					has_origin = origin_storm_chasers
+				}
+			}
+		} #we do this so the little storm chaser icon appears with this option.
+	}
+
+	after = {
+		remove_country_flag = is_nexus_spawner
+
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					is_country_type = default
+					has_communications = from
+					NOT = {
+						is_same_value = root
+					}
+				}
+				remove_opinion_modifier = {
+					who = root
+					modifier = nexus_opinion_third_hit
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = nexus_opinion_summon_hit
+				}
+			}
+		}
+	}
+}
+
+# Storm Frenzy: Storm Coda
+country_event = {
+	id = cstorms.3235
+	title = "cstorms.3235.name"
+	desc = "cstorms.3235.desc"
+	picture = GFX_evt_origin_stormchasers_specialproject
+	show_sound = event_conversation
+	event_chain = cs_stormfrenzy_chain
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_ambient_object = {
+			limit = {
+				has_ambient_object_flag = nascent_nexus_storm
+			}
+			destroy_ambient_object = this
+		}
+	}
+
+	option = {
+		name = "cstorms.3235.a"
+		end_event_chain = cs_stormfrenzy_chain
+		custom_tooltip = "cstorms.3235.a.tt"
+		trigger = {
+			owner = { 
+				OR = {
+					has_country_flag = decision_storm_chasers
+					has_origin = origin_storm_chasers
+				}
+			}
+		} #we do this so the little storm chaser icon appears with this option.
+		owner = {
+			if = {
+				limit = { is_gestalt = yes }
+				add_modifier = { modifier = cs_storm_chasers_the_code_gestalt }
+				remove_modifier = cs_storm_chasers_storm_frenzy_3_gestalt
+			}
+			else = {
+				add_modifier = { modifier = cs_storm_chasers_the_code }
+				remove_modifier = cs_storm_chasers_storm_frenzy_3
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					is_country_type = default
+					has_communications = from
+					NOT = {
+						is_same_value = root
+					}
+				}
+				remove_opinion_modifier = {
+					who = root
+					modifier = nexus_opinion_second_hit
+				}
+				remove_opinion_modifier = {
+					who = root
+					modifier = nexus_opinion_third_hit
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = nexus_opinion_the_code
+				}
+			}
+		}
+	}
+}

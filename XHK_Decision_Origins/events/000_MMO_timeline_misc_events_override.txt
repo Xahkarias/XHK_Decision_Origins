@@ -1,0 +1,124 @@
+namespace = timeline
+
+### Resource Consolidation ###
+
+# Creates Machine World
+carrier_event = {
+	id = timeline.57
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			is_planet_class = pc_machine
+		}
+		owner = {
+			OR = {
+				has_country_flag = decision_resource_consolidation
+				has_origin = origin_machine
+			}
+			is_country_type = default
+			NOT = { has_country_flag = resource_consolidation_created_machine_world }
+		}
+	}
+
+	immediate = {
+		this = {
+			save_event_target_as = this_planet
+		}
+
+		owner = {
+			set_country_flag = resource_consolidation_created_machine_world
+			save_event_target_as = this_country
+			add_timeline_event = {
+				type = timeline_origin_specific
+				override_id = timeline_resource_consolidation_created_machine_world
+				override_tooltip = "TIMELINE_EVENT_RESOURCE_CONSOLIDATION_TOOLTIP"
+				override_types = { }
+				override_text = { "text:TIMELINE_EVENT_RESOURCE_CONSOLIDATION" }
+				override_texture = { "background:GFX_evt_ai_planet" }
+				targets = { }
+			}
+		}
+	}
+}
+
+### Void Dwellers ###
+
+# Built Second Habitat
+country_event = {
+	id = timeline.61
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		count_system_within_border = {
+			count >= 2
+			limit = {
+				any_system_planet = { is_planet_class = pc_habitat }
+			}
+		}
+		OR = {
+			has_country_flag = decision_void_dwellers
+			has_origin = origin_void_dwellers
+		}
+		is_country_type = default
+		NOT = { has_country_flag = void_dwellers_built_second_habitat }
+	}
+
+	immediate = {
+		set_country_flag = void_dwellers_built_second_habitat
+		save_event_target_as = this_country
+		add_timeline_event = {
+			type = timeline_origin_specific
+			override_id = timeline_void_dwellers_built_second_habitat
+			override_tooltip = "TIMELINE_EVENT_VOID_DWELLERS_TOOLTIP"
+			override_types = { }
+			override_text = { "text:TIMELINE_EVENT_VOID_DWELLERS" }
+			override_texture = { "background:GFX_evt_shattered_planet" }
+			targets = { }
+		}
+	}
+}
+
+### BIOGENESIS TIMELINE EVENTS
+
+# Absorb a Species Trait
+
+country_event = {
+	id = timeline.90
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		NOT = {
+			owner = {
+				has_country_flag = evopred_first_absorb_flag
+			}
+		}
+	}
+
+	immediate = {
+		save_event_target_as = this_country
+		add_timeline_event = {
+			type = timeline_empire
+			override_id = timeline_evopred_absorb
+			override_tooltip = "TIMELINE_EVENT_EVOPRED_ABSORB_TOOLTIP"
+			override_types = { country }
+			override_text = { "text:TIMELINE_EVENT_EVOPRED_ABSORB" }
+			override_texture = { "background:GFX_origin_evolutionary_predators" }
+			targets = {event_target:this_country }
+		}
+	}
+
+	after = {
+		owner = {
+			set_country_flag = evopred_first_absorb_flag
+		}
+	}
+}

@@ -1,0 +1,37 @@
+##################################
+# Scripted Triggers - BioGenesis #
+##################################
+
+has_mutation_environmental_integration_tradition = {
+	OR = {
+		has_country_flag = genetic_ascension_stage_1_mutation
+		has_origin = origin_evolutionary_predators
+		has_country_flag = decision_evolutionary_predators
+	}
+	has_genetic_stage_1_tradition = yes
+}
+
+
+
+has_mutation_somatic_subversiveness_tradition = {
+	OR = {
+		has_country_flag = genetic_ascension_stage_2_mutation
+		has_origin = origin_evolutionary_predators
+		has_country_flag = decision_evolutionary_predators
+	}
+	has_genetic_stage_2_tradition = yes
+}
+
+
+
+has_mutation_nucleotide_isolation_tradition = {
+	custom_tooltip = {
+		text = has_mutation_nucleotide_isolation_tradition_tt
+		OR = {
+			has_country_flag = genetic_ascension_stage_3_mutation
+			has_origin = origin_evolutionary_predators
+			has_country_flag = decision_evolutionary_predators
+		}
+		has_genetic_stage_3_tradition = yes
+	}
+}

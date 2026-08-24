@@ -1,0 +1,36 @@
+demand = { # "TRADITIONALIST_NO_TOMB_WORLDS"
+	title = "TRADITIONALIST_NO_TOMB_WORLDS"
+	unfulfilled_title = "TRADITIONALIST_TOMB_WORLDS"
+	desc = "TRADITIONALIST_NO_TOMB_WORLDS_DESC"
+
+	unfulfilled_effect = -5
+	fulfilled_effect = 0.001
+
+	potential = {
+		exists = owner
+		owner = {
+			has_surveyed_class = pc_nuked
+			NOR = {
+				has_origin = origin_post_apocalyptic
+				has_origin = origin_post_apocalyptic_machines
+					has_country_flag = decision_post_apocalyptic
+				has_country_flag = worm_tomb_ending
+				has_valid_civic = civic_memorialist
+			}
+		}
+	}
+
+	trigger = {
+		owner = {
+			NOR = {
+				any_owned_planet = {
+					is_planet_class = pc_nuked
+				}
+				any_planet_within_border = {
+					is_planet_class = pc_nuked
+					is_terraforming = yes
+				}
+			}
+		}
+	}
+}

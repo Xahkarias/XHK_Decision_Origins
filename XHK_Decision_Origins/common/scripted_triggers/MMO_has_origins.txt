@@ -1,0 +1,6 @@
+has_shoulders_of_giants_origin = {
+    OR = {
+        has_country_flag = decision_shoulders_of_giants
+        has_origin = origin_shoulders_of_giants
+    }
+}

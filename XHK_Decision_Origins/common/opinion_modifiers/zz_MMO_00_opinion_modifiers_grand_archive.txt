@@ -1,0 +1,27 @@
+#########################
+# Primal Calling Origin #
+#########################
+
+triggered_opinion_primal_calling_origin = {
+	trigger = {
+		is_homicidal = no
+		is_xenophobe = no
+		is_fallen_empire = no
+		FROM = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+			OR = {
+				has_modifier = primal_calling_shelter_modifier
+				has_modifier = primal_calling_symbiosis_modifier
+			}
+		}
+	}
+	opinion = {
+		base = @primal_calling_animal_handler_opinion_bonus
+		modifier = {
+			factor = from.trigger:num_vivarium_slots
+		}
+	}
+}

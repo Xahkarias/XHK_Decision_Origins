@@ -1,0 +1,40 @@
+
+
+
+decision_evolutionary_predators_governments_policy = {
+	potential = {
+		has_country_flag = decision_evolutionary_predators
+		is_mutation_authority = yes
+	}
+	
+	option = {
+		name = "decision_evolutionary_predators_governments"
+		
+		on_enabled = {
+			hidden_effect = {
+				set_country_flag = decision_evolutionary_predators_governments
+				remove_country_flag = decision_evolutionary_predators_governments
+				advanced_authority_refresh = yes
+			}
+		}
+		
+		ai_weight = {
+			weight = 0
+		}
+	}
+	
+	option = {
+		name = "decision_evolutionary_predators_no_governments"
+		
+		on_enabled = {
+			hidden_effect = {
+				remove_country_flag = decision_evolutionary_predators_governments
+				advanced_authority_refresh = yes
+			}
+		}
+		
+		ai_weight = {
+			weight = 0
+		}
+	}
+}

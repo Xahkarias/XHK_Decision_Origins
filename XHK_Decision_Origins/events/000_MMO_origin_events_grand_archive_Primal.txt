@@ -1,0 +1,441 @@
+
+namespace = grand_archive
+
+# From = space fauna
+# FROMFROM = contact system
+country_event = {
+	id = grand_archive.1001
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_primal_calling
+			has_country_flag = decision_primal_calling
+		}
+		from = { is_capturable_space_critter_country_type = yes }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					which = space_fauna_contacted
+					value = 1
+				}
+				NOT = { has_country_flag = origin_primal_calling_alignment_chosen }
+			}
+			set_country_flag = origin_primal_calling_alignment_chosen
+			country_event = {
+				id = grand_archive.1002
+				days = 30
+				scopes = { from = from }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = space_fauna_contacted
+					value = 3
+				}
+				NOT = { has_country_flag = origin_primal_calling_debris_spawned }
+			}
+			set_country_flag = origin_primal_calling_debris_spawned
+			country_event = {
+				id = grand_archive.1060
+				days = 1
+				scopes = {
+					from = from
+					fromfrom = fromfrom
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_encountered_every_fauna = yes
+				NOT = { has_country_flag = origin_primal_calling_paragon_met }
+			}
+			set_country_flag = origin_primal_calling_paragon_met
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						is_homicidal = no
+						check_variable = {
+							which = hunted_space_fauna
+							value < 2
+						}
+					}
+					# Hunter Paragon Leader
+					if = {
+						limit = { is_homicidal = yes }
+						country_event = {
+							id = grand_archive.1069
+							days = 180
+							scopes = { from = fromfrom }
+						}
+					}
+					else = {
+						country_event = {
+							id = grand_archive.1070
+							days = 180
+							scopes = { from = fromfrom }
+						}
+					}
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = {
+								which = hunted_space_fauna
+								value > 2
+							}
+							is_homicidal = yes
+						}
+					}
+					# Researcher Paragon Leader
+					country_event = {
+						id = grand_archive.1080
+						days = 180
+						scopes = { from = fromfrom }
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+# Primal Calling Space Fauna spawn for communication
+country_event = {
+	id = grand_archive.1005
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		mid_game_years_passed >= 0
+		OR = {
+			has_origin = origin_primal_calling
+			has_country_flag = decision_primal_calling
+		}
+		if = {
+			limit = {
+				is_nomadic = yes
+			}
+			any_owned_nonprimary_starbase = {
+				is_waystation_starbase = yes
+			}
+		}
+		OR = {
+			NOR = {
+				has_communications = event_target:tiyanki_country
+				has_active_first_contact_with = event_target:tiyanki_country
+			}
+			NOR = {
+				has_communications = event_target:amoeba_country
+				has_active_first_contact_with = event_target:amoeba_country
+			}
+			NOR = {
+				has_communications = event_target:crystal_country
+				has_active_first_contact_with = event_target:crystal_country
+			}
+			NOR = {
+				has_communications = event_target:voidworms_country
+				has_active_first_contact_with = event_target:voidworms_country
+			}
+			NOR = {
+				has_communications = event_target:cutholoids_country
+				has_active_first_contact_with = event_target:cutholoids_country
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				is_nomadic = no
+			}
+			every_system_within_border = {
+				limit = {
+					NOT = { exists = event_target:spawn_system }
+					any_neighbor_system = {
+						NOT = { exists = owner }
+					}
+				}
+				random_neighbor_system = {
+					limit = {
+						NOT = { exists = owner }
+					}
+					save_event_target_as = spawn_system
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:spawn_system }
+				}
+				random_system_within_border = {
+					save_event_target_as = spawn_system
+				}
+			}
+		}
+		else = {
+			random_owned_nonprimary_starbase = {
+				limit = {
+					is_waystation_starbase = yes
+					solar_system = {
+						NOT = { exists = owner }
+					}
+				}
+				solar_system = {
+					save_event_target_as = spawn_system
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:spawn_system }
+				}
+				random_owned_nonprimary_starbase = {
+					limit = {
+						is_waystation_starbase = yes
+					}
+					solar_system = {
+						save_event_target_as = spawn_system
+					}
+				}
+			}
+		}
+		event_target:spawn_system = {
+			random_system_planet = {
+				random_list = {
+					1 = {
+						modifier = {
+							factor = 0
+							root = {
+								OR = {
+									has_communications = event_target:tiyanki_country
+									has_active_first_contact_with = event_target:tiyanki_country
+								}
+							}
+						}
+						create_tiyanki_country = yes
+						spawn_from_location_tiyanki = { LOCATION = prevprev }
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							root = {
+								OR = {
+									has_communications = event_target:amoeba_country
+									has_active_first_contact_with = event_target:amoeba_country
+								}
+							}
+						}
+						create_amoeba_country = yes
+						spawn_from_location_space_amoeba = { LOCATION = prevprev }
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							root = {
+								OR = {
+									has_communications = event_target:crystal_country
+									has_active_first_contact_with = event_target:crystal_country
+								}
+							}
+						}
+						create_crystal_country = yes
+						spawn_from_location_crystalline_entity = { LOCATION = prevprev }
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							voidworms_enabled = no
+						}
+						modifier = {
+							factor = 0
+							root = {
+								OR = {
+									has_communications = event_target:voidworms_country
+									has_active_first_contact_with = event_target:voidworms_country
+								}
+							}
+						}
+						create_voidworms_country = yes
+						spawn_from_location_voidworm = { LOCATION = prevprev }
+					}
+					1 = {
+						modifier = {
+							factor = 0
+							cutholoids_enabled = no
+						}
+						modifier = {
+							factor = 0
+							root = {
+								OR = {
+									has_communications = event_target:cutholoids_country
+									has_active_first_contact_with = event_target:cutholoids_country
+								}
+							}
+						}
+						create_cutholoids_country = yes
+						spawn_from_location_cutholoid = { LOCATION = prevprev }
+					}
+				}
+			}
+		}
+	}
+}
+
+carrier_event = {
+	id = grand_archive.1010
+	title = "colony_mod.2.name"
+	desc = "grand_archive.1010.desc"
+	picture = GFX_evt_alien_nature
+	show_sound = event_air_raid_siren
+	location = ROOT
+	trackable = yes
+
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+	}
+
+	trigger = {
+		has_modifier = "titanic_life"
+		owner = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+		}
+		NOT = { has_carrier_flag = titanic_life_colony_flag }
+		pop_amount > 0
+	}
+
+	immediate = {
+		set_carrier_flag = titanic_life_colony_flag
+	}
+
+	option = {
+		name = grand_archive.1010.a
+		add_modifier = {
+			modifier = untamed_wilds
+			days = -1
+		}
+	}
+}
+
+# Chance to spawn Titanic Life if Primal Calling
+ship_event = {
+	id = grand_archive.1015
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+		}
+		from = {
+			OR = {
+				is_planet_class = "pc_desert"
+				is_planet_class = "pc_tropical"
+				is_planet_class = "pc_arid"
+				is_planet_class = "pc_continental"
+				is_planet_class = "pc_ocean"
+				is_planet_class = "pc_tundra"
+				is_planet_class = "pc_arctic"
+				is_planet_class = "pc_alpine"
+				is_planet_class = "pc_savannah"
+				is_planet_class = "pc_gaia"
+				is_planet_class = "pc_relic"
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			random = {
+				chance = value:titanic_life_spawn_chance
+				add_modifier = {
+					modifier = titanic_life
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+# Primal Calling bonus refresh
+country_event = {
+	id = grand_archive.1020
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_primal_calling
+			has_country_flag = decision_primal_calling
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = primal_calling_exhibit_modifier }
+			refresh_primal_calling_exhibit_modifier = yes
+		}
+		else_if = {
+			limit = { has_modifier = primal_calling_exploit_modifier }
+			refresh_primal_calling_exploit_modifier = yes
+		}
+		else_if = {
+			limit = { has_modifier = primal_calling_assimilate_modifier }
+			refresh_primal_calling_assimilate_modifier = yes
+		}
+	}
+}
+
+country_event = {
+	id = grand_archive.1100
+	title = grand_archive.1100.name
+	desc = grand_archive.1100.desc
+	picture = GFX_evt_communication_event
+	show_sound = ga_event_mutated_voidworms_muted
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_primal_calling
+			has_country_flag = decision_primal_calling
+		}
+		mid_game_years_passed > 0
+		has_encountered_every_fauna = yes
+		NOT = { has_country_flag = origin_primal_calling_frenzied_voidworms_start }
+	}
+
+	immediate = {
+		set_country_flag = origin_primal_calling_frenzied_voidworms_start
+	}
+
+	option = {
+		name = grand_archive.1100.a
+		country_event = {
+			id = grand_archive.1105
+			days = 180
+		}
+	}
+}

@@ -1,0 +1,318 @@
+
+namespace = bio
+
+# MUTATION
+
+country_event = {
+	id = bio.180
+	title = bio.180.name
+	desc = bio.180.desc
+	picture = GFX_evt_genetic_ascension_mutation
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	option = {
+		name = bio.180.a
+		custom_tooltip = bio.180.a.tt
+		owner = {
+			hidden_effect = {
+				set_country_flag = bio_mutation
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+						is_democratic_authority = yes
+					}
+					country_event = { id = bio.1075 }
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+						is_dictatorial_authority = yes
+					}
+					ruler = {
+						add_trait = {
+							trait = trait_ruler_apex_predator
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+						is_oligarchic_authority= yes
+					}
+					every_owned_leader = {
+						limit = {
+							is_councilor = yes
+							is_organic_species = yes
+						}
+						set_immortal = yes
+						set_leader_flag = evopred_oligarch_immortal
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+					}
+					every_owned_species = {
+						limit = {
+							OR = {
+								is_archetype = PRESAPIENT
+								is_archetype = BIOLOGICAL
+								is_archetype = LITHOID
+							}
+						}
+						set_species_traits_evopred_count_variable = yes
+					}
+					if = {
+						limit = {
+							is_dictatorial_authority = yes
+						}
+						set_ruler_title_male = apex_predator_male
+						set_ruler_title_female = apex_predator_female
+					}
+					if = {
+						limit = {
+							is_imperial_authority = yes
+						}
+						set_ruler_title_male = "eternal_ancestor_male"
+						set_ruler_title_female = "eternal_ancestor_female"
+					}
+				}
+				if = {
+					limit = {
+						has_mutation_environmental_integration_tradition = yes
+					}
+					custom_tooltip = empowered_environmental_integration_tradition_tt
+				}
+				advanced_authority_refresh = yes
+			}
+		}
+	}
+
+	option = {
+		name = bio.180.b
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_planet_within_border = {
+						has_carrier_flag = fotd_seperatist_planet@root
+						owner = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+				}
+				country_event = { id = origin.6120 days = 5 random = 2 }
+			}
+		}
+	}
+}
+
+# MUTATION (HIVE VERSION)
+
+country_event = {
+	id = bio.195
+	title = bio.195.name
+	desc = bio.195.desc
+	picture = GFX_evt_genetic_ascension_mutation
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	option = {
+		name = bio.195.a
+		owner = {
+			custom_tooltip = bio.195.a.tt
+			hidden_effect = {
+				set_country_flag = bio_mutation
+				advanced_authority_refresh = yes
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = decision_evolutionary_predators
+							has_origin = origin_evolutionary_predators
+						}
+					}
+					country_event = { id = bio.1105 }
+					every_owned_species = {
+						limit = {
+							OR = {
+								is_archetype = PRESAPIENT
+								is_archetype = BIOLOGICAL
+								is_archetype = LITHOID
+							}
+						}
+						set_species_traits_evopred_count_variable = yes
+					}
+				}
+				if = {
+					limit = {
+						has_mutation_environmental_integration_tradition = yes
+					}
+					custom_tooltip = empowered_environmental_integration_tradition_tt
+				}
+			}
+		}
+	}
+
+	option = {
+		name = bio.195.b
+	}
+}
+
+# skipped bio.3220 this thing is HUGE!! WHY?!!
+
+# Assign EvoPred  variables
+
+# Triggered by on_uplift_completion
+# Scope = planet_event
+# This = planet scope
+# From = uplifted species (pre-modification)
+carrier_event = {
+	id = bio.5115
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+			is_mutation_authority = yes
+		}
+		from = {
+			OR = {
+				is_archetype = PRESAPIENT
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+			}
+			NOT = {
+				is_variable_set = species_traits_evopred_count
+			}
+		}
+	}
+
+	immediate = {
+		carrier_event = { id = bio.5116 days = 5 }
+	}
+}
+
+# Also triggered by on_colony_transfer
+carrier_event = {
+	id = bio.5116
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_country_flag = decision_evolutionary_predators
+				has_origin = origin_evolutionary_predators
+			}
+			is_mutation_authority = yes
+		}
+		any_owned_species = {
+			OR = {
+				is_archetype = PRESAPIENT
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+			}
+			NOT = {
+				is_variable_set = species_traits_evopred_count
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = {
+				NOT = {
+					is_variable_set = species_traits_evopred_count
+				}
+			}
+			set_species_traits_evopred_count_variable = yes
+		}
+	}
+}
+
+# Triggered by on_modification_complete
+# This = Country
+# From = Species ( Post Modification )
+country_event = {
+	id = bio.5117
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		from = {
+			OR = {
+				is_archetype = PRESAPIENT
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			set_species_traits_evopred_count_variable = yes
+		}
+	}
+}
+
+# Triggered by on_monthly_pulse_country
+country_event = {
+	id = bio.5118
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_evolutionary_predators
+			has_origin = origin_evolutionary_predators
+		}
+		is_mutation_authority = yes
+		any_owned_species = {
+			OR = {
+				is_archetype = PRESAPIENT
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+			}
+			NOT = {
+				is_variable_set = species_traits_evopred_count
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = {
+				NOT = {
+					is_variable_set = species_traits_evopred_count
+				}
+			}
+			set_species_traits_evopred_count_variable = yes
+		}
+	}
+}

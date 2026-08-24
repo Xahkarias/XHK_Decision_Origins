@@ -1,0 +1,316 @@
+namespace = pirate
+
+#yearly pulse event
+country_event = {
+	id = pirate.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = decision_treasure_hunters
+						has_origin = origin_treasure_hunters
+					}
+					has_country_flag = met_captain_hoo
+				}
+				country_event = { id = pirate.2 days = 1 random = 30 }
+			}
+			else = {
+				country_event = { id = pirate.1 days = 1 random = 30 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				is_hive_empire = yes
+				is_wilderness_empire = no
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = decision_treasure_hunters
+						has_origin = origin_treasure_hunters
+					}
+					has_country_flag = met_captain_hoo
+				}
+				country_event = { id = pirate.8 days = 1 random = 30 }
+			}
+			else = {
+				country_event = { id = pirate.6 days = 1 random = 30 }
+			}
+			break = yes
+		}
+		if = {
+			limit = { is_machine_empire = yes }
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = decision_treasure_hunters
+						has_origin = origin_treasure_hunters
+					}
+					has_country_flag = met_captain_hoo
+				}
+				country_event = { id = pirate.9 days = 1 random = 30 }
+			}
+			else = {
+				country_event = { id = pirate.7 days = 1 random = 30 }
+			}
+		}
+	}
+}
+
+# Destroyed Pirate Station
+country_event = {
+	id = pirate.25
+	title = pirate.25.name
+	picture = GFX_evt_large_explosion
+	desc = {
+		trigger = {
+			text = pirate.25.desc
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = decision_treasure_hunters
+						has_origin = origin_treasure_hunters
+					}
+					has_country_flag = has_defeated_black_needle
+				}
+				text = newline
+				text = pirate.25.desc.black_needle
+			}
+		}
+	}
+	show_sound = event_space_battle
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			5 = {
+				set_country_flag = massive_loot
+				modifier = {
+					factor = 1.5
+					years_passed > 80
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 100
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 120
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 140
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 160
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 180
+				}
+				modifier = {
+					factor = 1.5
+					years_passed > 200
+				}
+			}
+			15 = {
+				set_country_flag = big_loot
+				modifier = {
+					factor = 1.2
+					years_passed > 80
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 100
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 120
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 140
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 160
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 180
+				}
+				modifier = {
+					factor = 1.2
+					years_passed > 200
+				}
+			}
+			35 = {
+				set_country_flag = medium_loot
+			}
+			50 = {
+				set_country_flag = small_loot
+				modifier = {
+					factor = 0.8
+					years_passed > 80
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 100
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 120
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 140
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 160
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 180
+				}
+				modifier = {
+					factor = 0.8
+					years_passed > 200
+				}
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		trigger = { has_country_flag = massive_loot }
+		if = {
+			limit = {
+				years_passed > 100
+			}
+			add_resource = {
+				minerals = 1200
+				energy = 600
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 600
+				energy = 300
+			}
+		}
+		hidden_effect = { remove_country_flag = massive_loot }
+	}
+	option = {
+		name = EXCELLENT
+		trigger = { has_country_flag = big_loot }
+		if = {
+			limit = {
+				years_passed > 100
+			}
+			add_resource = {
+				minerals = 600
+				energy = 300
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 300
+				energy = 150
+			}
+		}
+		hidden_effect = { remove_country_flag = big_loot }
+	}
+	option = {
+		name = EXCELLENT
+		trigger = { has_country_flag = medium_loot }
+		if = {
+			limit = {
+				years_passed > 100
+			}
+			add_resource = {
+				minerals = 360
+				energy = 200
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 180
+				energy = 100
+			}
+		}
+		hidden_effect = { remove_country_flag = medium_loot }
+	}
+	option = {
+		name = EXCELLENT
+		trigger = { has_country_flag = small_loot }
+		if = {
+			limit = {
+				years_passed > 100
+			}
+			add_resource = {
+				minerals = 160
+				energy = 100
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 80
+				energy = 50
+			}
+		}
+		hidden_effect = { remove_country_flag = small_loot }
+	}
+	option = {
+		name = EXCELLENT
+		trigger = {
+			NOR = {
+				has_country_flag = massive_loot
+				has_country_flag = big_loot
+				has_country_flag = medium_loot
+				has_country_flag = small_loot
+			}
+		}
+		if = {
+			limit = {
+				years_passed > 100
+			}
+			add_resource = {
+				minerals = 400
+				energy = 400
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 200
+				energy = 200
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				OR = {
+					has_country_flag = decision_treasure_hunters
+					has_origin = origin_treasure_hunters
+				}
+				has_country_flag = has_defeated_black_needle
+			}
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}

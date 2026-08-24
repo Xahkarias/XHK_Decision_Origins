@@ -1,0 +1,166 @@
+namespace = mmo_primal_calling
+
+
+event = {
+    id = mmo_primal_calling.1
+    hide_window = yes
+    is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = decision_primal_calling
+	}
+	immediate = {
+		capital_scope.solar_system = {
+			if = {
+				limit = {
+					NOT = {
+						any_system_planet = {
+							is_planet_class = pc_gas_giant
+						}
+					}
+				}
+				ordered_system_planet = {
+					order_by = value:distance_to_system_star
+					save_event_target_as = furthest_planet_from_system_star
+				}
+				set_variable = {
+					which = local_distance_from_star
+					value = 15
+				}
+				event_target:furthest_planet_from_system_star = {
+					change_variable = {
+						which = local_distance_from_star
+						value = value:distance_to_system_star
+					}
+				}
+				spawn_planet = {
+					class = pc_gas_giant
+					location = star
+					orbit_location = yes
+					orbit_angle_offset = 45
+					orbit_distance_offset = local_distance_from_star
+					size = 25
+					has_ring = yes
+					init_effect = {
+						set_surveyed = {
+							surveyed = yes
+							surveyor = root
+						}
+					}
+				}
+			}
+		}
+		set_country_flag = wrangler_alignment
+		if = {
+			limit = {
+				is_guided_sapience_empire = no
+			}
+			add_tech_option_or_research_effect = {
+				TECH = tech_alien_life_studies
+				PROGRESS = 0.25
+				CATEGORY = society_research
+			}
+		}
+		capital_scope = {
+			add_modifier = { modifier = untamed_wilds days = -1 }
+		}
+		set_country_flag = force_voidlure_without_communication
+		solar_system = {
+			if = {
+				limit = {
+					exists = starbase
+					owner = { is_nomadic = no }
+				}
+				starbase = {
+					remove_starbase_module = { slot = 2 module = all }
+					set_starbase_module = { slot = 2 module = vivarium_tank }
+					remove_starbase_building = { slot = 1 building = all }
+					set_starbase_building = { slot = 1 building = voidlure_tiyanki }
+					remove_starbase_flag = capture_cooldown_for_tiyanki
+				}
+			}
+		}
+		remove_country_flag = force_voidlure_without_communication
+		if = {
+			limit = { is_nomadic = yes }
+			capital_scope.solar_system = {
+				save_global_event_target_as = primal_calling_nomad_start_system@root
+			}
+			random_owned_fleet = {
+				limit = {
+					starbase? = { is_arkship_starbase = yes }
+				}
+				starbase = {
+					starbase_event = { id = grand_archive.7050 days = 90 }
+					set_timed_starbase_flag = {
+						flag = voidlure_action_cooldown
+						days = @voidlure_action_cooldown
+					}
+				}
+			}
+		}
+		country_event = { id = grand_archive.7010 days = 30 }
+		country_event = { id = mmo_primal_calling.2 }
+		
+	}
+}
+
+country_event = {
+    id = mmo_primal_calling.2
+    hide_window = yes
+    is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = decision_primal_calling
+	}
+	
+		# In case first Space Fauna already encountered, catch up with grand_archive.1001
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					which = space_fauna_contacted
+					value = 1
+				}
+				NOT = { has_country_flag = origin_primal_calling_alignment_chosen }
+			}
+			set_country_flag = origin_primal_calling_alignment_chosen
+			country_event = {
+				id = grand_archive.1002
+				days = 30
+				#Broken by irregular call
+				#scopes = { from = from }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = space_fauna_contacted
+					value = 2
+				}
+				NOT = { has_country_flag = origin_primal_calling_alignment_chosen }
+			}
+			set_country_flag = origin_primal_calling_alignment_chosen
+			country_event = {
+				id = grand_archive.1002
+				days = 30
+				#Broken by irregular call
+				#scopes = { from = from }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = space_fauna_contacted
+					value > 2
+				}
+			}
+			country_event = { id = warning_event.01 }
+		}
+		
+		hidden_effect = {
+			country_event = { id = grand_archive.9950 days = 60 } # normally triggered by 'first_contact_effects.txt -> first_contact_critters.25' but too much risk to adapt that.
+			set_country_flag = primal_calling_fc_gravity_wells_insight_given
+		}
+	}
+}

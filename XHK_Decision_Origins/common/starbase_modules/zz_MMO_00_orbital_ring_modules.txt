@@ -1,0 +1,53 @@
+
+orbital_ring_vivarium_tank = {
+	icon = "GFX_starbase_vivarium_tank"
+	section = "HANGAR_ORBITAL_RING_SECTION"
+	construction_days = 180
+	starbase_type = orbital_ring
+	category = sm_naval_support_cat
+
+	potential = {
+		exists = owner
+		is_orbital_ring = yes
+		owner = {
+			OR = {
+				has_technology = tech_gravity_wells
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	country_modifier = {
+		country_vivarium_max_capacity_add = 50
+	}
+
+	orbit_modifier = {
+		space_fauna_growth_rate_mult = 0.1
+	}
+
+	ai_weight = {
+		inline_script = {
+			script = starbase_modules/ship_construction_ai_weight
+			MODULE = orbital_ring_vivarium_tank
+		}
+	}
+
+	show_in_tech = "tech_gravity_wells"
+
+	show_tech_unlock_if = {
+		has_overlord_dlc = yes
+		is_nomadic = no
+	}
+}

@@ -1,0 +1,90 @@
+#################################
+# Scripted Effects - BioGenesis #
+#################################
+
+
+give_evolutionary_predator_situation_progress = {
+	if = {
+		limit = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = decision_evolutionary_predators
+					has_origin = origin_evolutionary_predators
+				}
+			}
+		}
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = evolutionary_predators_situation
+				}
+				add_situation_progress = $PROGRESS$
+			}
+		}
+	}
+}
+
+
+give_mutation_unlocks_effect = {
+	switch = {
+		trigger = has_country_flag
+		mutation_unlock_level_2 = {
+			set_country_flag = mutation_unlock_level_3
+			if = {
+				limit = {
+					OR = {
+						has_technology = tech_gene_expressions
+						NOT = { can_research_technology = tech_gene_expressions }
+					}
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier4unityreward
+					min = @tier4unitymin
+					max = @tier4unitymax
+				}
+			}
+			else = {
+				add_tech_progress = {
+					tech = tech_gene_expressions
+					progress = @genomic_tech_progress
+				}
+			}
+		}
+		mutation_unlock_level_1 = {
+			set_country_flag = mutation_unlock_level_2
+			remove_modifier = mutation_unlock_level_1
+			add_modifier = {
+				modifier = mutation_unlock_level_2
+			}
+		}
+		default = {
+			custom_tooltip = mutation_traditions_unlocked_tt
+			set_country_flag = mutation_unlock_level_1
+			add_modifier = {
+				modifier = mutation_unlock_level_1
+			}
+		}
+	}
+	if = {
+		limit = {
+				OR = {
+					has_country_flag = decision_evolutionary_predators
+					has_origin = origin_evolutionary_predators
+				}
+		}
+		hidden_effect = {
+			every_owned_species = {
+				limit = {
+					OR = {
+						is_archetype = PRESAPIENT
+						is_archetype = BIOLOGICAL
+						is_archetype = LITHOID
+					}
+				}
+				set_species_traits_evopred_count_variable = yes
+			}
+		}
+	}
+}

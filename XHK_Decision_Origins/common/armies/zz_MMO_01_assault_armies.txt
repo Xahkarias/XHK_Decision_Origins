@@ -1,0 +1,196 @@
+
+# Assault Armies
+assault_army = {
+	damage = 1.00
+	health = 1.00
+	morale = 1.00
+	morale_damage = 1.00
+	collateral_damage = 1.00
+	war_exhaustion = 1.00
+	time = 90
+	icon = GFX_army_type_assault
+	prerequisites = { "tech_assault_armies" }
+	resources = {
+		category = armies
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+					is_nomadic = no
+				}
+			}
+			minerals = 100
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+					is_nomadic = yes
+				}
+			}
+			alloys = 50
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 100
+			mult = @mineral_to_food_cost_ratio
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	show_tech_unlock_if = {
+		OR = {
+			is_machine_empire = no
+			has_valid_civic = civic_machine_assimilator
+			has_origin = origin_shroud_forged
+			has_country_flag = decision_shroud_forged
+		}
+		is_wilderness_empire = no
+	}
+	potential_country = {
+		OR = {
+			is_machine_empire = no
+			has_valid_civic = civic_machine_assimilator
+			has_origin = origin_shroud_forged
+			has_country_flag = decision_shroud_forged
+		}
+		is_wilderness_empire = no
+	}
+	potential = {
+		from = {
+			OR = {
+				has_trait = trait_shroud_forged
+				NOR = {
+					has_trait = "trait_mechanical"
+					has_trait = "trait_machine_unit"
+					has_trait = "trait_limited_cybernetic"
+					is_sapient = no
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		base = 100
+		modifier = {
+			set = 0
+			OR = {
+				is_fallen_empire = yes
+				has_technology = tech_telepathy
+				has_technology = tech_gene_seed_purification
+				AND = {
+					is_militarist = yes
+					has_technology = tech_gene_banks
+				}
+			}
+		}
+		modifier = {
+			factor = 0.01 #cannot guarantee that they actually have slaves/robots to get armies from
+			OR = {
+				AND = {
+					has_ai_personality_behaviour = slaver
+					has_technology = tech_neural_implants
+				}
+				AND = {
+					has_ai_personality_behaviour = robot_liberator
+					has_technology = tech_droid_workers
+				}
+				has_valid_civic = civic_reanimated_armies
+			}
+		}
+	}
+}
+
+# Psionic Armies
+psionic_army = {
+	damage = 2.0
+	morale_damage = 1.5
+	health = 1.75
+	morale = 2.5
+	collateral_damage = 0.5
+	war_exhaustion = 3.0
+	time = 120
+	icon = GFX_army_type_psionic
+
+	resources = {
+		category = armies
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+					is_nomadic = no
+				}
+			}
+			minerals = 250
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+					is_nomadic = yes
+				}
+			}
+			alloys = 125
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 250
+			mult = @mineral_to_food_cost_ratio
+		}
+
+		upkeep = {
+			energy = 2.5
+		}
+	}
+
+	prerequisites = { "tech_telepathy" }
+	potential_country = {
+		OR = {
+			is_machine_empire = no
+			has_origin = origin_shroud_forged
+			has_country_flag = decision_shroud_forged
+		}
+		is_wilderness_empire = no
+	}
+	potential = {
+		from = {
+			has_psionic_species_trait = yes
+			OR = {
+				has_trait = trait_shroud_forged
+				NOR = {
+					has_trait = "trait_mechanical"
+					has_trait = "trait_machine_unit"
+					has_trait = "trait_limited_cybernetic"
+					is_sapient = no
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		base = 100
+		modifier = {
+			set = 0
+			OR = {
+				NOT = { has_technology = tech_telepathy }
+				has_technology = tech_gene_seed_purification
+			}
+		}
+		modifier = {
+			set = 0
+			is_fallen_empire = yes
+			NOT = { is_fanatic_spiritualist = yes }
+		}
+	}
+}

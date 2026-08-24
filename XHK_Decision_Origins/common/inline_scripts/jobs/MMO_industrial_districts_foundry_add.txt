@@ -1,0 +1,16 @@
+
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_country_flag = decision_shroud_forged
+				has_origin = origin_shroud_forged
+			}
+		}
+	}
+	modifier = {
+		job_artisan_drone_add = $AMOUNT$
+	}
+}

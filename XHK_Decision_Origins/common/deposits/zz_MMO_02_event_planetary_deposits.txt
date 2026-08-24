@@ -1,0 +1,35 @@
+
+
+d_shroud_rift_deposit = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_psionic_region
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			sr_zro = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = decision_shroud_forged
+					has_origin = origin_shroud_forged
+				}
+				NOT = { has_country_flag = finish_shroud_forged_liberation_flag }
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_mult = 0.05
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

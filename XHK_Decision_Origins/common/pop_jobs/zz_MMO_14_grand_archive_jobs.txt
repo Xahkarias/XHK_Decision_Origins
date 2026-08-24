@@ -1,0 +1,187 @@
+
+#################
+# Wrangler Jobs #
+#################
+
+wrangler = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = wildlife_ranch
+		}
+		# Ranchers
+		swap_type = {
+			trigger = {
+				wrangler_is_rancher_trigger = yes
+			}
+			name = rancher
+			desc = rancher
+			icon = wrangler
+			weight = 5
+		}
+		# Trophy Hunters
+		swap_type = {
+			trigger = {
+				wrangler_is_trophy_hunter_trigger = yes
+			}
+			name = trophy_hunter
+			desc = trophy_hunter
+			icon = trophy_hunter
+			building_icon = hunting_grounds
+			weight = 5
+		}
+		# Animal Handlers
+		swap_type = {
+			trigger = {
+				wrangler_is_animal_handler_trigger = yes
+			}
+			name = animal_handler
+			desc = animal_handler
+			icon = animal_handler
+			building_icon = wildlife_sanctuary
+			weight = 5
+		}
+		# Beastfighters
+		swap_type = {
+			trigger = {
+				wrangler_is_beastfighter_trigger = yes
+			}
+			name = beastfighter
+			desc = beastfighter
+			icon = beastfighter
+			building_icon = primal_arena
+			weight = 10
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	tags = { research unity amenities }
+
+	possible = {
+		OR = {
+			owner = {
+				is_regular_empire = yes
+				OR = {
+					has_origin = origin_primal_calling
+					has_country_flag = decision_primal_calling
+				}
+			}
+			colony? = { has_modifier = resort_colony }
+		}
+	}
+
+	resources = {
+		category = planet_primal_jobs
+		produces = {
+			society_research = 1
+			unity = 1
+		}
+		# Trophy Hunter
+		produces = {
+			trigger = {
+				wrangler_is_trophy_hunter_trigger = yes
+				wrangler_is_beastfighter_trigger = no
+			}
+			food = 3
+			society_research = -1
+		}
+		# Animal Handlers
+		produces = {
+			trigger = {
+				wrangler_is_animal_handler_trigger = yes
+				wrangler_is_beastfighter_trigger = no
+			}
+			society_research = 0.5
+			unity = 0.5
+		}
+		# Beastfighters
+		produces = {
+			trigger = {
+				wrangler_is_beastfighter_trigger = yes
+			}
+			unity = 1
+		}
+		upkeep = {
+			consumer_goods = 2
+		}
+		# Beastfighters
+		upkeep = {
+			trigger = {
+				wrangler_is_beastfighter_trigger = yes
+			}
+			consumer_goods = -2
+			alloys = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			# Animal Handlers don't provide Amenities
+			wrangler_is_animal_handler_trigger = no
+			owner? = { NOT = { has_valid_civic = civic_dystopian_society } }
+		}
+		planet_amenities_add = 400
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	# Trophy Hunter
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				wrangler_is_trophy_hunter_trigger = yes
+				wrangler_is_beastfighter_trigger = yes
+			}
+			owner? = { NOT = { has_valid_civic = civic_dystopian_society } }
+		}
+		planet_amenities_add = 200
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @high_prio_specialist_job_weight
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_robot_domestic_protocols
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			is_domestic_servant = yes
+		}
+
+		modifier = {
+			factor = 0.1
+			colony? = {
+				free_amenities > 500
+			}
+		}
+
+		modifier = {
+			factor = 2
+			colony? = {
+				free_amenities < 200
+				has_available_jobs = wrangler
+			}
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+}

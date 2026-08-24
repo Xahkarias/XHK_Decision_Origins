@@ -1,0 +1,38 @@
+storm_chaser_county_modifier = {
+	planet_storm_devastation_mult = -0.15
+	storm_ship_hull_breaker_mult = -0.1
+}
+
+arc_welders_county_modifier = {
+	country_megastructure_build_cap_add = 1
+	arc_furnace_limit_add = 1
+}
+
+void_dwellers_country_modifier = {
+	habitat_max_districts_add = 2
+	megastructures_habitat_cost_mult = -0.25
+	planet_districts_hab_cost_mult = -0.25
+	habitat_districts_minor_add = 0.25
+	habitat_district_jobs_mult = 0.5
+}
+
+primal_calling_country_modifier = {
+	ship_damage_against_space_fauna_mult = 0.15
+	space_fauna_ship_armor_mult = 0.15
+	space_fauna_ship_speed_mult = 0.1
+	country_capture_chance_add = 0.15
+	gravity_snare_cooldown_mult = -0.25
+ 	country_vivarium_max_capacity_mult = 0.25
+}
+
+biological_species_trait_picks_modifier = {
+	BIOLOGICAL_species_trait_picks_add = 1
+}
+
+robotic_species_trait_picks_modifier = {
+	ROBOT_species_trait_picks_add = 1
+}
+
+robotic_species_trait_points_modifier = {
+	ROBOT_species_trait_points_add = 1
+}

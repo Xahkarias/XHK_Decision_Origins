@@ -1,0 +1,42 @@
+######################
+# Planetary Features #
+######################
+
+d_treasure_planet = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_treasure_planet
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = decision_treasure_hunters
+					has_origin = origin_treasure_hunters
+				}
+				is_gestalt = no
+			}
+		}
+		job_treasure_gatherer_add = 500
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = decision_treasure_hunters
+					has_origin = origin_treasure_hunters
+				}
+				is_gestalt = yes
+			}
+		}
+		job_treasure_gatherer_gestalt_add = 500
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

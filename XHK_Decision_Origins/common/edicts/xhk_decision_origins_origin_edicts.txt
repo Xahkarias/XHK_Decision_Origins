@@ -342,6 +342,7 @@ decision_origins_overtuned = {
 			set_country_flag = decision_origins_overtuned
 		}
         add_modifier = { modifier = xhk_decori_overtuned_modifier }
+        add_modifier = { modifier = biological_species_trait_picks_modifier }
 		custom_tooltip = "edict_decision_origins_overtuned_tt"
 		
 	}
@@ -532,6 +533,12 @@ decision_origins_mechanist = {
 			else = {
 				add_modifier = {
 					modifier = xhk_decori_mechanists_machine_modifier
+				}
+				add_modifier = {
+					modifier = robotic_species_trait_picks_modifier
+				}
+				add_modifier = {
+					modifier = robotic_species_trait_points_modifier multiplier = 2
 				}
 			}
 		}

@@ -1,0 +1,51 @@
+country_event = {
+	id = machine_age.3405
+	title = "machine_age.3405.name"
+	desc = "machine_age.3405.desc"
+	picture = GFX_evt_arc_crucible
+	show_sound = event_celebration
+	location = from
+	event_chain = ideal_furnace_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = decision_arc_welders
+			has_origin = origin_arc_welders
+		}
+		NOT = {
+			has_country_flag = second_furnace_built
+		}
+		years_passed > 0
+	}
+
+	immediate = {
+		set_country_flag = second_furnace_built
+		remove_point_of_interest = ideal_furnace_system
+	}
+
+	option = {
+		name = EXCELLENT
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier3researchreward
+			min = @tier3researchmin
+			max = @tier3researchmax
+		}
+		add_tech_progress = {
+			tech = tech_mega_engineering
+			progress = 0.05
+		}
+	}
+
+	after = {
+		end_event_chain = ideal_furnace_chain
+	}
+}

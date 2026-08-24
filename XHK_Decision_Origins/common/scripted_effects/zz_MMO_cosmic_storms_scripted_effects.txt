@@ -1,0 +1,35 @@
+choose_storm_location_weighted = {
+	random_system = {
+		weights = {
+			base = 1
+
+			# Storm chasers origin gives an increased chance for storms to spawn in their systems.
+			modifier = {
+				exists = owner
+				owner = {
+					OR = {
+						has_country_flag = decision_storm_chasers
+						has_origin = origin_storm_chasers
+					}
+				}
+
+				factor = @storm_chasers_storm_spawn_chance_mult
+			}
+
+			# Don't spawn inside an existing storm
+			modifier = {
+				is_inside_storm = yes
+				factor = 0
+			}
+
+			# Drastically decrease the chance of picking a system in a sector that already has a storm.
+			# We want to avoid this, but if there's no other option we allow it.
+			modifier = {
+				is_storm_active_in_storm_sector = yes
+				factor = 0.0001
+			}
+		}
+
+		save_event_target_as = $EVENT_TARGET_NAME$
+	}
+}

@@ -1,0 +1,77 @@
+storm_resistant_production_multiplier = {
+	base = 1
+
+	modifier = {
+		mult = 0.7
+		exists = owner
+		OR = {
+			has_building = building_storm_resistant_production
+			owner? = {
+				AND = {
+					has_country_flag = decision_storm_chasers
+					has_technology = tech_industrial_storm_protection
+				}
+			}
+		}
+		NOT = {
+			has_modifier = storm_hunkered_down_modifier
+		}
+	}
+
+	modifier = {
+		mult = 0.4
+		exists = owner
+		OR = {
+			has_building = building_storm_resistant_production
+			owner? = {
+				AND = {
+					has_country_flag = decision_storm_chasers
+					has_technology = tech_industrial_storm_protection
+				}
+			}
+		}
+		has_modifier = storm_hunkered_down_modifier
+	}
+
+	modifier = {
+		mult = 0.45
+		exists = owner
+		OR = {
+			has_building = building_storm_resistant_production
+			owner? = {
+				AND = {
+					has_country_flag = decision_storm_chasers
+					has_technology = tech_advanced_industrial_storm_protection
+				}
+			}
+		}
+		NOT = {
+			has_modifier = storm_hunkered_down_modifier
+		}
+	}
+
+	modifier = {
+		mult = 0.1
+		exists = owner
+		OR = {
+			has_building = building_storm_resistant_production
+			owner? = {
+				AND = {
+					has_country_flag = decision_storm_chasers
+					has_technology = tech_advanced_industrial_storm_protection
+				}
+			}
+		}
+		has_modifier = storm_hunkered_down_modifier
+	}
+
+	modifier = {
+		mult = 0.9
+		has_modifier = cultivated_worldscaping_modifier
+	}
+
+	modifier = {
+		mult = 0.9
+		has_modifier = storm_trap_insight_modifier
+	}
+}

@@ -1,0 +1,18 @@
+custom_tooltip = tr_genetic_stage_2_swap_tt
+
+# Evo Pred Swap
+tradition_swap = {
+	name = tr_mutation_somatic_subversiveness_evo_pred
+	inherit_name = no
+	inherit_icon = no
+	trigger = {
+		has_country_flag = decision_evolutionary_predators
+	}
+
+	inline_script = {
+		script = traditions/tr_mutation_somatic_subversiveness
+	}
+	weight = {
+		factor = 1
+	}
+}

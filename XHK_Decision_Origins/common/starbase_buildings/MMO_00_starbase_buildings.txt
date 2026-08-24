@@ -1,0 +1,84 @@
+storm_attraction_computer = {
+	icon = "GFX_starbase_cosmic_storm_attraction_computer"
+	construction_days = @b1_time
+	category = sm_utility_cat
+
+	potential = {
+		has_cosmic_storms_dlc = yes
+		OR = {
+			is_normal_starbase = yes
+			is_space_citadel = yes
+		}
+		owner = { has_technology = "tech_storm_manipulation" }
+	}
+
+	possible = {
+		custom_tooltip =  {
+			fail_text = system_has_storm_repelling_tech_tt
+			solar_system = {
+				system_has_storm_repelling_tech = no
+			}
+		}
+	}
+
+	show_in_tech = tech_storm_manipulation
+
+	show_tech_unlock_if = {
+		is_nomadic = no
+	}
+	
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				NOT = {
+					owner = {
+						OR = {
+							has_country_flag = decision_storm_chasers
+							has_origin = origin_storm_chasers
+						}
+					}
+				}
+			}
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				NOT = {
+					owner = {
+						OR = {
+							has_country_flag = decision_storm_chasers
+							has_origin = origin_storm_chasers
+						}
+					}
+				}
+			}
+			rare_crystals = 0.75
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			always = yes
+		}
+		storm_attraction_field_modifier = 0.8
+	}
+
+	on_finished = {
+		create_influence_field_if_needed = yes
+	}
+
+	custom_tooltip = "cosmic_storm_attraction_computer_tt"
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}

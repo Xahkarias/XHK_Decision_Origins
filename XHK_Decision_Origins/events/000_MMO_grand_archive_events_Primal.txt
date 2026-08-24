@@ -1,0 +1,416 @@
+
+namespace = grand_archive
+
+
+# From = space fauna
+# FROMFROM = contact system
+country_event = {
+	id = grand_archive.200
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_capturable_space_critter_country_type = yes }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { is_variable_set = space_fauna_contacted }
+			}
+			set_variable = {
+				which = space_fauna_contacted
+				value = 1
+			}
+		}
+		else = {
+			change_variable = {
+				which = space_fauna_contacted
+				value = 1
+			}
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_origin = origin_primal_calling
+					has_country_flag = decision_primal_calling
+				}
+			}
+			country_event = {
+				id = grand_archive.1001
+				scopes = {
+					from = from
+					fromfrom = fromfrom
+				}
+			}
+		}
+	}
+}
+
+first_contact_event = {
+	id = grand_archive.2005
+	title = grand_archive.2005.name
+	desc = {
+		trigger = {
+			text = grand_archive.2005.desc
+			text = newline
+			success_text = {
+				text = grand_archive.2005.desc.primal_calling
+				owner = {
+					OR = {
+						has_origin = origin_primal_calling
+						has_country_flag = decision_primal_calling
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_evt_unidentified_voidworms
+	show_sound = ga_event_voidworms_plague
+
+	is_triggered_only = yes
+	first_contact = yes
+
+	immediate = {
+		set_site_progress_locked = yes
+	}
+
+	option = {
+		name = {
+			trigger = {
+				owner = { is_homicidal = no }
+			}
+			text = story.101.aa
+		}
+		name = {
+			trigger = {
+				owner = { is_homicidal = yes }
+			}
+			text = grand_archive.2005.a.homicidal
+		}
+		owner = {
+			add_modifier = {
+				modifier = voidworms_hunting_buff
+			}
+			custom_tooltip = grand_archive.2005.a.voidwormhunt
+			increase_hunted_fauna_count = yes
+		}
+	}
+
+	option = {
+		name = story.101.bb
+		trigger = {
+			owner = { is_homicidal = no }
+		}
+		owner = {
+			capital_scope = {
+				enable_special_project = {
+					name = "VOIDWORMS_PROJECT"
+					location = this
+					owner = root.owner
+				}
+			}
+		}
+	}
+
+	after = {
+		finish_first_contact_effect = yes
+		set_site_progress_locked = no
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = grand_archive.200
+					days = 30
+					scopes = {
+						from = event_target:voidworms_country
+						fromfrom = root.solar_system
+					}
+				}
+				if = {
+					limit = {
+						exists = event_target:voidworms_treasure_hunters
+						NOT = { has_communications = event_target:voidworms_treasure_hunters }
+					}
+					establish_communications_no_message = event_target:voidworms_treasure_hunters
+				}
+			}
+		}
+	}
+}
+
+# Cutholoids First Contact
+# FROM = contact location
+country_event = {
+	id = grand_archive.2900
+	title = grand_archive.2900.name
+	desc = {
+		trigger = {
+			text = grand_archive.2900.desc
+			text = newline
+			success_text = {
+				text = grand_archive.2900.desc.primal_calling
+				owner = {
+					OR = {
+						has_origin = origin_primal_calling
+						has_country_flag = decision_primal_calling
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_evt_cutholoids_first_contact
+	show_sound = ga_cutholoids_idle
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:cutholoids_country
+		has_encountered_cutholoid = no
+	}
+
+	immediate = {
+		# Simulate First Contact
+		set_country_flag = cutholoids_encountered
+		country_event = { id = tutorial.61 }
+		event_target:cutholoids_country = {
+			root = {
+				establish_communications_no_message = prev
+				establish_communication_with_subjects_and_federation = { FLAG = cutholoids_encountered }
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = grand_archive.200
+				days = 30
+				scopes = {
+					from = event_target:cutholoids_country
+					fromfrom = from.solar_system
+				}
+			}
+		}
+	}
+
+	option = {
+		name = grand_archive.2900.a
+		trigger = { is_homicidal = no }
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_CUTHOLOIDS_PROJECT"
+				location = this
+				owner = root
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = { is_homicidal = no }
+			text = grand_archive.2900.b
+		}
+		name = {
+			trigger = { is_homicidal = yes }
+			text = grand_archive.2900.b.homicidal
+		}
+		add_modifier = {
+			modifier = cutholoids_hunting_buff
+		}
+		custom_tooltip = grand_archive.2900.b.cutholoidhunt
+		increase_hunted_fauna_count = yes
+	}
+}
+
+# Cutholoids standard First Contact last event
+first_contact_event = {
+	id = grand_archive.2901
+	title = grand_archive.2900.name
+	desc = {
+		trigger = {
+			text = grand_archive.2900.desc
+			text = newline
+			success_text = {
+				text = grand_archive.2900.desc.primal_calling
+				owner = {
+					OR = {
+						has_origin = origin_primal_calling
+						has_country_flag = decision_primal_calling
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_evt_cutholoids_first_contact
+	show_sound = ga_cutholoids_idle
+
+	is_triggered_only = yes
+	first_contact = yes
+
+	immediate = {
+		set_site_progress_locked = yes
+	}
+
+	option = {
+		name = grand_archive.2900.a
+		trigger = {
+			owner = { is_homicidal = no }
+		}
+		owner = {
+			capital_scope = {
+				enable_special_project = {
+					name = "RESEARCH_CUTHOLOIDS_PROJECT"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				owner = { is_homicidal = no }
+			}
+			text = grand_archive.2900.b
+		}
+		name = {
+			trigger = {
+				owner = { is_homicidal = yes }
+			}
+			text = grand_archive.2900.b.homicidal
+		}
+		owner = {
+			add_modifier = {
+				modifier = cutholoids_hunting_buff
+			}
+			custom_tooltip = grand_archive.2900.b.cutholoidhunt
+			increase_hunted_fauna_count = yes
+		}
+	}
+
+	after = {
+		finish_first_contact_effect = yes
+		set_site_progress_locked = no
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = grand_archive.200
+					days = 30
+					scopes = {
+						from = event_target:cutholoids_country
+						fromfrom = root.solar_system
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = grand_archive.7010
+	title = grand_archive.7010.name
+	desc = {
+		trigger = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+		}
+		text = grand_archive.7010.desc.primal_calling
+	}
+	desc = {
+		trigger = {
+			NOR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+			is_nomadic = yes
+		}
+		text = grand_archive.7010.desc.nomadic
+	}
+	desc = {
+		trigger = {
+			NOR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+			is_nomadic = no
+		}
+		text = grand_archive.7010.desc
+	}
+	picture = GFX_evt_voidlures
+	show_sound = ga_event_hunter_fanfare_announcement
+
+	is_triggered_only = yes
+
+	option = {
+		name = FASCINATING
+	}
+}
+
+# First Fauna capture
+ship_event = {
+	id = grand_archive.9955
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		from.owner = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+			NOT = { has_country_flag = primal_calling_first_capture_insight }
+		}
+	}
+
+	immediate = {
+		from.owner = {
+			country_event = { id = grand_archive.9960 }
+			set_country_flag = primal_calling_first_capture_insight
+		}
+	}
+}
+
+# First creature cloning
+ship_event = {
+	id = grand_archive.9970
+	title = grand_archive.9970.name
+	desc = grand_archive.9970.desc
+	show_sound = event_laboratory_sound
+	picture = GFX_evt_genetic_modification
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_space_fauna = yes
+		owner = {
+			OR = {
+				has_origin = origin_primal_calling
+				has_country_flag = decision_primal_calling
+			}
+			NOT = { has_country_flag = primal_calling_first_cloning_insight }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = primal_calling_first_cloning_insight
+		}
+	}
+
+	option = {
+		name = grand_archive.9970.a
+		owner = {
+			add_tech_option_or_research_effect = {
+				TECH = tech_controlled_mutations
+				PROGRESS = 0.25
+				CATEGORY = society_research
+			}
+		}
+	}
+}

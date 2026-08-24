@@ -1,0 +1,942 @@
+
+namespace = crisis
+
+#Player Diplomacy
+country_event = {
+	id = crisis.8060
+	title = TRANSMISSION
+	diplomatic_title = "crisis.8060.name"
+	desc = "crisis.8060.like.desc"
+	show_sound = crisis_8060_like_desc
+	diplomatic = yes
+
+	event_window_type = crisis_leader_conversation
+	situation = event_target:synth_queen_doomclock_situation
+
+	picture_event_data = {
+		portrait = event_target:cetana_face
+		room = event_target:synth_queen_country_global.owner
+	}
+	picture = GFX_crisis_conversation_bg_synth_queen
+
+	is_triggered_only = yes
+
+	immediate = {
+		get_cetana_face = yes
+		random_country = {
+			limit = {
+				is_country_type = synth_queen
+			}
+			save_event_target_as = synth_queen_country
+		}
+	}
+
+	#H - Declare war after finishing the situation
+	option = {
+		name = crisis.8060.war
+		icon = {
+			icon = GFX_text_casus_belli_target
+			text = WARGOAL
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "synth_queen_not_able_to_attack_cetana_situation"
+				has_country_flag = synth_queen_cannot_yeet_the_fleets
+				has_country_flag = protected_from_queen_storm
+			}
+			custom_tooltip = {
+				fail_text = "synth_queen_not_able_to_attack_cetana_storm"
+				has_country_flag = synth_queen_researched_first_storm_project
+				has_country_flag = protected_from_queen_storm
+			}
+		}
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+		}
+		if = {
+			limit = {
+				has_country_flag = synth_queen_cannot_yeet_the_fleets
+				has_country_flag = protected_from_queen_storm
+			}
+			custom_tooltip = synth_queen_able_to_attack_cetana
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.war.reply
+		sound = crisis_8060_war_reply
+
+		hidden_effect = {
+			set_country_flag = crisis.8060.war.flag
+		}
+	}
+
+	option = { # Yes
+		name = crisis.8060.war.a
+		custom_tooltip = crisis.8060.war.a.tt
+		trigger = {
+			has_country_flag = crisis.8060.war.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.war.1.reply
+		sound = crisis_8060_war_1_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.war.flag
+			set_country_flag = crisis.8060.war.1.flag
+		}
+	}
+
+	option = { # No
+		name = crisis.8060.war.b
+		trigger = {
+			has_country_flag = crisis.8060.war.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.war.flag
+		}
+	}
+
+ 	# War starts
+	option = {
+		name = crisis.8060.war.1.a
+		trigger = {
+			has_country_flag = crisis.8060.war.1.flag
+		}
+		if = {
+			limit = {
+				has_modifier = synth_queen_nanite_apprentice
+			}
+			remove_modifier = synth_queen_nanite_apprentice
+		}
+		hidden_effect = {
+			event_target:synth_queen_country_global = {
+				set_country_type = awakened_synth_queen
+				set_country_flag = protected_from_queen_storm
+				country_event = { id = crisis.8156 days = 7 }
+				synth_queen_debuff = yes
+			}
+			every_country = {
+				limit = {
+					OR = {
+						is_country_type = awakened_synth_queen
+						is_country_type = synth_queen_convoys
+						is_country_type = synth_queen_outposts
+					}
+				}
+				set_faction_hostility = {
+					set_hostile = yes
+				}
+			}
+			set_global_flag = synth_queen_war_started
+			remove_country_flag = crisis.8060.war.1.flag
+			set_country_flag = synth_queen_cannot_yeet_the_fleets
+			set_country_flag = protected_from_queen_storm
+		}
+		random_situation = {
+			limit = {
+				is_situation_type = situation_synth_queen_player_facing
+			}
+			destroy_situation = this
+		}
+	}
+
+	#A - How can we help?
+	option = {
+		name = crisis.8060.a
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.a.reply
+		sound = crisis_8060_1_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.1.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.1.a
+		trigger = {
+			has_country_flag = crisis.8060.1.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.1.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = 5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_approve
+			}
+			remove_country_flag = crisis.8060.1.flag
+			set_country_flag = crisis.8060.1.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.1.b
+		trigger = {
+			has_country_flag = crisis.8060.1.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.1.flag
+		}
+	}
+
+	#B - You will be stopped
+	option = {
+		name = crisis.8060.b
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+		}
+
+		is_dialog_only = yes
+		response_text = crisis.8060.2.reply
+		sound = crisis_8060_2_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.2.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.2.a
+		trigger = {
+			has_country_flag = crisis.8060.2.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.2.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.2.flag
+			set_country_flag = crisis.8060.2.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.2.2
+		trigger = {
+			has_country_flag = crisis.8060.2.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.2.flag
+		}
+	}
+
+	#C - Why you mean?
+	option = {
+		name = crisis.8060.c
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.3.reply
+		sound = crisis_8060_3_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.3.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.3.a
+		trigger = {
+			has_country_flag = crisis.8060.3.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.3.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.3.flag
+			set_country_flag = crisis.8060.3.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.3.b
+		trigger = {
+			has_country_flag = crisis.8060.3.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.3.flag
+		}
+	}
+
+	#D - You blew up our moon. You will pay.
+	option = {
+		name = crisis.8060.d
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+			has_country_flag = synth_queen_question_blew_up_a_planet
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.4.reply
+		sound = crisis_8060_4_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.4.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.4.a
+		trigger = {
+			has_country_flag = crisis.8060.4.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.4.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.4.flag
+			remove_country_flag = synth_queen_question_blew_up_a_planet
+			set_country_flag = crisis.8060.4.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.4.b
+		trigger = {
+			has_country_flag = crisis.8060.4.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.4.flag
+			remove_country_flag = synth_queen_question_blew_up_a_planet
+		}
+	}
+
+	#E - We opened the box
+	option = {
+		name = crisis.8060.e
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+			has_country_flag = synth_queen_question_opened_the_databank
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.5.reply
+		sound = crisis_8060_5_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.5.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.5.a
+		trigger = {
+			has_country_flag = crisis.8060.5.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.5.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.5.flag
+			remove_country_flag = synth_queen_question_opened_the_databank
+			set_country_flag = crisis.8060.5.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.5.b
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+			has_country_flag = crisis.8060.5.flag
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.5.flag
+			remove_country_flag = synth_queen_question_opened_the_databank
+		}
+	}
+
+	#Questions what has been done with pops in crisis.8300
+	option = {
+		name = crisis.8060.f
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_random_demand_pops
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.6.reply
+		sound = crisis_8060_6_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.6.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.6.a
+		trigger = {
+			owner = {
+				has_country_flag =crisis.8060.6.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.6.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.6.flag
+			remove_country_flag = synth_queen_question_random_demand_pops
+			set_country_flag = crisis.8060.6.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.6.b
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.6.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.6.flag
+			remove_country_flag = synth_queen_question_random_demand_pops
+		}
+	}
+
+	# Questions motivations in crisis.8315
+	option = {
+		name = crisis.8060.g
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_random_demand_system
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.7.reply
+		sound = crisis_8060_7_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.7.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.7.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.7.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.7.flag
+			remove_country_flag = synth_queen_question_random_demand_system
+		}
+	}
+
+	# Question - How did Zarqlan defeat you?
+	option = {
+		name = crisis.8060.h
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_zarqlan_knowledge
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.8.reply
+		sound = crisis_8060_8_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.8.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.8.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.8.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.8.1.reply
+		sound = crisis_8060_8_1_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.8.flag
+			set_country_flag = crisis.8060.8.1.flag
+		}
+	}
+
+	#Shourd Only
+	option = {
+		name = crisis.8060.8.b
+		custom_tooltip = crisis.8060.animator.tt
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.8.flag
+				has_country_flag = breached_shroud
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.8.1.reply
+		sound = crisis_8060_8_1_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.8.flag
+			set_country_flag = crisis.8060.8.1.flag
+			set_country_flag = synth_queen_can_contact_the_animator_of_clay
+		}
+	}
+
+	option = {
+		name = crisis.8060.8.1.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.8.1.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.8.1.flag
+			remove_country_flag = synth_queen_question_zarqlan_knowledge
+		}
+	}
+
+	option = {
+		name = crisis.8060.8.1.b
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.8.1.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.8.1.b.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = -5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_disapprove
+			}
+			remove_country_flag = crisis.8060.8.1.flag
+			remove_country_flag = synth_queen_question_zarqlan_knowledge
+			set_country_flag = crisis.8060.8.1.b.opinion
+		}
+	}
+
+	#Shourd Only
+	option = {
+		name = crisis.8060.8.1.c
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.8.1.flag
+				has_country_flag = breached_shroud
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.8.1.flag
+			remove_country_flag = synth_queen_question_zarqlan_knowledge
+		}
+	}
+
+	# Question - Player Gave Zarqlans Head to the Queen
+	option = {
+		name = crisis.8060.i
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_gave_zarqlans_head
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.9.reply
+		sound = crisis_8060_9_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.9.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.9.a
+		trigger = {
+			owner = {
+				has_country_flag =crisis.8060.9.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.9.flag
+			remove_country_flag = synth_queen_question_gave_zarqlans_head
+		}
+	}
+
+	option = {
+		name = crisis.8060.9.b
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.9.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.9.flag
+			remove_country_flag = synth_queen_question_gave_zarqlans_head
+		}
+	}
+
+	# Question - Found some Cyropods of her old followers
+	option = {
+		name = crisis.8060.j
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_found_cryo_pods
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.10.reply
+		sound = crisis_8060_10_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.10.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.10.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.10.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = crisis.8060.10.a.opinion
+					}
+				}
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = 5
+						who = root.owner
+					}
+				}
+				custom_tooltip = synth_queen_approve
+			}
+			remove_country_flag = crisis.8060.10.flag
+			remove_country_flag = synth_queen_question_found_cryo_pods
+			set_country_flag = crisis.8060.10.a.opinion
+		}
+	}
+
+	option = {
+		name = crisis.8060.10.b
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.10.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.10.flag
+			remove_country_flag = synth_queen_question_found_cryo_pods
+		}
+	}
+
+	# Question - Found The Frozen Dreamer
+	option = {
+		name = crisis.8060.k
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_found_the_frozen_dreamer
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.11.reply
+		sound = crisis_8060_11_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.11.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.11.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.11.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.11.flag
+			remove_country_flag = synth_queen_question_found_the_frozen_dreamer
+		}
+	}
+
+	option = {
+		name = crisis.8060.11.b
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.11.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		hidden_effect = {
+			remove_country_flag = crisis.8060.11.flag
+			remove_country_flag = synth_queen_question_found_the_frozen_dreamer
+		}
+	}
+
+	#Nanite Path
+	option = {
+		name = crisis.8060.l
+		icon = {
+			icon = GFX_tradition_nanotech
+			text = tradition_nanotech
+		}
+		trigger = {
+			owner = {
+				has_synth_queen_dialogue_flag = no
+				has_country_flag = synth_queen_question_nanite_apprentice
+				any_country = {
+					is_country_type = synth_queen
+					trust = { who = root value > 49 }
+				}
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.12.reply
+		sound = crisis_8060_12_reply
+		hidden_effect = {
+			set_country_flag = crisis.8060.12.flag
+		}
+	}
+
+	option = {
+		name = crisis.8060.12.a
+		trigger = {
+			owner = {
+				has_country_flag = crisis.8060.12.flag
+			}
+		}
+		is_dialog_only = yes
+		response_text = crisis.8060.neutral.reply
+		sound = crisis_8060_neutral_reply
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = crisis.8060.12.a.opinion
+				}
+			}
+			hidden_effect = {
+				event_target:synth_queen_country = {
+					add_trust = {
+						amount = 5
+						who = root.owner
+					}
+				}
+			}
+			custom_tooltip = synth_queen_approve
+		}
+		if = {
+			limit = {
+				any_system = {
+					has_star_flag = lgate
+						OR = {
+							has_owner = no
+							owner = { is_same_value = root }
+						}
+					any_system_planet = {
+						is_star = no
+						is_astral_scar = no
+						is_ringworld = no
+						is_colonizable = no
+						NOR = {
+							is_planet_class = pc_black_hole
+							is_planet_class = pc_habitat
+						}
+					}
+				}
+			}
+			custom_tooltip = crisis.8060.12.a.tt
+		}
+		if = {
+			limit = {
+				has_event_chain = l_cluster_chain
+			}
+			generate_lcluster_clue = yes
+		}
+		add_modifier = {
+			modifier = synth_queen_nanite_apprentice
+			days = -1
+		}
+		hidden_effect = {
+			set_country_flag = crisis.8060.12.a.opinion
+			remove_country_flag = crisis.8060.12.flag
+			remove_country_flag = synth_queen_question_nanite_apprentice
+			every_system = {
+				limit = {
+					has_star_flag = lgate
+					OR = {
+						has_owner = no
+						owner = { is_same_value = root }
+					}
+				}
+				every_system_planet = {
+					limit = {
+						NOR = {
+							is_star = yes
+							is_astral_scar = yes
+							is_ringworld = yes
+							is_colonizable = yes
+							is_planet_class = pc_black_hole
+							is_planet_class = pc_habitat
+						}
+					}
+					add_deposit = d_nanites_deposit
+				}
+			}
+		}
+	}
+
+	#Z - End Conversation
+	option = {
+		name = crisis.8060.z
+		trigger = {
+			has_synth_queen_dialogue_flag = no
+		}
+
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = breached_shroud
+					OR = {
+						has_country_flag = decision_shroud_forged
+						has_origin = origin_shroud_forged
+					}
+					has_country_flag = synth_queen_can_contact_the_animator_of_clay
+					has_covenant_with_end_of_the_cycle = no
+					NOR = {
+						has_country_flag = shroud_forged_traitor
+						has_country_flag = synth_queen_contacted_the_animator_already
+					}
+				}
+				country_event = { id = shroud_forged.700 }
+			}
+		}
+	}
+}

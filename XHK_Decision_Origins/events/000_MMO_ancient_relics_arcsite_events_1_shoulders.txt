@@ -1,0 +1,134 @@
+
+namespace = ancrel
+
+# Zroni Introduction
+# via on_survey = {} | this = surveying vessel
+ship_event = {
+	id = ancrel.1
+	title = "ancrel.1.name"
+	desc = "ancrel.1.desc"
+	picture = GFX_evt_overgrown_city
+	location = from
+	show_sound = event_wind_ruins
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		host_has_dlc = "Ancient Relics Story Pack"
+		owner = {
+			is_ai = no
+			has_precursor_intro = no
+		}
+		solar_system = { has_star_flag = precursor_zroni_1 }
+		NOT = { has_global_flag = zroni_started }
+		FROM = {
+			has_anomaly = no
+			is_colony = no
+			NOT = { exists = archaeological_site }
+			NOT = { has_carrier_flag = suppress_archaeological_sites }
+			habitable_planet = yes
+		}
+	}
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @origin_shoulders_multiplier
+			owner = {
+				has_shoulders_of_giants_origin = yes
+				has_country_flag = origin_shoulders_closure
+			}
+		}
+	}
+
+	immediate = {
+		owner = { set_country_flag = zroni_intro }
+		set_global_flag = zroni_started
+		solar_system = { set_star_flag = first_zroni_site@root.owner }
+		from = { prevent_anomaly = yes }
+	}
+
+	option = {
+		name = CURIOUS
+		hidden_effect = {
+			owner = { country_event = { id = story.5 days = 30 } }
+		}
+		from = {
+			create_archaeological_site = zroni_digsite_1
+			root.owner = {
+				set_country_flag = zroni_arc_chain_@prev
+			}
+			add_deposit = d_zro_deposit_2
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+# Baol Introduction
+# via on_survey = {} | this = surveying vessel
+ship_event = {
+	id = ancrel.2000
+	title = "ancrel.2000.name"
+	desc = "ancrel.2000.desc"
+	picture = GFX_evt_baol_grunur
+	show_sound = event_default
+	location = from
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		host_has_dlc = "Ancient Relics Story Pack"
+		owner = {
+			is_ai = no
+			has_precursor_intro = no
+		}
+		solar_system = {
+			has_star_flag = precursor_baol_1
+			NOT = {
+				has_star_flag = sol_system
+			}
+		}
+		NOT = { has_global_flag = baol_started }
+		FROM = {
+			has_anomaly = no
+			is_star = no
+			NOT = { exists = archaeological_site }
+			NOT = { has_carrier_flag = suppress_archaeological_sites }
+			NOR = {
+				is_planet_class = pc_gas_giant
+				is_planet_class = pc_molten
+				is_astral_scar = yes
+			}
+		}
+	}
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @origin_shoulders_multiplier
+			owner = {
+				has_shoulders_of_giants_origin = yes
+				has_country_flag = origin_shoulders_closure
+			}
+		}
+	}
+
+	immediate = {
+		set_global_flag = baol_started
+		owner = { set_country_flag = baol_intro }
+		solar_system = { set_star_flag = first_grunur_site@root.owner }
+	}
+
+	option = {
+		name = CURIOUS
+		hidden_effect = {
+			owner = { country_event = { id = story.5 days = 30 } }
+			from = { create_archaeological_site = grunur_digsite_1 }
+		}
+	}
+}

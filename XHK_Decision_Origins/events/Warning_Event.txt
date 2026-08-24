@@ -1,0 +1,18 @@
+namespace = warning_event
+
+
+country_event = {
+	id = warning_event.01
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_evt_worrying_signal
+	show_sound = event_yellow_alert_01
+	
+	desc = {
+		text = "you_did_a_bad"
+	}
+	
+	option = {
+		name = "i_know_what_im_doing"
+	}
+}

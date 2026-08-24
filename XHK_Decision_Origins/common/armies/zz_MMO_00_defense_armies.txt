@@ -1,0 +1,42 @@
+
+
+shroud_forged_defense_army = {
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 1.25
+	health = 1.25
+	morale = 1.50
+	morale_damage = 1.00
+	collateral_damage = 0.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_robot
+	has_species = yes
+	use_armynames_from = robotic_defense_army
+
+	potential = {
+		from = {
+			has_trait = trait_shroud_forged
+		}
+		owner = {
+			OR = {
+				has_country_flag = decision_shroud_forged
+				has_origin = origin_shroud_forged
+			}
+		}
+	}
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+
+	spawn_chance = {
+		factor = 2
+	}
+}

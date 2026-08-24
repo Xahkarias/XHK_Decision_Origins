@@ -1,0 +1,224 @@
+namespace = mmo_void_dwellers
+
+
+event = {
+    id = mmo_void_dwellers.1
+    hide_window = yes
+    is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = decision_void_dwellers
+	}
+	
+    immediate = {
+		from = {
+			every_owned_species = {
+				if = {
+					limit = {
+						OR = {
+							is_archetype = MACHINE
+							is_archetype = ROBOT
+						}
+					}
+					set_habitability_trait = { trait = trait_machine_habitat_planet_preference }
+					change_species_characteristics = {
+						add_trait = trait_void_dweller_2
+						add_traits_at_start_of_list = yes
+					}
+				}
+				else = {
+					set_habitability_trait = { trait = trait_pc_habitat_preference }
+					change_species_characteristics = {
+						add_trait = trait_void_dweller_1
+						add_traits_at_start_of_list = yes
+					}
+				}
+			}
+		}
+	
+		#	every_owned_species = {
+		#		limit = { is_robot_pop_group = no }
+		#		modify_species = {
+		#			species = this
+		#			ideal_planet_class = pc_habitat
+		#		}
+		#		modify_species = {
+		#			species = this
+		#			add_trait = trait_void_dweller_1
+		#		}
+		#	}
+		#	every_owned_species = {
+		#		limit = { is_robot_pop_group = yes }
+		#		modify_species = {
+		#			species = this
+		#			ideal_planet_class = pc_habitat
+		#		}
+		#		modify_species = {
+		#			species = this
+		#			add_trait = trait_void_dweller_2
+		#		}
+		#	}
+		owner = {
+			save_event_target_as = void_dweller_owner
+			give_technology = {
+				tech = tech_habitat_1
+				message = no
+			}
+			add_research_option = tech_habitat_2
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							is_lithoid_empire = no
+							is_mechanical_species = no
+							is_infernal_empire = no
+						}
+						is_catalytic_empire = yes
+						country_uses_bio_ships = yes
+					}
+				}
+				root.solar_system.starbase = {
+					remove_starbase_building = {
+						slot = 1
+					}
+					set_starbase_building = {
+						slot = 1
+						building = hydroponics_bay
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_valid_civic = civic_private_healthcare_corporate
+				}
+				give_technology = { message = no tech = tech_frontier_health }
+				add_research_option = tech_subdermal_stimulation
+			}
+		}
+	}
+}
+
+
+
+event = {
+    id = mmo_void_dwellers.2
+    hide_window = yes
+    is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = decision_void_dwellers
+	}
+	
+	immediate = {
+		capital_star.solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = void_dwellers_homeworld }
+				change_pc = pc_habitat
+				set_planet_flag = megastructure
+				set_planet_flag = habitat
+				has_ring = no
+				save_event_target_as = home_habitat
+			}
+			spawn_planet = {
+				name = "NAME_The_Fragments"
+				class = pc_shattered
+				has_ring = yes
+				location = event_target:home_habitat
+				size = 20
+				init_effect = {
+					clear_planet_modifiers = yes
+					prevent_anomaly = yes
+					clear_blockers = yes
+					clear_deposits = yes
+					add_deposit = d_physics_3
+				}
+			}
+		}
+	}
+}
+
+
+event = {
+    id = mmo_void_dwellers.3
+    hide_window = yes
+    is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = decision_void_dwellers
+	}
+	
+	immediate = {
+			capital_star.solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = void_dwellers_homeworld }
+				set_planet_size = 6
+				set_carrier_flag = habitat_level_2
+				set_planet_flag = habitat
+				set_planet_entity = {
+					entity = "habitat_phase_03_entity"
+					graphical_culture = owner
+				}
+				add_building = building_hab_major_capital
+				add_building = building_holo_theatres
+				add_building = building_commercial_zone
+				remove_building = building_hab_capital
+				add_district_and_planet_size_if_needed_effect_amount = {
+					amount = 2
+					district = district_hab_housing
+				}
+				add_district_and_planet_size_if_needed_effect_amount = {
+					amount = 2
+					district = district_hab_energy
+				}
+				if ={
+					limit = {
+						OR = {
+							AND = {
+								is_lithoid_empire = no
+								is_mechanical_species = no
+								is_infernal_empire = no
+							}
+							is_catalytic_empire = yes
+							country_uses_bio_ships = yes
+						}
+					}
+					add_zone = {
+						district = district_hab_energy
+						zone = zone_habitat_hydroponics
+					}
+					add_building = {
+						zone = zone_habitat_hydroponics
+						building = building_hydroponics_farm
+					}
+				}
+				add_district_and_planet_size_if_needed_effect_amount = {
+					amount = 1
+					district = district_hab_science
+				}
+				add_district_and_planet_size_if_needed_effect_amount = {
+					amount = 2
+					district = district_hab_mining
+				}
+				add_zone = {
+					district = district_hab_housing
+					zone = zone_habitat_research_unity
+					zone_slot = 1
+				}
+				add_zone = {
+					district = district_hab_housing
+					zone = zone_industrial
+					zone_slot = 2
+				}
+				add_building = {
+					building = building_factory_1
+					zone = zone_industrial
+				}
+			}
+			every_system_planet = {
+				limit = { has_deposit_for = shipclass_mining_station }
+				create_mining_station = { owner = prevprev.owner }
+			}
+		}
+	}
+}
+

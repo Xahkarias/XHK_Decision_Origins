@@ -1,0 +1,45 @@
+@base_agenda_cost = 7000
+
+agenda_reorganize_council = {
+	agenda_cost = @base_agenda_cost
+	potential = {
+		is_gestalt = no
+		has_paragon_dlc = yes
+	}
+	allow = {
+		always = yes
+	}
+	effect = {
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = decision_evolutionary_predators
+						has_origin = origin_evolutionary_predators
+					}
+					is_mutation_authority = yes
+					is_oligarchic_authority = yes
+				}
+				every_owned_leader = {
+					limit = {
+						has_leader_flag = evopred_oligarch_immortal
+						is_ruler = no
+					}
+					set_immortal = no
+					remove_leader_flag = evopred_oligarch_immortal
+				}
+			}
+		}
+		unlock_council_selection = yes
+		if = {
+			limit = { can_access_shroud = yes }
+			add_patron_objective_counter = {
+				counter = po_reform_council
+				amount = 1
+			}
+		}
+	}
+	ai_weight = {
+		base = 0
+	}
+}

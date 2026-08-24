@@ -1,0 +1,248 @@
+
+namespace = action
+
+# Country Destroyed Notification Gatekeeper
+country_event = {
+	id = action.61
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = {
+			has_global_flag = synth_queen_victorious
+			has_country_flag = supress_country_destroyed_message
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = from
+			}
+			from = {
+				save_global_event_target_as = destroyer_country
+				set_country_flag = has_won_war
+			}
+		}
+		if = {
+			limit = {
+				is_nomadic = yes
+				any_subject = {
+					has_origin = origin_nomadic_purger
+				}
+			}
+			every_subject = {
+				limit = {
+					has_origin = origin_nomadic_purger
+				}
+				destroy_country = yes
+			}
+		}
+		# If the MSI got destroyed by someone else, payback empires will get a follow-up
+		# after action.62
+		if = {
+			limit = {
+				OR = {
+					has_country_flag = payback_stole_revenge
+					has_origin = origin_slavers
+				}
+			}
+			every_playable_country = {
+				limit = {
+					OR = {
+						has_origin = origin_payback
+						has_country_flag = decision_payback
+					}
+					NOT = { is_same_value = event_target:destroyer_country }
+				}
+				set_country_flag = payback_stolen_revenge
+			}
+		}
+		# If MSI gets destroyed by Payback, fire the on_war_won event after the country destroyed notification
+		if = {
+			limit = {
+				OR = {
+					has_country_flag = payback_stole_revenge
+					has_origin = origin_slavers
+				}
+				event_target:destroyer_country = {
+					OR = {
+						has_origin = origin_payback
+						has_country_flag = decision_payback
+					}
+					has_event_chain = payback_make_them_pay_swords_chain
+					is_at_war_with = prev
+				}
+			}
+			event_target:destroyer_country = { set_country_flag = payback_killed_MSI }
+		}
+
+		if = {
+			limit = {
+				exists = event_target:destroyer_country
+				event_target:destroyer_country = {
+					OR = {
+						has_country_flag = decision_evolutionary_predators
+						has_origin = origin_evolutionary_predators
+					}
+					is_mutation_authority = yes
+					is_dictatorial_authority = yes
+				}
+				is_country_type = default
+			}
+			species = {
+				apex_predator_switch = {
+					COUNTRY = event_target:destroyer_country
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				has_country_flag = targeted_by_fe_hive_war_task
+			}
+			random_playable_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = prev
+						flag = targeted_by_fe_hive_war_task
+					}
+				}
+				create_happy_hive_fe_task_message = { FALLEN_EMPIRE = event_target:fallen_empire_hive_war }
+			}
+		}
+
+		every_subject = {
+			set_subject_of = {
+				who = none
+			}
+		}
+		if = {
+			limit = {
+				any_war = {
+					using_war_goal = {
+						owner = root
+						type = wg_leave_hegemony
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_at_war_with = root
+					any_war = {
+						using_war_goal = {
+							owner = root
+							type = wg_leave_hegemony
+						}
+						is_war_participant = { who = prev side = defenders }
+						is_war_participant = { who = root side = attackers }
+					}
+				}
+				federation = {
+					change_variable = {
+						which = federation_secession_war
+						value = -1
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_subject = no
+				OR = {
+					is_country_type = default
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+				NOT = { has_country_flag = silence_destroy_event }
+			}
+			if = {
+				limit = {
+					is_country_type = default
+					NOT = {
+						any_war = {
+							using_war_goal = {
+								owner = root
+								type = wg_machine_uprising
+							}
+						}
+					}
+				}
+				every_playable_country = {
+					limit = {
+						has_communications = root
+						NOT = { is_same_value = root }
+					}
+					country_event = { id = action.62 }
+				}
+				random_playable_country = {
+					observer_event = { id = observer.2 }
+				}
+			}
+			if = {
+				limit = {
+					is_country_type = default
+					any_war = {
+						using_war_goal = {
+							owner = root
+							type = wg_machine_uprising
+						}
+					}
+				}
+				every_playable_country = {
+					limit = {
+						has_communications = root
+						NOT = {
+							is_same_value = event_target:destroyer_country
+						}
+					}
+					if = {
+						limit = {
+							event_target:destroyer_country = {
+								OR = {
+									is_machine_empire = yes
+									is_individual_machine = yes
+								}
+							}
+						}
+						country_event = { id = syndaw.1030 days = 5 }
+					}
+					else = {
+						country_event = { id = syndaw.1035 days = 5 }
+					}
+				}
+				event_target:destroyer_country = {
+					if = {
+						limit = {
+							OR = {
+								is_machine_empire = yes
+								is_individual_machine = yes
+							}
+						}
+						country_event = { id = syndaw.1201 }
+					}
+					else = {
+						country_event = { id = syndaw.1206 }
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					is_fallen_empire = yes
+					NOT = { has_country_flag = got_assimialted }
+				}
+				every_playable_country = {
+					limit = {
+						has_communications = root
+						NOT = { is_same_value = root }
+					}
+					country_event = { id = action.63 }
+				}
+				random_playable_country = {
+					observer_event = { id = observer.3 }
+				}
+			}
+		}
+	}
+}
