@@ -13,10 +13,7 @@ carrier_event = {
 	trigger = {
 		is_colony = yes
 		owner = {
-			OR = {
-				has_country_flag = decision_riftworld
-				has_origin = origin_riftworld
-			}
+			has_riftworld_origin = yes
 		}
 		solar_system = { has_astral_rift = yes }
 		NOT = { has_modifier = riftworld_affinity }
@@ -37,10 +34,7 @@ astral_rift_event = {
 		solar_system = {
 			exists = owner
 			owner = {
-				OR = {
-					has_country_flag = decision_riftworld
-					has_origin = origin_riftworld
-				}
+				has_riftworld_origin = yes
 			}
 		}
 	}

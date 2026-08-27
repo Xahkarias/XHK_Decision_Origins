@@ -87,3 +87,10 @@ has_necrophage_origin = {
         has_origin = origin_necrophage
     }
 }
+
+has_riftworld_origin = {
+	OR = {
+		has_country_flag = decision_origins_riftworld
+		has_origin = origin_riftworld
+	}
+}

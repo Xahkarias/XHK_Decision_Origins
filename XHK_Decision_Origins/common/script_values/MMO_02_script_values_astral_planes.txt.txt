@@ -6,10 +6,7 @@ progressive_rifts_additional_weight = {
 	base = 1
 	modifier = {
 		multiply = 2
-		OR = {
-			has_country_flag = decision_riftworld
-			has_origin = origin_riftworld
-		}
+		has_riftworld_origin = yes
 	}
 	modifier = {
 		multiply = 2

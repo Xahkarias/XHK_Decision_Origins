@@ -15,7 +15,7 @@ storm_chasers_quest = {
 				has_country_flag = decision_storm_chasers
 				has_origin = origin_storm_chasers
 			}
-
+			is_homicidal = no
 			has_cosmic_storms_dlc = yes
 			is_nomadic = no
 		}
@@ -57,6 +57,7 @@ arc_welders_quest = {
 				}
 			}
 			has_machine_age_dlc = yes
+			is_machine_empire = yes
 		}
 	}
 	effect = {
@@ -90,6 +91,7 @@ treasure_hunters_quest = {
 				has_origin = origin_treasure_hunters
 			}
 			has_grand_archive_dlc = yes
+			is_homicidal = no
 		}
 	}
 
@@ -131,6 +133,7 @@ void_dwellers_quest = {
 				}
 			}
 			has_federations_dlc = yes
+
 		}
 	}
 
@@ -222,6 +225,10 @@ primal_calling_quest = {
 				}
 			}
 			has_grand_archive_dlc = yes
+			NOR = {
+				is_machine_empire = yes
+				is_tankbound_empire = yes
+			}
 		}
 	}
 	
@@ -258,6 +265,7 @@ shroud_forged_quest = {
 				}
 			}
 			has_shroud_dlc = yes
+			is_machine_empire = yes
 		}
 	}
 
@@ -332,6 +340,7 @@ evolutionary_predators_quest = {
 				}
 			}
 			has_biogenesis_dlc = yes
+			is_machine_empire = yes
 		}
 	}
 	effect = {
@@ -376,6 +385,7 @@ common_ground_quest = {
 				}
 			}
 			has_federations_dlc = yes
+			is_homicidal = no
 		}
 	}
 	effect = {
@@ -407,6 +417,7 @@ hegemon_quest = {
 				}
 			}
 			has_federations_dlc = yes
+			is_homicidal = no
 		}
 	}
 	effect = {
@@ -434,6 +445,7 @@ shoulders_of_giants_quest = {
 				has_shoulders_of_giants_origin = yes
 			}
 			has_federations_dlc = yes
+			is_nomadic = no
 		}
 	}
 	effect = {
