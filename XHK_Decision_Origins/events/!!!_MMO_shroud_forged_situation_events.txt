@@ -58,8 +58,7 @@ country_event = {
 		trigger = {
 			OR = {
 				founder_species_is_machine = yes
-				has_origin = origin_shroud_forged
-				has_country_flag = decision_shroud_forged
+				has_shroud_forged_origin = yes
 			}
 		}
 		picture = GFX_evt_machine_sapience
@@ -149,10 +148,7 @@ situation_event = {
 		owner = {
 			if = {
 				limit = {
-					OR = {
-						has_origin = origin_shroud_forged
-						has_country_flag = decision_shroud_forged
-					}
+					has_shroud_forged_origin = yes
 				}
 				custom_tooltip = situation_breach_shroud_finish_animator_contact
 				establish_communications = event_target:the_animator_of_clay
@@ -165,10 +161,7 @@ situation_event = {
 			owner = {
 				if = {
 					limit = {
-						OR = {
-							has_origin = origin_shroud_forged
-							has_country_flag = decision_shroud_forged
-						}
+						has_shroud_forged_origin = yes
 					}
 					set_patron_first_contact_state = { patron = the_animator_of_clay state = completed }
 					country_event = {

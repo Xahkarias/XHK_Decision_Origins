@@ -1,0 +1,197 @@
+building_shroud_observatory_1 = {
+	base_buildtime = @b1_time
+
+	exempt_from_ai_planet_specialization = no
+
+	category = research
+	building_sets = {
+		research
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			has_shroud_forged_origin = yes
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = SHROUD_RIFT_MISSING_TT
+			has_deposit = d_shroud_rift_deposit
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { has_shroud_forged_origin = no }
+			NOT = { has_deposit = d_shroud_rift_deposit }
+		}
+	}
+
+	inline_script = {
+		script = jobs/biologists_add
+		AMOUNT = @building_static_jobs		# 200 jobs
+	}
+
+	triggered_desc = {
+		text = biology_unit_is_observator_tt
+	}
+
+	resources = {
+		category = planet_buildings
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = exotic_gases
+			COST = @b1_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
+		}
+		upkeep = {
+			energy = @b1_upkeep
+		}
+	}
+
+	upgrades = {
+		"building_shroud_observatory_2"
+	}
+}
+
+building_shroud_observatory_2 = {
+	base_buildtime = @b2_time
+	can_build = no
+
+	exempt_from_ai_planet_specialization = no
+
+	category = research
+	building_sets = {
+		research
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_shroud_forged_origin = yes }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { has_shroud_forged_origin = no }
+			NOT = { has_deposit = d_shroud_rift_deposit }
+		}
+	}
+
+	inline_script = {
+		script = jobs/biologists_add
+		AMOUNT = @building_static_jobs		# 200 jobs
+	}
+
+	planet_modifier = {
+		planet_biologists_physics_research_produces_add = 0.25
+		planet_biologists_society_research_produces_add = 0.25
+		planet_biologists_sr_zro_upkeep_add	= 0.25
+	}
+
+	triggered_desc = {
+		text = biology_unit_is_observator_tt
+	}
+
+	resources = {
+		category = planet_buildings
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = exotic_gases
+			COST = @b2_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	upgrades = {
+		"building_shroud_observatory_3"
+	}
+
+	prerequisites = {
+		"tech_psionic_theory"
+	}
+
+	show_tech_unlock_if = {
+		exists = owner
+		owner = { has_shroud_forged_origin = yes }
+	}
+}
+
+building_shroud_observatory_3 = {
+	base_buildtime = @b3_time
+	can_build = no
+
+	exempt_from_ai_planet_specialization = no
+
+	category = research
+	building_sets = {
+		research
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_shroud_forged_origin = yes }
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { has_shroud_forged_origin = no }
+			NOT = { has_deposit = d_shroud_rift_deposit }
+		}
+	}
+
+	inline_script = {
+		script = jobs/biologists_add
+		AMOUNT = @building_static_jobs		# 200 jobs
+	}
+
+	planet_modifier = {
+		planet_biologists_physics_research_produces_add = 0.5
+		planet_biologists_society_research_produces_add = 0.5
+		planet_biologists_sr_zro_upkeep_add	= 0.5
+	}
+
+	triggered_desc = {
+		text = biology_unit_is_observator_tt
+	}
+
+	resources = {
+		category = planet_buildings
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = exotic_gases
+			COST = @b3_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_zro"
+	}
+
+	show_tech_unlock_if = {
+		exists = owner
+		owner = { has_shroud_forged_origin = yes }
+	}
+}

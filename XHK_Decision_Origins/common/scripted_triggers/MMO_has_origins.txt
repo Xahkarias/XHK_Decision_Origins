@@ -4,3 +4,10 @@ has_shoulders_of_giants_origin = {
         has_origin = origin_shoulders_of_giants
     }
 }
+
+has_shroud_forged_origin = {
+	OR = {
+		has_country_flag = decision_shroud_forged
+		has_origin = origin_shroud_forged
+	}
+}

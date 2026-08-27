@@ -9,10 +9,7 @@ citizenship_full_machine = {
 		OR = {
 			NOT = {
 				from = {
-					OR = {
-						has_country_flag = decision_shroud_forged
-						has_origin = origin_shroud_forged
-					}
+					has_shroud_forged_origin = yes
 				}
 			}
 			NOT = { has_trait = trait_shroud_forged }
@@ -368,10 +365,7 @@ citizenship_assimilation = {
 			factor = 0
 			has_species_flag = original_main_species
 			from = {
-				OR = {
-					has_country_flag = decision_shroud_forged
-					has_origin = origin_shroud_forged
-				}
+				has_shroud_forged_origin = yes
 			}
 		}
 		modifier = {
@@ -388,10 +382,7 @@ citizenship_shroud_touched = {
 		exists = from
 		from = {
 			has_authority = auth_machine_intelligence
-			OR = {
-				has_country_flag = decision_shroud_forged
-				has_origin = origin_shroud_forged
-			}
+			has_shroud_forged_origin = yes
 		}
 		exists = this
 		has_trait = trait_shroud_forged

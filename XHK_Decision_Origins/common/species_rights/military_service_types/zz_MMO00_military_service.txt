@@ -25,10 +25,7 @@ military_service_none = {
 				limit = {
 					from = {
 						is_machine_empire = yes
-						NOR = {
-							has_country_flag = decision_shroud_forged
-							has_origin = origin_shroud_forged
-						}
+						has_shroud_forged_origin = no
 					}
 				}
 				OR = {
@@ -46,10 +43,7 @@ military_service_none = {
 				limit = {
 					from = {
 						has_authority = auth_machine_intelligence
-						OR = {
-							has_country_flag = decision_shroud_forged
-							has_origin = origin_shroud_forged
-						}
+						has_shroud_forged_origin = yes
 					}
 				}
 				NOT = { has_trait = trait_machine_unit }

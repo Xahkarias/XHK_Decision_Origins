@@ -1,4 +1,6 @@
 
+
+
 # Assault Armies
 assault_army = {
 	damage = 1.00
@@ -49,8 +51,7 @@ assault_army = {
 		OR = {
 			is_machine_empire = no
 			has_valid_civic = civic_machine_assimilator
-			has_origin = origin_shroud_forged
-			has_country_flag = decision_shroud_forged
+			has_shroud_forged_origin = yes
 		}
 		is_wilderness_empire = no
 	}
@@ -58,8 +59,7 @@ assault_army = {
 		OR = {
 			is_machine_empire = no
 			has_valid_civic = civic_machine_assimilator
-			has_origin = origin_shroud_forged
-			has_country_flag = decision_shroud_forged
+			has_shroud_forged_origin = yes
 		}
 		is_wilderness_empire = no
 	}
@@ -158,8 +158,7 @@ psionic_army = {
 	potential_country = {
 		OR = {
 			is_machine_empire = no
-			has_origin = origin_shroud_forged
-			has_country_flag = decision_shroud_forged
+			has_shroud_forged_origin = yes
 		}
 		is_wilderness_empire = no
 	}
@@ -192,5 +191,43 @@ psionic_army = {
 			is_fallen_empire = yes
 			NOT = { is_fanatic_spiritualist = yes }
 		}
+	}
+}
+
+shroud_forged_defense_army = {
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 1.25
+	health = 1.25
+	morale = 1.50
+	morale_damage = 1.00
+	collateral_damage = 0.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_robot
+	has_species = yes
+	use_armynames_from = robotic_defense_army
+
+	potential = {
+		from = {
+			has_trait = trait_shroud_forged
+		}
+		owner = {
+			has_shroud_forged_origin = yes
+		}
+	}
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+
+	spawn_chance = {
+		factor = 2
 	}
 }

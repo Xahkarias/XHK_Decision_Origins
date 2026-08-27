@@ -28,10 +28,7 @@ zro_observators = {
 	}
 
 	potential = {
-		OR = {
-			has_country_flag = decision_shroud_forged
-			has_origin = origin_shroud_forged
-		}
+		has_shroud_forged_origin = yes
 	}
 
 	ai_weight = {
@@ -55,10 +52,7 @@ shroud_bonded = {
 	}
 
 	potential = {
-		OR = {
-			has_country_flag = decision_shroud_forged
-			has_origin = origin_shroud_forged
-		}
+		has_shroud_forged_origin = yes
 		has_country_flag = finish_shroud_forged_liberation_flag
 	}
 

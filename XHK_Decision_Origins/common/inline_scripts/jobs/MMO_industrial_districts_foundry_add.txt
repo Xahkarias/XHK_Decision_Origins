@@ -4,10 +4,7 @@ triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			OR = {
-				has_country_flag = decision_shroud_forged
-				has_origin = origin_shroud_forged
-			}
+			has_shroud_forged_origin = yes
 		}
 	}
 	modifier = {

@@ -924,10 +924,7 @@ country_event = {
 			if = {
 				limit = {
 					has_country_flag = breached_shroud
-					OR = {
-						has_country_flag = decision_shroud_forged
-						has_origin = origin_shroud_forged
-					}
+					has_shroud_forged_origin = yes
 					has_country_flag = synth_queen_can_contact_the_animator_of_clay
 					has_covenant_with_end_of_the_cycle = no
 					NOR = {

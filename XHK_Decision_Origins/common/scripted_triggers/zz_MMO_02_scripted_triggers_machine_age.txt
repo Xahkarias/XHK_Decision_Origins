@@ -8,10 +8,7 @@ has_psionic_ascension = {
 		has_origin = origin_endbringers
 		is_chosen_empire = yes											# Early Access Civic
 		AND  = {														# Early Access Origin (must complete situation from right side)
-			OR = {
-				has_origin = origin_shroud_forged
-				has_country_flag = decision_shroud_forged
-			}
+			has_shroud_forged_origin = yes
 			has_country_flag = finish_shroud_forged_liberation_flag
 		}
 	}

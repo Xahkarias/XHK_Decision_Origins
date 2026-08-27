@@ -19,8 +19,7 @@ ap_mind_over_matter = {
 			limit = {
 				OR = {
 					is_synthetic_empire = no
-					has_origin = origin_shroud_forged
-					has_country_flag = decision_shroud_forged
+					has_shroud_forged_origin = yes
 					is_chosen_empire = yes
 				}
 			}
@@ -73,10 +72,7 @@ ap_mind_over_matter = {
 		}
 		if = {
 			limit = {
-				OR = {
-					has_origin = origin_shroud_forged
-					has_country_flag = decision_shroud_forged
-				}
+				has_shroud_forged_origin = yes
 			}
 			if = {
 				limit = {
@@ -136,10 +132,7 @@ ap_mind_over_matter = {
 		is_natural_design_empire = no
 		if = {
 			limit = {
-				OR = {
-					has_country_flag = decision_shroud_forged
-					has_origin = origin_shroud_forged
-				}
+				has_shroud_forged_origin = yes
 			}
 			NOT = { has_country_flag = finish_shroud_forged_control_flag }
 		}

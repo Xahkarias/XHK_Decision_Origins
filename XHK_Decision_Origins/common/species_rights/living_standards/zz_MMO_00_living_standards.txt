@@ -9,10 +9,7 @@ living_standard_hive_mind = {
 			NOT = { has_trait = trait_mechanical }
 			NOT = {
 				from = {
-					OR = {
-						has_country_flag = decision_shroud_forged
-						has_origin = origin_shroud_forged
-					}
+					has_shroud_forged_origin = yes
 				}
 			}
 		}
@@ -69,10 +66,7 @@ living_standard_protected = {
 		exists = from
 		from = {
 			has_authority = auth_machine_intelligence
-			OR = {
-				has_country_flag = decision_shroud_forged
-				has_origin = origin_shroud_forged
-			}
+			has_shroud_forged_origin = yes
 		}
 		exists = this
 		has_citizenship_type = { country = from type = citizenship_shroud_touched }
